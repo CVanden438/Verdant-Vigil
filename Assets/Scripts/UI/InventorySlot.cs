@@ -25,12 +25,32 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         image.color = notSelectedColor;
     }
 
+    // public void OnDrop(PointerEventData eventData)
+    // {
+    //     if (transform.childCount == 0)
+    //     {
+    //         InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
+    //         inventoryItem.parentAfterDrag = transform;
+    //     }
+    // }
     public void OnDrop(PointerEventData eventData)
     {
-        if (transform.childCount == 0)
+        InventoryItem draggedItem = eventData.pointerDrag.GetComponent<InventoryItem>();
+        if (draggedItem != null)
         {
-            InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
-            inventoryItem.parentAfterDrag = transform;
+            InventorySlot destinationSlot = this;
+
+            if (transform.childCount > 0)
+            {
+                // If the destination slot already has an item, swap places
+                InventoryItem existingItem = transform.GetChild(0).GetComponent<InventoryItem>();
+                existingItem.parentAfterDrag = draggedItem.parentAfterDrag;
+                existingItem.transform.SetParent(draggedItem.parentAfterDrag);
+            }
+
+            // Update the parentAfterDrag of the dragged item
+            draggedItem.parentAfterDrag = destinationSlot.transform;
+            draggedItem.transform.SetParent(destinationSlot.transform);
         }
     }
 }
