@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TowerProjectile : MonoBehaviour
 {
-    public int damage = 10;
+    public float damage;
 
     private Transform target;
     private Rigidbody2D rb;
@@ -13,9 +13,13 @@ public class TowerProjectile : MonoBehaviour
         target = _target;
     }
 
+    public void SetDamage(float _damage)
+    {
+        damage = _damage;
+    }
+
     void Start()
     {
-        Debug.Log(target);
         rb = GetComponent<Rigidbody2D>();
         Vector3 dir = target.position - transform.position;
         rb.velocity = new Vector2(dir.x, dir.y).normalized * force;

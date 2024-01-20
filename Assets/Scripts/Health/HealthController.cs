@@ -10,6 +10,7 @@ public class HealthController : MonoBehaviour
 
     [SerializeField]
     private float _maximumHealth;
+    public float damageMultiplier = 1;
 
     public float RemainingHealthPercentage
     {
@@ -35,7 +36,7 @@ public class HealthController : MonoBehaviour
             return;
         }
 
-        _currentHealth -= damageAmount;
+        _currentHealth -= damageAmount * damageMultiplier;
         OnHealthChanged.Invoke();
 
         if (_currentHealth < 0)
@@ -67,5 +68,15 @@ public class HealthController : MonoBehaviour
         {
             _currentHealth = _maximumHealth;
         }
+    }
+
+    public float GetHealth()
+    {
+        return _currentHealth;
+    }
+
+    public float GetMaxHealth()
+    {
+        return _maximumHealth;
     }
 }

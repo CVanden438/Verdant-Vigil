@@ -8,7 +8,8 @@ public class DayNightCycleWithSunAndMoon : MonoBehaviour
 
     public RectTransform sunRectTransform; // Reference to the RectTransform of the sun UI element
     public RectTransform moonRectTransform; // Reference to the RectTransform of the moon UI element
-    public TilemapCollider2D bounds;
+
+    // public TilemapCollider2D bounds;
     public bool IsDay
     {
         get { return timeOfDay < 0.5; }
@@ -32,7 +33,7 @@ public class DayNightCycleWithSunAndMoon : MonoBehaviour
                 2000f,
                 moonRectTransform.anchoredPosition.y
             ); // Move moon off-screen
-            bounds.enabled = false;
+            // bounds.enabled = false;
         }
         else
         {
@@ -45,7 +46,7 @@ public class DayNightCycleWithSunAndMoon : MonoBehaviour
                 2000f,
                 sunRectTransform.anchoredPosition.y
             ); // Move sun off-screen
-            bounds.enabled = true;
+            // bounds.enabled = true;
         }
     }
 }

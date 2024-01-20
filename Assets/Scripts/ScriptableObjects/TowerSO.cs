@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Tower", menuName = "Towers/Tower")]
@@ -11,4 +13,6 @@ public class TowerSO : ScriptableObject
     public int crystalCost;
     public int gasCost;
     public int uraniumCost;
+    public TowerSO upgrade;
+    public List<TowerSO> maxUpgrades;
 }

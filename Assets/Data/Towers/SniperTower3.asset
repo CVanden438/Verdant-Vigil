@@ -20,3 +20,7 @@ MonoBehaviour:
   crystalCost: 112
   gasCost: 112
   uraniumCost: 1
+  upgrade: {fileID: 0}
+  maxUpgrades:
+  - {fileID: 11400000, guid: ffa3f58f4ca6ebf40ac73f434154608c, type: 2}
+  - {fileID: 11400000, guid: cdf2e2b5a3489ac4a840db1a0c1f1464, type: 2}

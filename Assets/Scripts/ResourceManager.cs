@@ -10,6 +10,11 @@ public class ResourceManager : MonoBehaviour
     public int coins;
     public UIManager uiManager;
 
+    public void Start()
+    {
+        uiManager.UpdateCrystalText(crystals);
+    }
+
     public void AddCrystals(int amount)
     {
         crystals += amount;

@@ -54,10 +54,10 @@ public class BuildingController : MonoBehaviour
         if (chosenTower != null)
         {
             TowerController buildingController = chosenTower.GetComponent<TowerController>();
-            if (rm.crystals >= buildingController.crystalCost)
+            if (rm.crystals >= buildingController.data.crystalCost)
             {
                 Instantiate(chosenTower, new Vector3(x, y), Quaternion.identity);
-                rm.RemoveCrystals(buildingController.crystalCost);
+                rm.RemoveCrystals(buildingController.data.crystalCost);
             }
             chosenTower = null;
             isBuilding = false;
