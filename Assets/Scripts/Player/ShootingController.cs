@@ -24,6 +24,7 @@ public class ShootingController : MonoBehaviour
     private float _lastFireTime;
     private Vector3 mousePos;
     private Camera mainCam;
+    private RangedWeaponSO weaponData;
 
     void Start()
     {
@@ -32,26 +33,31 @@ public class ShootingController : MonoBehaviour
 
     void Update()
     {
-        RotateGun();
-        // if (_fireContinuously || _fireSingle)
-        // {
-        //     float timeSinceLastFire = Time.time - _lastFireTime;
-
-        //     if (timeSinceLastFire >= _timeBetweenShots)
-        //     {
-        //         FireBullet();
-
-        //         _lastFireTime = Time.time;
-        //         _fireSingle = false;
-        //     }
-        // }
-        if (Input.GetKey(KeyCode.Mouse0))
+        ItemSO item = InventoryManager.instance.GetSelectedItem(false);
+        if (item != null && item.itemType == ItemType.Weapon)
         {
-            float timeSinceLastFire = Time.time - _lastFireTime;
-            if (timeSinceLastFire >= _timeBetweenShots)
+            weaponData = (RangedWeaponSO)item;
+            RotateGun();
+            // if (_fireContinuously || _fireSingle)
+            // {
+            //     float timeSinceLastFire = Time.time - _lastFireTime;
+
+            //     if (timeSinceLastFire >= _timeBetweenShots)
+            //     {
+            //         FireBullet();
+
+            //         _lastFireTime = Time.time;
+            //         _fireSingle = false;
+            //     }
+            // }
+            if (Input.GetKey(KeyCode.Mouse0))
             {
-                FireBullet();
-                _lastFireTime = Time.time;
+                float timeSinceLastFire = Time.time - _lastFireTime;
+                if (timeSinceLastFire >= weaponData.attackCd)
+                {
+                    FireBullet();
+                    _lastFireTime = Time.time;
+                }
             }
         }
     }
@@ -59,10 +65,11 @@ public class ShootingController : MonoBehaviour
     private void FireBullet()
     {
         GameObject bullet = Instantiate(
-            _bulletPrefab,
+            weaponData.projectilePrefab,
             bulletTransform.position,
             transform.rotation
         );
+        bullet.GetComponent<BulletController>().weaponData = weaponData;
     }
 
     // private void OnFire(InputValue inputValue)

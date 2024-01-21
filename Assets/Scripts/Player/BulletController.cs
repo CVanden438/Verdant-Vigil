@@ -14,6 +14,7 @@ public class BulletController : MonoBehaviour
 
     [SerializeField]
     private DebuffSO shock;
+    public RangedWeaponSO weaponData;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,7 @@ public class BulletController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePos - transform.position;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
+        rb.velocity = new Vector2(direction.x, direction.y).normalized * weaponData.projectileSpeed;
         // Vector3 rotation = transform.position - mousePos;
     }
 
@@ -40,8 +41,13 @@ public class BulletController : MonoBehaviour
             // Destroy(collision.gameObject);
             // Destroy(gameObject);
             var healthController = collision.gameObject.GetComponent<HealthController>();
-            healthController.TakeDamage(_damageAmount);
-            collision.GetComponent<BuffDebuffController>().ApplyDebuff(shock, 2);
+            healthController.TakeDamage(weaponData.damage);
+            if (weaponData.debuff)
+            {
+                collision
+                    .GetComponent<BuffDebuffController>()
+                    .ApplyDebuff(weaponData.debuff, weaponData.debuffDuration);
+            }
             Destroy(gameObject);
         }
         Destroy(gameObject);

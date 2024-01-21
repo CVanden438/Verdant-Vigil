@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Weapon", menuName = "Items/Weapons")]
+// [CreateAssetMenu(fileName = "Weapon", menuName = "Items/Weapons")]
 public class WeaponSO : ItemSO
 {
     public int damage;
     public int attackCd;
     public int range;
+    public DebuffSO debuff;
+    public int debuffDuration;
 }
