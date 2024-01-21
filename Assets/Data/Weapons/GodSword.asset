@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61cd511caa2e68f41a6221547e645e2a, type: 3}
-  m_Name: Sword
+  m_Name: GodSword
   m_EditorClassIdentifier: 
-  itemName: Sword
-  description: its a sword
-  icon: {fileID: 21300000, guid: f3fdf101dad80f541bd1ba5962e3367e, type: 3}
+  itemName: GodSword
+  description: Its insane
+  icon: {fileID: 21300000, guid: 0a768980eaa8c294f84714a048f662b9, type: 3}
   itemType: 0
   stackable: 0
-  weaponType: 0
+  weaponType: 2
   meleeDebuff: {fileID: 0}
   meleeDebuffDuration: 0
   meleeRange: 2
-  meleeDamage: 10
+  meleeDamage: 5
   meleeCooldown: 1
   rangeDebuff: {fileID: 0}
   rangeDebuffDuration: 0
-  projectileSpeed: 0
-  rangeRange: 0
-  rangeCooldown: 0
-  rangeDamage: 0
-  projectilePrefab: {fileID: 0}
+  projectileSpeed: 4
+  rangeRange: 6
+  rangeCooldown: 3
+  rangeDamage: 1
+  projectilePrefab: {fileID: 7336338765972526373, guid: a113e181c91b6fa47a976771e1bc6a09, type: 3}

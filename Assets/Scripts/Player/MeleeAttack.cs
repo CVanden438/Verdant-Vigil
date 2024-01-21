@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingController : MonoBehaviour
+public class MeleeAttack : MonoBehaviour
 {
     [SerializeField]
-    private Transform bulletTransform;
+    private Transform weaponTransform;
 
     [SerializeField]
     private GameObject weaponRotation;
@@ -16,6 +16,9 @@ public class ShootingController : MonoBehaviour
     private Vector3 mousePos;
     private Camera mainCam;
     private WeaponSO weaponData;
+
+    [SerializeField]
+    private LayerMask attackableLayer;
 
     void Start()
     {
@@ -28,7 +31,7 @@ public class ShootingController : MonoBehaviour
         if (item != null && item.itemType == ItemType.Weapon)
         {
             weaponData = (WeaponSO)item;
-            if (weaponData.weaponType == WeaponType.melee)
+            if (weaponData.weaponType == WeaponType.range)
             {
                 return;
             }
@@ -48,23 +51,33 @@ public class ShootingController : MonoBehaviour
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 float timeSinceLastFire = Time.time - _lastFireTime;
-                if (timeSinceLastFire >= weaponData.rangeCooldown)
+                if (timeSinceLastFire >= weaponData.meleeCooldown)
                 {
-                    FireBullet();
+                    PerformAttack();
                     _lastFireTime = Time.time;
                 }
             }
         }
     }
 
-    private void FireBullet()
+    private void PerformAttack()
     {
-        GameObject bullet = Instantiate(
-            weaponData.projectilePrefab,
-            bulletTransform.position,
-            transform.rotation
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
+            weaponTransform.position,
+            weaponData.meleeRange,
+            attackableLayer
         );
-        bullet.GetComponent<BulletController>().weaponData = weaponData;
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            var healthController = enemy.gameObject.GetComponent<HealthController>();
+            healthController.TakeDamage(weaponData.meleeDamage);
+            if (weaponData.meleeDebuff)
+            {
+                enemy
+                    .GetComponent<BuffDebuffController>()
+                    .ApplyDebuff(weaponData.meleeDebuff, weaponData.meleeDebuffDuration);
+            }
+        }
     }
 
     // private void OnFire(InputValue inputValue)

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5905974075281729116}
   - component: {fileID: 924311241121400578}
   - component: {fileID: -3031166503344925550}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: firegolem
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ MonoBehaviour:
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2033279907170822987}
         m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
         m_MethodName: UpdateHealth
         m_Mode: 1
@@ -306,6 +306,14 @@ PrefabInstance:
     - target: {fileID: 224931577834462831, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_Name
       value: HealthBarUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 224931577834462831, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 535361204234965273, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_Pivot.x
@@ -387,9 +395,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3923066618762397350, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536361531909295481, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5849003943791226653, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908779302027923427, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6465142084932185123, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125293008884336469, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388552530650911861, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9032754599729190549, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

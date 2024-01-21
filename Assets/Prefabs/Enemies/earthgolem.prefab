@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5660982883804107938}
   - component: {fileID: 6708799998870408040}
   - component: {fileID: -8010472210201072042}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: earthgolem
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -307,6 +307,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBarUI
       objectReference: {fileID: 0}
+    - target: {fileID: 224931577834462831, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 535361204234965273, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -386,6 +394,34 @@ PrefabInstance:
     - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923066618762397350, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536361531909295481, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908779302027923427, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6465142084932185123, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125293008884336469, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388552530650911861, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9032754599729190549, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -14,7 +14,7 @@ public class BulletController : MonoBehaviour
 
     [SerializeField]
     private DebuffSO shock;
-    public RangedWeaponSO weaponData;
+    public WeaponSO weaponData;
 
     // Start is called before the first frame update
     void Start()
@@ -41,12 +41,12 @@ public class BulletController : MonoBehaviour
             // Destroy(collision.gameObject);
             // Destroy(gameObject);
             var healthController = collision.gameObject.GetComponent<HealthController>();
-            healthController.TakeDamage(weaponData.damage);
-            if (weaponData.debuff)
+            healthController.TakeDamage(weaponData.rangeDamage);
+            if (weaponData.rangeDebuff)
             {
                 collision
                     .GetComponent<BuffDebuffController>()
-                    .ApplyDebuff(weaponData.debuff, weaponData.debuffDuration);
+                    .ApplyDebuff(weaponData.rangeDebuff, weaponData.rangeDebuffDuration);
             }
             Destroy(gameObject);
         }

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6909003921219685729}
   - component: {fileID: 602845129392307393}
   - component: {fileID: 5975983366644877403}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sandgolem
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -311,6 +311,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBarUI
       objectReference: {fileID: 0}
+    - target: {fileID: 224931577834462831, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 535361204234965273, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -399,6 +407,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3923066618762397350, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536361531909295481, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5038169381414023903, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_Color.r
       value: 1
@@ -406,6 +422,14 @@ PrefabInstance:
     - target: {fileID: 5849003943791226653, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908779302027923427, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6465142084932185123, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7960267750401086887, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_Color.r
@@ -418,6 +442,18 @@ PrefabInstance:
     - target: {fileID: 7988155834981798154, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125293008884336469, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388552530650911861, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9032754599729190549, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
