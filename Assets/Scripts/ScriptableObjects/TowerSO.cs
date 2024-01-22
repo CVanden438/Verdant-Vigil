@@ -6,7 +6,7 @@ using UnityEngine;
 public class TowerSO : ScriptableObject
 {
     public string towerName;
-    public float damage;
+    public int damage;
     public float attackRange;
     public float attackCooldown;
     public GameObject projectilePrefab;

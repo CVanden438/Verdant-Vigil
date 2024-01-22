@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TowerProjectile : MonoBehaviour
 {
-    public float damage;
+    public int damage;
 
     private Transform target;
     private Rigidbody2D rb;
@@ -13,7 +13,7 @@ public class TowerProjectile : MonoBehaviour
         target = _target;
     }
 
-    public void SetDamage(float _damage)
+    public void SetDamage(int _damage)
     {
         damage = _damage;
     }

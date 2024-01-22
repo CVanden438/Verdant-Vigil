@@ -35,10 +35,11 @@ public class BuffDebuffController : MonoBehaviour
     {
         debuffs.Add(debuff);
         OnDebuffAdd.Invoke(debuff);
-        HealthController healthController = gameObject.GetComponent<HealthController>();
-        healthController.damageMultiplier = 10f;
+        // HealthController healthController = gameObject.GetComponent<HealthController>();
+        GetComponent<StatModifiers>().DamageTakenModifier = 10;
         yield return new WaitForSeconds(duration);
-        healthController.damageMultiplier = 1;
+        GetComponent<StatModifiers>().DamageTakenModifier = 1;
+
         debuffs.Remove(debuff);
         OnDebuffRemove.Invoke(debuff);
     }

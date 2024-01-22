@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BasicBulletProjectile : MonoBehaviour
 {
-    private float damage;
+    private int damage;
 
     [SerializeField]
     private ProjectileController controller;

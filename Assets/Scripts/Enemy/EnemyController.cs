@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    private ScriptableObject data;
+    public EnemySO data;
 
     void Start() { }
 

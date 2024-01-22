@@ -23,8 +23,8 @@ MonoBehaviour:
   meleeRange: 2
   meleeDamage: 5
   meleeCooldown: 1
-  rangeDebuff: {fileID: 0}
-  rangeDebuffDuration: 0
+  rangeDebuff: {fileID: 11400000, guid: d078e3587886282458033ae8cee42049, type: 2}
+  rangeDebuffDuration: 5
   projectileSpeed: 4
   rangeRange: 6
   rangeCooldown: 3

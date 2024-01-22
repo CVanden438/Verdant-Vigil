@@ -9,4 +9,5 @@ public class EnemySO : ScriptableObject
     public int damage;
     public int attackCd;
     public int moveSpeed;
+    public int armour = 0;
 }

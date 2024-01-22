@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6909003921219685729}
   - component: {fileID: 602845129392307393}
   - component: {fileID: 5975983366644877403}
+  - component: {fileID: 8427812780740405096}
   m_Layer: 9
   m_Name: sandgolem
   m_TagString: Enemy
@@ -295,6 +296,21 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   immuneDebuffs: []
+--- !u!114 &8427812780740405096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986626378532185577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb531c7dd56c4943a7d07d5f819f553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armour: 0
+  moveSpeedMultiplier: 1
+  damageTakenModifier: 1
 --- !u!1001 &6592439637617392099
 PrefabInstance:
   m_ObjectHideFlags: 0

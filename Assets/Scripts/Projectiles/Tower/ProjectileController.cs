@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    private float damage;
+    private int damage;
     private Transform target;
     private Rigidbody2D rb;
     private float force = 5;
@@ -12,12 +12,12 @@ public class ProjectileController : MonoBehaviour
         target = _target;
     }
 
-    public void SetDamage(float _damage)
+    public void SetDamage(int _damage)
     {
         damage = _damage;
     }
 
-    public float GetDamage()
+    public int GetDamage()
     {
         return damage;
     }
