@@ -16,10 +16,13 @@ public class ShootingController : MonoBehaviour
     private Vector3 mousePos;
     private Camera mainCam;
     private WeaponSO weaponData;
+    private AudioSource sound;
 
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        sound = GetComponent<AudioSource>();
+        sound.volume = 0.01f;
     }
 
     void Update()
@@ -59,6 +62,7 @@ public class ShootingController : MonoBehaviour
 
     private void FireBullet()
     {
+        sound.Play();
         GameObject bullet = Instantiate(
             weaponData.projectilePrefab,
             bulletTransform.position,

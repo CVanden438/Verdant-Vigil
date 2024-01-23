@@ -27,6 +27,6 @@ MonoBehaviour:
   rangeDebuffDuration: 0
   projectileSpeed: 3
   rangeRange: 5
-  rangeCooldown: 2
+  rangeCooldown: 1
   rangeDamage: 5
   projectilePrefab: {fileID: 7336338765972526373, guid: a113e181c91b6fa47a976771e1bc6a09, type: 3}
