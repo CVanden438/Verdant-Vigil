@@ -20,6 +20,9 @@ public class MeleeAttack : MonoBehaviour
     [SerializeField]
     private LayerMask attackableLayer;
 
+    [SerializeField]
+    private MeleeSwing swing;
+
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -55,6 +58,7 @@ public class MeleeAttack : MonoBehaviour
                 {
                     PerformAttack();
                     _lastFireTime = Time.time;
+                    swing.SwingWeapon();
                 }
             }
         }

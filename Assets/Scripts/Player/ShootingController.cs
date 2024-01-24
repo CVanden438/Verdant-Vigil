@@ -6,7 +6,10 @@ using UnityEngine;
 public class ShootingController : MonoBehaviour
 {
     [SerializeField]
-    private Transform bulletTransform;
+    private Transform attackPosition;
+
+    [SerializeField]
+    private Transform meleeRotation;
 
     [SerializeField]
     private GameObject weaponRotation;
@@ -17,6 +20,9 @@ public class ShootingController : MonoBehaviour
     private Camera mainCam;
     private WeaponSO weaponData;
     private AudioSource sound;
+
+    [SerializeField]
+    private RangeAnimation shoot;
 
     void Start()
     {
@@ -55,6 +61,7 @@ public class ShootingController : MonoBehaviour
                 {
                     FireBullet();
                     _lastFireTime = Time.time;
+                    shoot.SwingWeapon();
                 }
             }
         }
@@ -65,7 +72,7 @@ public class ShootingController : MonoBehaviour
         sound.Play();
         GameObject bullet = Instantiate(
             weaponData.projectilePrefab,
-            bulletTransform.position,
+            attackPosition.position,
             transform.rotation
         );
         bullet.GetComponent<BulletController>().weaponData = weaponData;
@@ -93,5 +100,6 @@ public class ShootingController : MonoBehaviour
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
         weaponRotation.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        meleeRotation.transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 }

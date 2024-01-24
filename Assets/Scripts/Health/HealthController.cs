@@ -19,7 +19,7 @@ public class HealthController : MonoBehaviour
 
     public UnityEvent OnDied;
 
-    public UnityEvent OnDamaged;
+    public UnityEvent<int> OnDamaged;
     public UnityEvent OnHealthChanged;
 
     public void TakeDamage(int damageAmount)
@@ -33,14 +33,15 @@ public class HealthController : MonoBehaviour
         {
             return;
         }
-        int armourReduced = damageAmount - GetComponent<StatModifiers>().Armour;
-        if (armourReduced < 1)
+        damageAmount = damageAmount - GetComponent<StatModifiers>().Armour;
+        if (damageAmount < 1)
         {
             _currentHealth -= 1;
         }
         else
         {
-            _currentHealth -= armourReduced * GetComponent<StatModifiers>().DamageTakenModifier;
+            damageAmount = damageAmount * GetComponent<StatModifiers>().DamageTakenModifier;
+            _currentHealth -= damageAmount;
         }
         OnHealthChanged.Invoke();
 
@@ -55,7 +56,7 @@ public class HealthController : MonoBehaviour
         }
         else
         {
-            OnDamaged.Invoke();
+            OnDamaged.Invoke(damageAmount);
         }
     }
 
