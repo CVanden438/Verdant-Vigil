@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -32,7 +33,11 @@ public class TileManager : MonoBehaviour
 
     [SerializeField]
     private TileBase testTile;
-    private int chunkSize = 10;
+    private int chunkSize = 14;
+    private Vector3 storedPosition;
+    private BoundsInt playerBounds;
+    private BoundsInt unloadBounds;
+    private int width;
 
     // private TileBase[,] tiles2;
     // private TileBase[,] tiles3;
@@ -41,6 +46,7 @@ public class TileManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        storedPosition = player.transform.position;
         map1.CompressBounds();
         bounds1 = map1.cellBounds;
         // bounds2 = map2.cellBounds;
@@ -52,38 +58,66 @@ public class TileManager : MonoBehaviour
         // tiles2 = new TileBase[bounds2.size.x, bounds2.size.y];
         // tiles3 = new TileBase[bounds3.size.x, bounds3.size.y];
         // tiles4 = new TileBase[bounds4.size.x, bounds4.size.y];
-        int boundWidth = bounds1.xMax - bounds1.xMin;
-        int boundHeight = bounds1.yMax - bounds1.yMin;
-        Debug.Log(boundWidth);
+        width = bounds1.xMax - bounds1.xMin;
         for (int y = bounds1.min.y; y < bounds1.max.y; y++)
         {
             for (int x = bounds1.min.x; x < bounds1.max.x; x++)
             {
                 Vector3Int pos = new Vector3Int(x, y, 0);
-                tiles1[x - bounds1.min.x + ((y - bounds1.min.y) * boundWidth)] = map1.GetTile(pos);
-                nullTiles[x - bounds1.min.x + ((y - bounds1.min.y) * boundWidth)] = null;
+                tiles1[x - bounds1.min.x + ((y - bounds1.min.y) * width)] = map1.GetTile(pos);
+                nullTiles[x - bounds1.min.x + ((y - bounds1.min.y) * width)] = null;
                 // nullTiles[x - bounds1.min.x, y - bounds1.min.y] = null;
             }
         }
-        BoundsInt playerPos =
-            new(
-                (int)Math.Floor(player.transform.position.x) - 5,
-                (int)Math.Floor(player.transform.position.y) - 5,
-                0,
-                chunkSize,
-                chunkSize,
-                1
-            );
-        BoundsInt testPos = new(bounds1.xMin, bounds1.yMin - 5, 0, boundWidth, boundHeight, 1);
-        // flattenedTiles = FlattenArray(tiles1);
-        // flattenedNullTiles = FlattenArray(nullTiles);
+        // playerBounds = new(
+        //     (int)Math.Floor(player.transform.position.x) - 5,
+        //     (int)Math.Floor(player.transform.position.y) - 5,
+        //     0,
+        //     chunkSize,
+        //     chunkSize,
+        //     1
+        // );
+        GetBounds();
         map1.SetTilesBlock(bounds1, nullTiles);
-        // map1.SetTilesBlock(bounds1, tiles1);
-        LoadChunk(boundWidth, map1, tiles1, playerPos);
+        LoadChunk();
     }
 
     // Update is called once per frame
-    void Update() { }
+    void Update()
+    {
+        if ((player.transform.position - storedPosition).magnitude > 4)
+        {
+            var unloadPos = storedPosition - player.transform.position;
+            GetUnloadBounds(storedPosition);
+            GetBounds();
+            UnloadChunk();
+            LoadChunk();
+        }
+    }
+
+    private void GetBounds()
+    {
+        playerBounds = new(
+            (int)Math.Floor(player.transform.position.x) - 7,
+            (int)Math.Floor(player.transform.position.y) - 7,
+            0,
+            chunkSize,
+            chunkSize,
+            1
+        );
+    }
+
+    private void GetUnloadBounds(Vector3 pos)
+    {
+        unloadBounds = new(
+            (int)Math.Floor(pos.x) - 7,
+            (int)Math.Floor(pos.y) - 7,
+            0,
+            chunkSize,
+            chunkSize,
+            1
+        );
+    }
 
     private TileBase[] FlattenArray(TileBase[,] input)
     {
@@ -100,7 +134,7 @@ public class TileManager : MonoBehaviour
         return output;
     }
 
-    private void LoadChunk(int width, Tilemap tilemap, TileBase[] tiles, BoundsInt pos)
+    private void LoadChunk()
     {
         TileBase[] chunkData = new TileBase[chunkSize * chunkSize];
         int index = 0;
@@ -108,15 +142,29 @@ public class TileManager : MonoBehaviour
         {
             for (int j = 0; j < chunkSize; j++)
             {
-                chunkData[index] = tiles[
-                    width * Math.Abs(pos.y + i - bounds1.yMin) + Math.Abs(pos.x - bounds1.xMin) + j
+                chunkData[index] = tiles1[
+                    width * Math.Abs(playerBounds.y + i - bounds1.yMin)
+                        + Math.Abs(playerBounds.x - bounds1.xMin)
+                        + j
                 ];
                 index++;
             }
         }
-        tilemap.SetTilesBlock(pos, chunkData);
+        map1.SetTilesBlock(playerBounds, chunkData);
+        storedPosition = player.transform.position;
+    }
+
+    private void UnloadChunk()
+    {
+        TileBase[] chunkData = new TileBase[chunkSize * chunkSize];
+        for (int i = 0; i < chunkSize * chunkSize; i++)
+        {
+            chunkData[i] = null;
+        }
+        map1.SetTilesBlock(unloadBounds, chunkData);
     }
 }
+
 
 //big brain solution (in typescript)
 // type Grid<T> = {
