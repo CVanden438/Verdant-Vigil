@@ -19,7 +19,7 @@ public class RangeAnimation : MonoBehaviour
 
     IEnumerator RecoilObject(GameObject gameObjectToMove, float duration)
     {
-        rangeWeapon.SetActive(true);
+        // rangeWeapon.SetActive(true);
         Quaternion currentRot = Quaternion.Euler(
             new Vector3(0, 0, referenceRotation.transform.eulerAngles.z)
         );
@@ -32,7 +32,7 @@ public class RangeAnimation : MonoBehaviour
             rangeWeapon.GetComponent<SpriteRenderer>().flipY = false;
         }
         // rangeWeapon.transform.position = referenceWeapon.transform.position;
-        objectToRotate.transform.rotation = currentRot;
+        // objectToRotate.transform.rotation = currentRot;
         Vector3 position2 = new Vector3(
             rangeWeapon.transform.position.x - 0.2f,
             rangeWeapon.transform.position.y,
@@ -54,6 +54,6 @@ public class RangeAnimation : MonoBehaviour
             yield return null;
         }
         rotating = false;
-        rangeWeapon.SetActive(false);
+        // rangeWeapon.SetActive(false);
     }
 }

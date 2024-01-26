@@ -12,6 +12,12 @@ public class ShootingController : MonoBehaviour
     private Transform meleeRotation;
 
     [SerializeField]
+    private Transform rangeRotation;
+
+    [SerializeField]
+    private Transform rangeWeapon;
+
+    [SerializeField]
     private GameObject weaponRotation;
     private bool _fireContinuously;
     private bool _fireSingle;
@@ -61,7 +67,7 @@ public class ShootingController : MonoBehaviour
                 {
                     FireBullet();
                     _lastFireTime = Time.time;
-                    shoot.SwingWeapon();
+                    // shoot.SwingWeapon();
                 }
             }
         }
@@ -101,5 +107,17 @@ public class ShootingController : MonoBehaviour
 
         weaponRotation.transform.rotation = Quaternion.Euler(0, 0, rotZ);
         meleeRotation.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        rangeRotation.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        if (
+            rangeRotation.transform.eulerAngles.z > 90
+            && rangeRotation.transform.eulerAngles.z < 270
+        )
+        {
+            rangeWeapon.GetComponent<SpriteRenderer>().flipY = true;
+        }
+        else
+        {
+            rangeWeapon.GetComponent<SpriteRenderer>().flipY = false;
+        }
     }
 }
