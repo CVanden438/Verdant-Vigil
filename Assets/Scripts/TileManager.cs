@@ -134,6 +134,8 @@ public class TileManager : MonoBehaviour
         return output;
     }
 
+    //could also check x and y independtly and remove/add to the edges of the
+    //chunk for better performance
     private void LoadChunk()
     {
         TileBase[] chunkData = new TileBase[chunkSize * chunkSize];

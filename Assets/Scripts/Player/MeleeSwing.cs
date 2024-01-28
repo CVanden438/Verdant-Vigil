@@ -11,16 +11,17 @@ public class MeleeSwing : MonoBehaviour
 
     void Start() { }
 
-    public void SwingWeapon()
+    public void SwingWeapon(WeaponSO weaponData)
     {
-        StartCoroutine(RotateObject(objectToRotate, 0.3f));
+        meleeWeapon.GetComponent<SpriteRenderer>().sprite = weaponData.icon;
+        StartCoroutine(RotateObject(objectToRotate, weaponData.meleeCooldown));
     }
 
     IEnumerator RotateObject(GameObject gameObjectToMove, float duration)
     {
-        // meleeWeapon.SetActive(true);
+        meleeWeapon.SetActive(true);
         Quaternion rotation2 = Quaternion.Euler(
-            new Vector3(0, 0, referenceRotation.transform.eulerAngles.z - 180)
+            new Vector3(0, 0, referenceRotation.transform.eulerAngles.z - 45)
         );
         if (rotating)
         {
@@ -30,7 +31,7 @@ public class MeleeSwing : MonoBehaviour
 
         // Quaternion currentRot = gameObjectToMove.transform.rotation;
         Quaternion currentRot = Quaternion.Euler(
-            new Vector3(0, 0, referenceRotation.transform.eulerAngles.z)
+            new Vector3(0, 0, referenceRotation.transform.eulerAngles.z + 45)
         );
 
         float counter = 0;
@@ -45,6 +46,6 @@ public class MeleeSwing : MonoBehaviour
             yield return null;
         }
         rotating = false;
-        // meleeWeapon.SetActive(false);
+        meleeWeapon.SetActive(false);
     }
 }

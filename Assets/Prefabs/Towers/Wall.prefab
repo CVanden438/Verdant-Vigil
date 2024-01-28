@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 8110747442688510566}
   - component: {fileID: 2138428588927972345}
   - component: {fileID: 4493761357193961347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,6 +269,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarFill: {fileID: 2010267868880217955}
+  parentTransform: {fileID: 0}
+  debuffBoxes: []
 --- !u!114 &4493761357193961347
 MonoBehaviour:
   m_ObjectHideFlags: 0

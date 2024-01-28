@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -20,6 +21,9 @@ public class BuildingController : MonoBehaviour
     [SerializeField]
     private GameObject highlight;
     private bool isBuilding = false;
+
+    [SerializeField]
+    // private AstarPath astarPath;
 
     // Start is called before the first frame update
     void Start() { }
@@ -46,6 +50,7 @@ public class BuildingController : MonoBehaviour
 
     private void PlaceStructure(Vector3 point)
     {
+        GameObject obj = null;
         GetXY(point, out float x, out float y);
         if (CheckCollision(x, y))
         {
@@ -56,7 +61,7 @@ public class BuildingController : MonoBehaviour
             TowerController buildingController = chosenTower.GetComponent<TowerController>();
             if (rm.crystals >= buildingController.data.crystalCost)
             {
-                Instantiate(chosenTower, new Vector3(x, y), Quaternion.identity);
+                obj = Instantiate(chosenTower, new Vector3(x, y), Quaternion.identity);
                 rm.RemoveCrystals(buildingController.data.crystalCost);
             }
             chosenTower = null;
@@ -68,12 +73,19 @@ public class BuildingController : MonoBehaviour
             WallController wallController = chosenWall.GetComponent<WallController>();
             if (rm.crystals >= wallController.crystalCost)
             {
-                Instantiate(chosenWall, new Vector3(x, y), Quaternion.identity);
+                obj = Instantiate(chosenWall, new Vector3(x, y), Quaternion.identity);
                 rm.RemoveCrystals(wallController.crystalCost);
             }
             highlight.SetActive(false);
             chosenWall = null;
             isBuilding = false;
+        }
+        if (obj != null)
+        {
+            Bounds bounds = obj.GetComponent<BoxCollider2D>().bounds;
+            var guo = new GraphUpdateObject(bounds);
+            guo.updatePhysics = true;
+            AstarPath.active.UpdateGraphs(guo);
         }
     }
 

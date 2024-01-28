@@ -67,7 +67,7 @@ public class ShootingController : MonoBehaviour
                 {
                     FireBullet();
                     _lastFireTime = Time.time;
-                    // shoot.SwingWeapon();
+                    shoot.ShootWeapon(weaponData);
                 }
             }
         }
@@ -106,18 +106,18 @@ public class ShootingController : MonoBehaviour
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
         weaponRotation.transform.rotation = Quaternion.Euler(0, 0, rotZ);
-        meleeRotation.transform.rotation = Quaternion.Euler(0, 0, rotZ);
-        rangeRotation.transform.rotation = Quaternion.Euler(0, 0, rotZ);
-        if (
-            rangeRotation.transform.eulerAngles.z > 90
-            && rangeRotation.transform.eulerAngles.z < 270
-        )
-        {
-            rangeWeapon.GetComponent<SpriteRenderer>().flipY = true;
-        }
-        else
-        {
-            rangeWeapon.GetComponent<SpriteRenderer>().flipY = false;
-        }
+        // meleeRotation.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        // rangeRotation.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        // if (
+        //     rangeRotation.transform.eulerAngles.z > 90
+        //     && rangeRotation.transform.eulerAngles.z < 270
+        // )
+        // {
+        //     rangeWeapon.GetComponent<SpriteRenderer>().flipY = true;
+        // }
+        // else
+        // {
+        //     rangeWeapon.GetComponent<SpriteRenderer>().flipY = false;
+        // }
     }
 }

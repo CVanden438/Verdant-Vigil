@@ -38,7 +38,7 @@ public class MeleeAttack : MonoBehaviour
             {
                 return;
             }
-            RotateGun();
+            // RotateGun();
             // if (_fireContinuously || _fireSingle)
             // {
             //     float timeSinceLastFire = Time.time - _lastFireTime;
@@ -58,7 +58,7 @@ public class MeleeAttack : MonoBehaviour
                 {
                     PerformAttack();
                     _lastFireTime = Time.time;
-                    swing.SwingWeapon();
+                    swing.SwingWeapon(weaponData);
                 }
             }
         }
@@ -105,6 +105,6 @@ public class MeleeAttack : MonoBehaviour
 
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
-        weaponRotation.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        // weaponRotation.transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 }
