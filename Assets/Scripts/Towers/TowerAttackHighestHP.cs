@@ -15,7 +15,12 @@ public class TowerAttackHighestHP : MonoBehaviour
     void Start()
     {
         lastAttackTime = Time.time;
-        InvokeRepeating("UpdateEnemiesInRange", 0f, 1f);
+        // InvokeRepeating(nameof(UpdateEnemiesInRange), 0f, 1f);
+    }
+
+    void Update()
+    {
+        UpdateEnemiesInRange();
     }
 
     void UpdateEnemiesInRange()

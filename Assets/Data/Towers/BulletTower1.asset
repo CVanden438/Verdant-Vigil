@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f26905aecba7e341beb2d11045e2f13, type: 3}
   m_Name: BulletTower1
   m_EditorClassIdentifier: 
-  towerName: Bullet Tower 1
-  damage: 10
-  attackRange: 3
+  buildingName: Bullet Tower (Tier 1)
+  description: Fires Bullets
+  height: 1
+  width: 1
+  sprite: {fileID: 21300000, guid: e3f25e962a276e346b1c96e6199f37d3, type: 3}
+  cost: []
+  damage: 5
+  attackRange: 5
   attackCooldown: 1
   projectilePrefab: {fileID: 4715277230290731440, guid: cb2231a6166ec1047831cd0b9b591fc2, type: 3}
-  crystalCost: 100
-  gasCost: 0
-  uraniumCost: 0
-  upgrade: {fileID: 11400000, guid: cdc13bc14c7e61242920ae9fba7e1684, type: 2}
+  upgrade: {fileID: 0}
+  maxUpgrades: []

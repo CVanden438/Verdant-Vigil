@@ -2,17 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Tower", menuName = "Towers/Tower")]
-public class TowerSO : ScriptableObject
+[CreateAssetMenu(fileName = "New Tower", menuName = "Buildings/Tower")]
+public class TowerSO : BuildingSO
 {
-    public string towerName;
     public int damage;
-    public float attackRange;
+    public int attackRange;
     public float attackCooldown;
     public GameObject projectilePrefab;
-    public int crystalCost;
-    public int gasCost;
-    public int uraniumCost;
     public TowerSO upgrade;
     public List<TowerSO> maxUpgrades;
 }

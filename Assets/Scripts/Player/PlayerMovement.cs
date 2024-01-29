@@ -18,6 +18,9 @@ namespace Cainos.PixelArtTopDown_Basic
         private int moveDiagDown = Animator.StringToHash("Player_Move_Diag_Down");
         private int moveDiagUp = Animator.StringToHash("Player_Move_Diag_Up");
 
+        // [SerializeField]
+        // private Camera mainCam;
+
         private void Start()
         {
             sr = GetComponent<SpriteRenderer>();
@@ -25,6 +28,8 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private void Update()
         {
+            // Vector3 mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+            // Vector2 relativePos = mousePos - transform.position;
             Vector2 dir = Vector2.zero;
             if (Input.GetKey(KeyCode.A))
             {

@@ -59,11 +59,11 @@ public class BuildingController : MonoBehaviour
         if (chosenTower != null)
         {
             TowerController buildingController = chosenTower.GetComponent<TowerController>();
-            if (rm.crystals >= buildingController.data.crystalCost)
-            {
-                obj = Instantiate(chosenTower, new Vector3(x, y), Quaternion.identity);
-                rm.RemoveCrystals(buildingController.data.crystalCost);
-            }
+            // if (rm.crystals >= buildingController.data.crystalCost)
+            // {
+            obj = Instantiate(chosenTower, new Vector3(x, y), Quaternion.identity);
+            // rm.RemoveCrystals(buildingController.data.crystalCost);
+            // }
             chosenTower = null;
             isBuilding = false;
             highlight.SetActive(false);
@@ -71,11 +71,11 @@ public class BuildingController : MonoBehaviour
         if (chosenWall != null)
         {
             WallController wallController = chosenWall.GetComponent<WallController>();
-            if (rm.crystals >= wallController.crystalCost)
-            {
-                obj = Instantiate(chosenWall, new Vector3(x, y), Quaternion.identity);
-                rm.RemoveCrystals(wallController.crystalCost);
-            }
+            // if (rm.crystals >= wallController.crystalCost)
+            // {
+            //     obj = Instantiate(chosenWall, new Vector3(x, y), Quaternion.identity);
+            //     rm.RemoveCrystals(wallController.crystalCost);
+            // }
             highlight.SetActive(false);
             chosenWall = null;
             isBuilding = false;
