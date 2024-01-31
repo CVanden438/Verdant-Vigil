@@ -22,6 +22,7 @@ public class MeleeAttack : MonoBehaviour
 
     [SerializeField]
     private MeleeSwing swing;
+    private Vector3 rotation;
 
     void Start()
     {
@@ -38,7 +39,7 @@ public class MeleeAttack : MonoBehaviour
             {
                 return;
             }
-            // RotateGun();
+            RotateGun();
             // if (_fireContinuously || _fireSingle)
             // {
             //     float timeSinceLastFire = Time.time - _lastFireTime;
@@ -56,15 +57,22 @@ public class MeleeAttack : MonoBehaviour
                 float timeSinceLastFire = Time.time - _lastFireTime;
                 if (timeSinceLastFire >= weaponData.meleeCooldown)
                 {
-                    PerformAttack();
+                    if (weaponData.meleeType == MeleeType.slash)
+                    {
+                        SlashAttack();
+                        swing.SwingWeapon(weaponData);
+                    }
+                    else if (weaponData.meleeType == MeleeType.stab)
+                    {
+                        StabAttack();
+                    }
                     _lastFireTime = Time.time;
-                    swing.SwingWeapon(weaponData);
                 }
             }
         }
     }
 
-    private void PerformAttack()
+    private void SlashAttack()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
             weaponTransform.position,
@@ -78,6 +86,30 @@ public class MeleeAttack : MonoBehaviour
             if (weaponData.meleeDebuff)
             {
                 enemy
+                    .GetComponent<BuffDebuffController>()
+                    .ApplyDebuff(weaponData.meleeDebuff, weaponData.meleeDebuffDuration);
+            }
+        }
+    }
+
+    private void StabAttack()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = (mousePos - weaponTransform.position).normalized;
+
+        RaycastHit2D[] hitEnemies = Physics2D.RaycastAll(
+            weaponTransform.position,
+            direction,
+            weaponData.meleeRange,
+            attackableLayer
+        );
+        foreach (RaycastHit2D enemy in hitEnemies)
+        {
+            var healthController = enemy.transform.GetComponent<HealthController>();
+            healthController.TakeDamage(weaponData.meleeDamage);
+            if (weaponData.meleeDebuff)
+            {
+                enemy.transform
                     .GetComponent<BuffDebuffController>()
                     .ApplyDebuff(weaponData.meleeDebuff, weaponData.meleeDebuffDuration);
             }
@@ -101,10 +133,10 @@ public class MeleeAttack : MonoBehaviour
 
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector3 rotation = mousePos - weaponRotation.transform.position;
+        rotation = mousePos - weaponRotation.transform.position;
 
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
 
-        // weaponRotation.transform.rotation = Quaternion.Euler(0, 0, rotZ);
+        weaponRotation.transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 }

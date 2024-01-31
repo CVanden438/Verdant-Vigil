@@ -33,7 +33,7 @@ public class TileManager : MonoBehaviour
 
     [SerializeField]
     private TileBase testTile;
-    private int chunkSize = 14;
+    private int chunkSize = 30;
     private Vector3 storedPosition;
     private BoundsInt playerBounds;
     private BoundsInt unloadBounds;
@@ -85,7 +85,7 @@ public class TileManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((player.transform.position - storedPosition).magnitude > 4)
+        if ((player.transform.position - storedPosition).magnitude > 10)
         {
             var unloadPos = storedPosition - player.transform.position;
             GetUnloadBounds(storedPosition);
@@ -98,8 +98,8 @@ public class TileManager : MonoBehaviour
     private void GetBounds()
     {
         playerBounds = new(
-            (int)Math.Floor(player.transform.position.x) - 7,
-            (int)Math.Floor(player.transform.position.y) - 7,
+            (int)Math.Floor(player.transform.position.x) - chunkSize / 2,
+            (int)Math.Floor(player.transform.position.y) - chunkSize / 2,
             0,
             chunkSize,
             chunkSize,
@@ -110,8 +110,8 @@ public class TileManager : MonoBehaviour
     private void GetUnloadBounds(Vector3 pos)
     {
         unloadBounds = new(
-            (int)Math.Floor(pos.x) - 7,
-            (int)Math.Floor(pos.y) - 7,
+            (int)Math.Floor(pos.x) - chunkSize / 2,
+            (int)Math.Floor(pos.y) - chunkSize / 2,
             0,
             chunkSize,
             chunkSize,

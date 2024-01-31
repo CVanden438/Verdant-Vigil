@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Tilemaps;
 
 public class DayNightCycleWithSunAndMoon : MonoBehaviour
@@ -8,6 +9,9 @@ public class DayNightCycleWithSunAndMoon : MonoBehaviour
 
     public RectTransform sunRectTransform; // Reference to the RectTransform of the sun UI element
     public RectTransform moonRectTransform; // Reference to the RectTransform of the moon UI element
+
+    [SerializeField]
+    private Light2D globalLight;
 
     // public TilemapCollider2D bounds;
     public bool IsDay
@@ -20,6 +24,7 @@ public class DayNightCycleWithSunAndMoon : MonoBehaviour
         // Calculate the time of day
         timeOfDay += Time.deltaTime / cycleDuration;
         timeOfDay %= 1.0f;
+        // globalLight.intensity = timeOfDay;
 
         // Set the anchored position of the sun/moon based on the time of day
         if (timeOfDay < 0.5f)

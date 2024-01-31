@@ -21,6 +21,6 @@ MonoBehaviour:
   damage: 5
   attackRange: 5
   attackCooldown: 1
-  projectilePrefab: {fileID: 4715277230290731440, guid: cb2231a6166ec1047831cd0b9b591fc2, type: 3}
+  projectilePrefab: {fileID: 815318552979207917, guid: 00f4ddfa1f59e3d4f8a62a1fc346f833, type: 3}
   upgrade: {fileID: 0}
   maxUpgrades: []

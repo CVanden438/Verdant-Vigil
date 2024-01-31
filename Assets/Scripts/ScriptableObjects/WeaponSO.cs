@@ -10,6 +10,12 @@ public enum WeaponType
     both
 }
 
+public enum MeleeType
+{
+    stab,
+    slash
+}
+
 [CreateAssetMenu(fileName = "Weapon", menuName = "Items/Weapon")]
 public class WeaponSO : ItemSO
 {
@@ -22,12 +28,7 @@ public class WeaponSO : ItemSO
     public int meleeRange;
     public int meleeDamage;
     public int meleeCooldown;
-
-    public enum MeleeType
-    {
-        stab,
-        slash
-    }
+    public MeleeType meleeType;
 
     [Header("Range")]
     public DebuffSO rangeDebuff;
