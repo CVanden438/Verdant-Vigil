@@ -37,10 +37,10 @@ public class TowerAttackHighestHP : MonoBehaviour
                 enemiesInRange.Add(enemy);
             }
         }
-        AttackClosestEnemy();
+        // AttackClosestEnemy();
     }
 
-    void AttackClosestEnemy()
+    void AttackHighestHPEnemy()
     {
         if (enemiesInRange.Count > 0 && Time.time - lastAttackTime >= data.attackCooldown)
         {
@@ -60,32 +60,14 @@ public class TowerAttackHighestHP : MonoBehaviour
 
             if (highestHPEnemy != null)
             {
-                shotCount += 1;
-                // animator.SetBool("isAttacking", true);
-                // Instantiate a projectile and make it attack the enemy
                 GameObject projectile = Instantiate(
                     data.projectilePrefab,
                     transform.position,
                     Quaternion.identity
                 );
                 projectile.GetComponent<ProjectileController>().SetTarget(highestHPEnemy.transform);
-                if (shotCount < superShotInterval)
-                {
-                    projectile.GetComponent<ProjectileController>().SetDamage(data.damage);
-                }
-                else
-                {
-                    projectile
-                        .GetComponent<ProjectileController>()
-                        .SetDamage(data.damage * superShotMultiplier);
-                    shotCount = 0;
-                }
                 lastAttackTime = Time.time;
             }
-        }
-        else
-        {
-            // animator.SetBool("isAttacking", false);
         }
     }
 }

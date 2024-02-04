@@ -11,7 +11,7 @@ public class PierceBulletProjectile : MonoBehaviour
 
     void Start()
     {
-        damage = controller.GetDamage();
+        // damage = controller.GetDamage();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

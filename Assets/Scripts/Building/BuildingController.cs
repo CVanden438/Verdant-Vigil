@@ -8,12 +8,12 @@ using UnityEngine.EventSystems;
 public class BuildingController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] towers;
-    private GameObject chosenTower;
+    private TowerSO[] towers;
+    private TowerSO chosenTower;
 
     [SerializeField]
-    private GameObject[] walls;
-    private GameObject chosenWall;
+    private WallSO[] walls;
+    private WallSO chosenWall;
 
     [SerializeField]
     private ResourceManager rm;
@@ -58,10 +58,10 @@ public class BuildingController : MonoBehaviour
         }
         if (chosenTower != null)
         {
-            TowerController buildingController = chosenTower.GetComponent<TowerController>();
+            // TowerController buildingController = chosenTower.GetComponent<TowerController>();
             // if (rm.crystals >= buildingController.data.crystalCost)
             // {
-            obj = Instantiate(chosenTower, new Vector3(x, y), Quaternion.identity);
+            obj = Instantiate(chosenTower.prefab, new Vector3(x, y), Quaternion.identity);
             // rm.RemoveCrystals(buildingController.data.crystalCost);
             // }
             chosenTower = null;
@@ -70,7 +70,7 @@ public class BuildingController : MonoBehaviour
         }
         if (chosenWall != null)
         {
-            WallController wallController = chosenWall.GetComponent<WallController>();
+            // WallController wallController = chosenWall.GetComponent<WallController>();
             // if (rm.crystals >= wallController.crystalCost)
             // {
             //     obj = Instantiate(chosenWall, new Vector3(x, y), Quaternion.identity);
@@ -129,11 +129,12 @@ public class BuildingController : MonoBehaviour
         highlight.SetActive(true);
     }
 
-    public void SelectTower()
+    public void SelectTower(int index)
     {
-        chosenTower = towers[0];
+        chosenTower = towers[index];
         chosenWall = null;
         isBuilding = true;
         highlight.SetActive(true);
+        highlight.GetComponent<SpriteRenderer>().sprite = towers[0].sprite;
     }
 }

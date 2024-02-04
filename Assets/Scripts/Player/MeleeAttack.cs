@@ -60,11 +60,12 @@ public class MeleeAttack : MonoBehaviour
                     if (weaponData.meleeType == MeleeType.slash)
                     {
                         SlashAttack();
-                        swing.SwingWeapon(weaponData);
+                        swing.SwingAnimation(weaponData);
                     }
                     else if (weaponData.meleeType == MeleeType.stab)
                     {
                         StabAttack();
+                        swing.StabAnimation(weaponData);
                     }
                     _lastFireTime = Time.time;
                 }
