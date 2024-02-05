@@ -45,7 +45,7 @@ public class BuildingController : MonoBehaviour
             Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             GetXY(mouse, out float x, out float y);
             highlight.transform.position = new Vector3(x, y);
-            var col = CheckCollision(x, y);
+            var col = CheckCollision(x, y, chosenWall.width, chosenWall.height);
             if (col)
             {
                 highlight.GetComponent<SpriteRenderer>().color = Color.red;
@@ -61,7 +61,7 @@ public class BuildingController : MonoBehaviour
     {
         GameObject obj = null;
         GetXY(point, out float x, out float y);
-        if (CheckCollision(x, y))
+        if (CheckCollision(x, y, chosenWall.width, chosenWall.height))
         {
             return;
         }
@@ -82,12 +82,12 @@ public class BuildingController : MonoBehaviour
             // WallController wallController = chosenWall.GetComponent<WallController>();
             // if (rm.crystals >= wallController.crystalCost)
             // {
-            //     obj = Instantiate(chosenWall, new Vector3(x, y), Quaternion.identity);
+            obj = Instantiate(chosenWall.prefab, new Vector3(x, y), Quaternion.identity);
             //     rm.RemoveCrystals(wallController.crystalCost);
             // }
-            highlight.SetActive(false);
             chosenWall = null;
             isBuilding = false;
+            highlight.SetActive(false);
         }
         if (obj != null)
         {
@@ -105,11 +105,11 @@ public class BuildingController : MonoBehaviour
         y = Mathf.Floor(worldPosition.y);
     }
 
-    private bool CheckCollision(float x, float y)
+    private bool CheckCollision(float x, float y, float width, float height)
     {
         Collider2D collisions = Physics2D.OverlapArea(
-            new Vector2(x + 0.1f, y + 0.9f),
-            new Vector2(x + 0.9f, y + 0.1f),
+            new Vector2(x + 0.1f, y + height - 1 + 0.9f),
+            new Vector2(x + width - 1 + 0.9f, y + 0.1f),
             layerMask: Physics.DefaultRaycastLayers,
             minDepth: 0,
             maxDepth: 100
@@ -137,6 +137,7 @@ public class BuildingController : MonoBehaviour
         chosenTower = null;
         isBuilding = true;
         highlight.SetActive(true);
+        highlight.GetComponent<SpriteRenderer>().sprite = walls[0].sprite;
     }
 
     public void SelectTower(int index)
