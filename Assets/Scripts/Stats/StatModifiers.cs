@@ -8,10 +8,19 @@ public class StatModifiers : MonoBehaviour
     public int Armour { get; set; } = 0;
 
     [HideInInspector]
-    public int MoveSpeedMultiplier { get; set; } = 1;
+    public float MoveSpeedMultiplier { get; set; } = 1;
 
     [HideInInspector]
-    public int DamageTakenModifier { get; set; } = 1;
+    public float DamageTakenModifier { get; set; } = 1;
+
+    [HideInInspector]
+    public float AttackSpeedModifier { get; set; } = 1;
+
+    [HideInInspector]
+    public float DamageOverTime { get; set; } = 0;
+
+    [HideInInspector]
+    public float HealthRegen { get; set; } = 0;
 
     private void Start()
     {

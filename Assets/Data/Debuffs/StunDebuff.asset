@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 274459a13dbed9740b1756e7b4ef0695, type: 3}
+  m_Name: StunDebuff
+  m_EditorClassIdentifier: 
+  debuffName: 6
+  description: Stops movement and attacks
+  icon: {fileID: 21300000, guid: 4833ccbe05b963d42b46512339995161, type: 3}

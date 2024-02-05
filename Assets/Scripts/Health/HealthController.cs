@@ -19,10 +19,66 @@ public class HealthController : MonoBehaviour
 
     public UnityEvent OnDied;
 
-    public UnityEvent<int> OnDamaged;
+    public UnityEvent<float> OnDamaged;
     public UnityEvent OnHealthChanged;
+    private int interval = 1;
+    private float nextTime = 0;
 
-    public void TakeDamage(int damageAmount)
+    private void Update()
+    {
+        if (Time.time >= nextTime)
+        {
+            ApplyRegen();
+            ApplyDOT();
+            nextTime += interval;
+        }
+    }
+
+    private void ApplyRegen()
+    {
+        if (_currentHealth == _maximumHealth)
+        {
+            return;
+        }
+        var regen = GetComponent<StatModifiers>().HealthRegen;
+        _currentHealth += regen;
+        OnHealthChanged.Invoke();
+        if (_currentHealth > _maximumHealth)
+        {
+            _currentHealth = _maximumHealth;
+        }
+    }
+
+    private void ApplyDOT()
+    {
+        var DOT = GetComponent<StatModifiers>().DamageOverTime;
+        if (_currentHealth == 0)
+        {
+            return;
+        }
+
+        if (IsInvincible)
+        {
+            return;
+        }
+        _currentHealth -= DOT;
+        OnHealthChanged.Invoke();
+        if (_currentHealth < 0)
+        {
+            _currentHealth = 0;
+        }
+
+        if (_currentHealth == 0)
+        {
+            OnDied.Invoke();
+        }
+        else
+        {
+            OnDamaged.Invoke(DOT);
+        }
+    }
+
+    public void TakeDamage(float damageAmount)
     {
         if (_currentHealth == 0)
         {
@@ -33,16 +89,13 @@ public class HealthController : MonoBehaviour
         {
             return;
         }
-        damageAmount = damageAmount - GetComponent<StatModifiers>().Armour;
+        damageAmount -= GetComponent<StatModifiers>().Armour;
+        damageAmount *= GetComponent<StatModifiers>().DamageTakenModifier;
         if (damageAmount < 1)
         {
-            _currentHealth -= 1;
+            damageAmount = 1;
         }
-        else
-        {
-            damageAmount = damageAmount * GetComponent<StatModifiers>().DamageTakenModifier;
-            _currentHealth -= damageAmount;
-        }
+        _currentHealth -= damageAmount;
         OnHealthChanged.Invoke();
 
         if (_currentHealth < 0)

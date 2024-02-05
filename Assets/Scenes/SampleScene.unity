@@ -48445,7 +48445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1256694401
 Transform:
   m_ObjectHideFlags: 0
@@ -58510,6 +58510,10 @@ PrefabInstance:
     - target: {fileID: 4152134994270158973, guid: d7d02e7357ab8fd4bb1b4ec7309c8ab9, type: 3}
       propertyPath: m_Name
       value: firegolem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601612364483677585, guid: d7d02e7357ab8fd4bb1b4ec7309c8ab9, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -25,10 +25,13 @@ MonoBehaviour:
   projCount: 1
   maxPierce: 0
   maxChain: 6
-  debuff: {fileID: 11400000, guid: d078e3587886282458033ae8cee42049, type: 2}
+  debuff: {fileID: 11400000, guid: 43172f3332bc19f499c596ac25cb8768, type: 2}
   debuffDuration: 3
+  DOT: {fileID: 11400000, guid: 9754670fe6a7d8c4f8e67fcbbc1bed33, type: 2}
+  DOTDuration: 5
+  DOTDamage: 10
   projectilePrefab: {fileID: 4715277230290731440, guid: cb2231a6166ec1047831cd0b9b591fc2, type: 3}
   upgrade: {fileID: 0}
   maxUpgrades: []
-  attackType: 0
+  attackType: 2
   tags: 0000000003000000

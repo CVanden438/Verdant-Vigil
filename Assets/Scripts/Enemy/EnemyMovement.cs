@@ -19,10 +19,11 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        var speedModifier = GetComponent<StatModifiers>().MoveSpeedMultiplier;
         Vector3 direction = (
             player.position + new Vector3(0.5f, 0.5f) - transform.position
         ).normalized;
-        Vector3 movement = data.moveSpeed * direction;
+        Vector3 movement = data.moveSpeed * direction * speedModifier;
         // rb.MovePosition(transform.position + movement);
         rb.velocity = movement;
         // rb.AddForce(movement);

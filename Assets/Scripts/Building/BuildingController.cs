@@ -45,6 +45,15 @@ public class BuildingController : MonoBehaviour
             Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             GetXY(mouse, out float x, out float y);
             highlight.transform.position = new Vector3(x, y);
+            var col = CheckCollision(x, y);
+            if (col)
+            {
+                highlight.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            else
+            {
+                highlight.GetComponent<SpriteRenderer>().color = Color.green;
+            }
         }
     }
 
@@ -82,6 +91,7 @@ public class BuildingController : MonoBehaviour
         }
         if (obj != null)
         {
+            //rescan AStar graph
             Bounds bounds = obj.GetComponent<BoxCollider2D>().bounds;
             var guo = new GraphUpdateObject(bounds);
             guo.updatePhysics = true;

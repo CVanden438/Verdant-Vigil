@@ -29,6 +29,9 @@ public class TowerSO : BuildingSO
     public int maxChain = 0;
     public DebuffSO debuff;
     public int debuffDuration;
+    public DebuffSO DOT;
+    public int DOTDuration;
+    public int DOTDamage;
     public GameObject projectilePrefab;
     public TowerSO upgrade;
     public List<TowerSO> maxUpgrades;

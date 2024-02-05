@@ -56,6 +56,12 @@ public class TowerController : MonoBehaviour
                 .GetComponent<BuffDebuffController>()
                 .ApplyDebuff(data.debuff, data.debuffDuration);
         }
+        if (data.DOT)
+        {
+            collision
+                .GetComponent<BuffDebuffController>()
+                .ApplyDOT(data.DOT, data.DOTDuration, data.DOTDamage);
+        }
     }
 
     void AttackClosestEnemy()

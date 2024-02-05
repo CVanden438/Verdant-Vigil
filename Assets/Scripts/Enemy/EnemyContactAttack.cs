@@ -15,9 +15,10 @@ public class EnemyContactAttack : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        var cdMulti = GetComponent<StatModifiers>().AttackSpeedModifier;
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (Time.time - _lastAttackTime >= data.attackCd) // Check if enough time has passed since the last attack
+            if (Time.time - _lastAttackTime >= data.attackCd * cdMulti)
             {
                 if (collision.gameObject.GetComponent<HealthController>())
                 {
@@ -25,7 +26,7 @@ public class EnemyContactAttack : MonoBehaviour
 
                     healthController.TakeDamage(data.damage);
 
-                    _lastAttackTime = Time.time; // Update the last attack time
+                    _lastAttackTime = Time.time;
                 }
             }
         }

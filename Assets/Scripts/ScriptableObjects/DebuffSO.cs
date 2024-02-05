@@ -2,10 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Debuffs
+{
+    shock,
+    electrocute,
+    chill,
+    freeze,
+    bleed,
+    burn,
+    stun
+}
+
 [CreateAssetMenu(fileName = "Debuff", menuName = "BuffDebuff/Debuff")]
 public class DebuffSO : ScriptableObject
 {
-    public string debuffName;
+    public Debuffs debuffName;
     public string description;
     public Sprite icon;
 }
