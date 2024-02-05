@@ -4336,7 +4336,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1376900524}
         m_TargetAssemblyTypeName: BuildingController, Assembly-CSharp
         m_MethodName: SelectWall
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

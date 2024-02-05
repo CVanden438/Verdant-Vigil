@@ -20,11 +20,18 @@ MonoBehaviour:
   weaponType: 1
   meleeDebuff: {fileID: 0}
   meleeDebuffDuration: 0
+  meleeDOT: {fileID: 0}
+  meleeDOTDuration: 0
+  meleeDOTDamage: 0
   meleeRange: 2
   meleeDamage: 0
   meleeCooldown: 0
-  rangeDebuff: {fileID: 0}
-  rangeDebuffDuration: 0
+  meleeType: 0
+  rangeDebuff: {fileID: 11400000, guid: d078e3587886282458033ae8cee42049, type: 2}
+  rangeDebuffDuration: 3
+  rangeDOT: {fileID: 11400000, guid: 4677914fece25af4285fdd2e33a1e906, type: 2}
+  rangeDOTDuration: 2
+  rangeDOTDamage: 1
   projectileSpeed: 3
   rangeRange: 5
   rangeCooldown: 1

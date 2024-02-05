@@ -48,18 +48,6 @@ public class ShootingController : MonoBehaviour
                 return;
             }
             RotateGun();
-            // if (_fireContinuously || _fireSingle)
-            // {
-            //     float timeSinceLastFire = Time.time - _lastFireTime;
-
-            //     if (timeSinceLastFire >= _timeBetweenShots)
-            //     {
-            //         FireBullet();
-
-            //         _lastFireTime = Time.time;
-            //         _fireSingle = false;
-            //     }
-            // }
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 float timeSinceLastFire = Time.time - _lastFireTime;
@@ -82,18 +70,8 @@ public class ShootingController : MonoBehaviour
             transform.rotation
         );
         bullet.GetComponent<BulletController>().weaponData = weaponData;
+        bullet.GetComponent<BulletController>().OnCollision += CollisionBehaviour;
     }
-
-    // private void OnFire(InputValue inputValue)
-    // {
-    //     Debug.Log("FIRE");
-    //     _fireContinuously = inputValue.isPressed;
-
-    //     if (inputValue.isPressed)
-    //     {
-    //         _fireSingle = true;
-    //     }
-    // }
 
     void RotateGun()
     {
@@ -119,5 +97,25 @@ public class ShootingController : MonoBehaviour
         // {
         //     rangeWeapon.GetComponent<SpriteRenderer>().flipY = false;
         // }
+    }
+
+    void CollisionBehaviour(Collider2D collision)
+    {
+        if (weaponData.rangeDebuff)
+        {
+            collision
+                .GetComponent<BuffDebuffController>()
+                .ApplyDebuff(weaponData.rangeDebuff, weaponData.rangeDebuffDuration);
+        }
+        if (weaponData.rangeDOT)
+        {
+            collision
+                .GetComponent<BuffDebuffController>()
+                .ApplyDOT(
+                    weaponData.rangeDOT,
+                    weaponData.rangeDOTDuration,
+                    weaponData.rangeDOTDamage
+                );
+        }
     }
 }

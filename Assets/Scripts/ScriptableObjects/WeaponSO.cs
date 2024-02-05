@@ -25,6 +25,9 @@ public class WeaponSO : ItemSO
     [Header("Melee")]
     public DebuffSO meleeDebuff;
     public int meleeDebuffDuration;
+    public DebuffSO meleeDOT;
+    public int meleeDOTDuration;
+    public int meleeDOTDamage;
     public int meleeRange;
     public int meleeDamage;
     public int meleeCooldown;
@@ -33,6 +36,9 @@ public class WeaponSO : ItemSO
     [Header("Range")]
     public DebuffSO rangeDebuff;
     public int rangeDebuffDuration;
+    public DebuffSO rangeDOT;
+    public int rangeDOTDuration;
+    public int rangeDOTDamage;
     public float projectileSpeed;
     public int rangeRange;
     public int rangeCooldown;

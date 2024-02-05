@@ -14,6 +14,7 @@ public class BuildingController : MonoBehaviour
     [SerializeField]
     private WallSO[] walls;
     private WallSO chosenWall;
+    private BuildingSO selectedBuilding;
 
     [SerializeField]
     private ResourceManager rm;
@@ -25,27 +26,24 @@ public class BuildingController : MonoBehaviour
     [SerializeField]
     // private AstarPath astarPath;
 
-    // Start is called before the first frame update
-    void Start() { }
-
-    // Update is called once per frame
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
-            Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            PlaceStructure(point);
-        }
         if (isBuilding)
         {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (EventSystem.current.IsPointerOverGameObject())
+                {
+                    return;
+                }
+                Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                PlaceStructure(point);
+                return;
+            }
             Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             GetXY(mouse, out float x, out float y);
             highlight.transform.position = new Vector3(x, y);
-            var col = CheckCollision(x, y, chosenWall.width, chosenWall.height);
+            var col = CheckCollision(x, y, selectedBuilding.width, selectedBuilding.height);
             if (col)
             {
                 highlight.GetComponent<SpriteRenderer>().color = Color.red;
@@ -61,31 +59,19 @@ public class BuildingController : MonoBehaviour
     {
         GameObject obj = null;
         GetXY(point, out float x, out float y);
-        if (CheckCollision(x, y, chosenWall.width, chosenWall.height))
+        if (CheckCollision(x, y, selectedBuilding.width, selectedBuilding.height))
         {
             return;
         }
-        if (chosenTower != null)
+        if (selectedBuilding != null)
         {
             // TowerController buildingController = chosenTower.GetComponent<TowerController>();
             // if (rm.crystals >= buildingController.data.crystalCost)
             // {
-            obj = Instantiate(chosenTower.prefab, new Vector3(x, y), Quaternion.identity);
+            obj = Instantiate(selectedBuilding.prefab, new Vector3(x, y), Quaternion.identity);
             // rm.RemoveCrystals(buildingController.data.crystalCost);
             // }
-            chosenTower = null;
-            isBuilding = false;
-            highlight.SetActive(false);
-        }
-        if (chosenWall != null)
-        {
-            // WallController wallController = chosenWall.GetComponent<WallController>();
-            // if (rm.crystals >= wallController.crystalCost)
-            // {
-            obj = Instantiate(chosenWall.prefab, new Vector3(x, y), Quaternion.identity);
-            //     rm.RemoveCrystals(wallController.crystalCost);
-            // }
-            chosenWall = null;
+            selectedBuilding = null;
             isBuilding = false;
             highlight.SetActive(false);
         }
@@ -131,21 +117,23 @@ public class BuildingController : MonoBehaviour
     // private Collider2D GetCollider(GameObject obj){
     //     return obj.GetComponent<Collider2D>();
     // }
-    public void SelectWall()
+    public void SelectWall(int index)
     {
-        chosenWall = walls[0];
+        // chosenWall = walls[index];
+        selectedBuilding = walls[index];
         chosenTower = null;
         isBuilding = true;
         highlight.SetActive(true);
-        highlight.GetComponent<SpriteRenderer>().sprite = walls[0].sprite;
+        highlight.GetComponent<SpriteRenderer>().sprite = walls[index].sprite;
     }
 
     public void SelectTower(int index)
     {
-        chosenTower = towers[index];
+        // chosenTower = towers[index];
+        selectedBuilding = towers[index];
         chosenWall = null;
         isBuilding = true;
         highlight.SetActive(true);
-        highlight.GetComponent<SpriteRenderer>().sprite = towers[0].sprite;
+        highlight.GetComponent<SpriteRenderer>().sprite = towers[index].sprite;
     }
 }

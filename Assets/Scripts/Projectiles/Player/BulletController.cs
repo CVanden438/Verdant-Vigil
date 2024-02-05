@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
+    public delegate void CollisionAction(Collider2D collision);
+    public event CollisionAction OnCollision;
     private Vector3 mousePos;
     private Camera mainCam;
     private Rigidbody2D rb;
     public float force;
-
-    [SerializeField]
-    private float _damageAmount;
-
-    [SerializeField]
-    private DebuffSO shock;
     public WeaponSO weaponData;
 
     // Start is called before the first frame update
@@ -42,12 +38,7 @@ public class BulletController : MonoBehaviour
             // Destroy(gameObject);
             var healthController = collision.gameObject.GetComponent<HealthController>();
             healthController.TakeDamage(weaponData.rangeDamage);
-            if (weaponData.rangeDebuff)
-            {
-                collision
-                    .GetComponent<BuffDebuffController>()
-                    .ApplyDebuff(weaponData.rangeDebuff, weaponData.rangeDebuffDuration);
-            }
+            OnCollision?.Invoke(collision);
             Destroy(gameObject);
         }
         Destroy(gameObject);
