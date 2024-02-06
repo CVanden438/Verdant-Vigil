@@ -23,7 +23,7 @@ public class EnemyMovement : MonoBehaviour
         Vector3 direction = (
             player.position + new Vector3(0.5f, 0.5f) - transform.position
         ).normalized;
-        Vector3 movement = data.moveSpeed * direction * speedModifier;
+        Vector3 movement = data.moveSpeed * speedModifier * direction;
         // rb.MovePosition(transform.position + movement);
         rb.velocity = movement;
         // rb.AddForce(movement);

@@ -16,3 +16,12 @@ MonoBehaviour:
   damage: 10
   attackCd: 2
   moveSpeed: 1
+  armour: 0
+  enemyType: 2
+  debuff: {fileID: 0}
+  debuffDuration: 0
+  DOT: {fileID: 11400000, guid: 4677914fece25af4285fdd2e33a1e906, type: 2}
+  DOTDuration: 2
+  DOTDamage: 2
+  projectileSpeed: 0
+  projectilePrefab: {fileID: 0}

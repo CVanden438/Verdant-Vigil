@@ -11,6 +11,7 @@ namespace Cainos.PixelArtTopDown_Basic
 
         // private bool isFlipped = false;
         private SpriteRenderer sr;
+        private Rigidbody2D rb;
         private int idleUp = Animator.StringToHash("Player_Idle_Up");
         private int idleDown = Animator.StringToHash("Player_Idle_Down");
         private int moveDown = Animator.StringToHash("Player_Move_Down");
@@ -24,6 +25,7 @@ namespace Cainos.PixelArtTopDown_Basic
         private void Start()
         {
             sr = GetComponent<SpriteRenderer>();
+            rb = GetComponent<Rigidbody2D>();
         }
 
         private void Update()
@@ -114,8 +116,10 @@ namespace Cainos.PixelArtTopDown_Basic
             // {
             //     animator.CrossFade(idleDown, 0, 0);
             // } else if (dir.x)
-
-            GetComponent<Rigidbody2D>().velocity = speed * dir;
+            var modifier = GetComponent<StatModifiers>().MoveSpeedMultiplier;
+            Vector3 movement = speed * modifier * dir;
+            // rb.MovePosition(transform.position + movement);
+            rb.velocity = movement;
             // GetComponent<Rigidbody2D>()
             // .AddForce(speed * dir);
         }
