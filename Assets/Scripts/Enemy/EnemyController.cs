@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    public EnemySO data;
+    private EnemySO data;
 
     [SerializeField]
     private GameObject player;
