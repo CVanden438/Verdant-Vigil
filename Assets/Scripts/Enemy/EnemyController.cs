@@ -6,13 +6,13 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField]
-    private EnemySO data;
+    public EnemySO data;
 
     [SerializeField]
     private GameObject player;
     private float lastAttackTime;
 
+    //ll
     void Start()
     {
         // player = GameObject.FindWithTag("Player");
@@ -41,7 +41,7 @@ public class EnemyController : MonoBehaviour
             var proj = Instantiate(data.projectilePrefab, transform.position, quaternion.identity);
             proj.GetComponent<EnemyProjectile>().Target = player;
             proj.GetComponent<EnemyProjectile>().OnCollision += CollisionBehaviour;
-            proj.GetComponent<EnemyProjectile>().Data = data;
+            proj.GetComponent<EnemyProjectile>().data = data;
             lastAttackTime = Time.time;
         }
     }

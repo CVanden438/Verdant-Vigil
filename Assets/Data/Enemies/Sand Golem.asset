@@ -18,7 +18,7 @@ MonoBehaviour:
   moveSpeed: 1
   armour: 0
   enemyType: 1
-  debuff: {fileID: 11400000, guid: c98d94833860ec34982b61d288a7f42a, type: 2}
+  debuff: {fileID: 0}
   debuffDuration: 3
   DOT: {fileID: 0}
   DOTDuration: 0

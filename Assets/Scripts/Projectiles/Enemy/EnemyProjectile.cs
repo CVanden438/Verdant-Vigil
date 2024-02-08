@@ -11,7 +11,7 @@ public class EnemyProjectile : MonoBehaviour
     // private Rigidbody2D rb;
     public GameObject Target { get; set; }
     private float speed = 5;
-    public EnemySO Data { get; set; }
+    public EnemySO data { get; set; }
     public Vector3 Direction { get; set; }
 
     // Start is called before the first frame update
@@ -37,7 +37,7 @@ public class EnemyProjectile : MonoBehaviour
         if (collision.GetComponent<PlayerController>())
         {
             var health = collision.gameObject.GetComponent<HealthController>();
-            health.TakeDamage(Data.damage);
+            health.TakeDamage(data.damage);
             OnCollision?.Invoke(collision);
             Destroy(gameObject);
         }
