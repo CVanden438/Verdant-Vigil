@@ -6,42 +6,25 @@ using UnityEngine;
 public abstract class StateMachine<EState> : MonoBehaviour
     where EState : Enum
 {
-    protected Dictionary<EState, BaseState<EState>> States =
-        new Dictionary<EState, BaseState<EState>>();
+    protected Dictionary<EState, BaseState<EState>> States = new();
 
     protected BaseState<EState> CurrentState;
 
     void Start()
     {
-        CurrentState.OnEnterState(this);
+        CurrentState.EnterState();
     }
 
     void Update()
     {
-        // EState nextStateKey = CurrentState.GetNextState(States);
-        // if (nextStateKey.Equals(CurrentState.StateKey))
-        // {
-        //     CurrentState.UpdateState();
-        // }
-        // else
-        // {
-        //     TransitionToState(nextStateKey);
-        // }
-        // CurrentState.UpdateState();
         CurrentState?.UpdateState();
     }
 
-    // private void TransitionToState(EState nextStateKey)
-    // {
-    //     CurrentState.ExitState();
-    //     CurrentState = States[nextStateKey];
-    //     CurrentState.EnterState();
-    // }
     public void ChangeState(EState newState)
     {
         CurrentState?.ExitState();
         CurrentState = States[newState];
-        CurrentState.OnEnterState(this);
+        CurrentState.EnterState();
     }
 
     void OnTriggerEnter2D(Collider2D other)

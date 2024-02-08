@@ -51445,7 +51445,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -53552,6 +53552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd99e3d9bf2c13e4eb0ce1dcc1c1c6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 7853199187315161627}
 --- !u!1001 &8939372522708383001
 PrefabInstance:
   m_ObjectHideFlags: 0

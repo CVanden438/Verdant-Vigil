@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyMoveState : EnemyState
 {
-    // public EnemyMoveState(EEnemyState key, StateMachine<EEnemyState> stateMachine)
-    //     : base(key, stateMachine) { }
+    public EnemyMoveState(StateMachine<EEnemyState> stateMachine, EnemyController e)
+        : base(stateMachine, e) { }
 
     public override void EnterState() { }
 

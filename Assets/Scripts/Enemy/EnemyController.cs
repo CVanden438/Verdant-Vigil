@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void AttackUpdate()
     {
         if (data.enemyType == EnemyType.range)
         {
@@ -91,7 +91,7 @@ public class EnemyController : MonoBehaviour
     //         }
     //     }
     // }
-    private void OnCollisionStay2D(Collision2D collision)
+    public void CollisionAttack(Collision2D collision)
     {
         if (data.enemyType == EnemyType.contact)
         {

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyAttackState : EnemyState
 {
-    // public EnemyAttackState(EEnemyState key, StateMachine<EEnemyState> stateMachine)
-    //     : base(key, stateMachine) { }
+    public EnemyAttackState(StateMachine<EEnemyState> stateMachine, EnemyController e)
+        : base(stateMachine, e) { }
 
     public override void EnterState() { }
 
@@ -26,5 +26,8 @@ public class EnemyAttackState : EnemyState
 
     public override void OnTriggerStay2D(Collider2D other) { }
 
-    public override void UpdateState() { }
+    public override void UpdateState()
+    {
+        enemy.AttackUpdate();
+    }
 }
