@@ -25,4 +25,5 @@ public class EnemySO : ScriptableObject
     public int DOTDamage;
     public float projectileSpeed;
     public GameObject projectilePrefab;
+    public GameObject prefab;
 }

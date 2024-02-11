@@ -9,7 +9,7 @@ public class EnemyProjectile : MonoBehaviour
     public event CollisionAction OnCollision;
 
     // private Rigidbody2D rb;
-    public GameObject Target { get; set; }
+    public GameObject target;
     private float speed = 5;
     public EnemySO data { get; set; }
     public Vector3 Direction { get; set; }
@@ -17,7 +17,8 @@ public class EnemyProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Direction = Target.transform.position - transform.position;
+        target = GameObject.FindGameObjectWithTag("Player"); // Assuming the player has the tag "Player"
+        Direction = target.transform.position - transform.position;
         Direction = Direction.normalized;
     }
 

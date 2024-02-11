@@ -33,5 +33,5 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4715277230290731440, guid: cb2231a6166ec1047831cd0b9b591fc2, type: 3}
   upgrade: {fileID: 0}
   maxUpgrades: []
-  attackType: 2
+  attackType: 0
   tags: 0000000003000000

@@ -25,3 +25,4 @@ MonoBehaviour:
   DOTDamage: 2
   projectileSpeed: 0
   projectilePrefab: {fileID: 0}
+  prefab: {fileID: 4152134994270158973, guid: d7d02e7357ab8fd4bb1b4ec7309c8ab9, type: 3}

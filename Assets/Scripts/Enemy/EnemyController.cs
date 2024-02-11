@@ -39,7 +39,7 @@ public class EnemyController : MonoBehaviour
         if (Time.time - lastAttackTime >= data.attackCd * cdMulti)
         {
             var proj = Instantiate(data.projectilePrefab, transform.position, quaternion.identity);
-            proj.GetComponent<EnemyProjectile>().Target = player;
+            proj.GetComponent<EnemyProjectile>().target = player;
             proj.GetComponent<EnemyProjectile>().OnCollision += CollisionBehaviour;
             proj.GetComponent<EnemyProjectile>().data = data;
             lastAttackTime = Time.time;

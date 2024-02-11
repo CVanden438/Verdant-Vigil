@@ -11,10 +11,12 @@ public class BulletController : MonoBehaviour
     private Rigidbody2D rb;
     public float force;
     public WeaponSO weaponData;
+    private Vector2 initialPos;
 
     // Start is called before the first frame update
     void Start()
     {
+        initialPos = transform.position;
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -24,10 +26,18 @@ public class BulletController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() { }
+    void Update()
+    {
+        float distance = Vector2.Distance(initialPos, transform.position);
+        if (distance >= weaponData.rangeRange)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("collision");
         if (collision.GetComponent<PlayerController>())
         {
             return;
@@ -41,6 +51,6 @@ public class BulletController : MonoBehaviour
             OnCollision?.Invoke(collision);
             Destroy(gameObject);
         }
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 }

@@ -14,11 +14,8 @@ public class HealthController : MonoBehaviour
     {
         get { return _currentHealth / _maximumHealth; }
     }
-
     public bool IsInvincible { get; set; }
-
     public UnityEvent OnDied;
-
     public UnityEvent<float> OnDamaged;
     public UnityEvent OnHealthChanged;
     private int interval = 1;
@@ -71,6 +68,11 @@ public class HealthController : MonoBehaviour
         if (_currentHealth == 0)
         {
             OnDied.Invoke();
+            if (GetComponent<EnemyController>())
+            {
+                EnemyManager.instance.enemies.Remove(gameObject);
+            }
+            Destroy(gameObject);
         }
         else
         {
@@ -106,6 +108,11 @@ public class HealthController : MonoBehaviour
         if (_currentHealth == 0)
         {
             OnDied.Invoke();
+            if (GetComponent<EnemyController>())
+            {
+                EnemyManager.instance.enemies.Remove(gameObject);
+                Destroy(gameObject);
+            }
         }
         else
         {
