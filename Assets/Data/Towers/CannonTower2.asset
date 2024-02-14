@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f26905aecba7e341beb2d11045e2f13, type: 3}
-  m_Name: BulletTower1
+  m_Name: CannonTower2
   m_EditorClassIdentifier: 
-  buildingName: Bullet Tower (Tier 1)
-  description: Fires Bullets
-  height: 1
-  width: 1
-  sprite: {fileID: 21300000, guid: e3f25e962a276e346b1c96e6199f37d3, type: 3}
+  buildingName: 
+  description: 
+  height: 0
+  width: 0
+  sprite: {fileID: 21300000, guid: 29d0878e7a94a26449097071ad4631ee, type: 3}
   cost: []
-  prefab: {fileID: 8837853200118097585, guid: 73a6cb0a4d897434193332ce647f9031, type: 3}
-  damage: 5
-  attackRange: 5
-  attackCooldown: 1
+  prefab: {fileID: 0}
+  damage: 0
+  attackRange: 0
+  attackCooldown: 0
   projCount: 1
   maxPierce: 0
   maxChain: 0
@@ -31,8 +31,8 @@ MonoBehaviour:
   DOT: {fileID: 0}
   DOTDuration: 0
   DOTDamage: 0
-  projectilePrefab: {fileID: 4715277230290731440, guid: cb2231a6166ec1047831cd0b9b591fc2, type: 3}
-  upgrade: {fileID: 11400000, guid: 7166af375c6f016449724286bee1a3f0, type: 2}
+  projectilePrefab: {fileID: 0}
+  upgrade: {fileID: 11400000, guid: 696ef33ca3cbb1c4986a8a4b3d24a898, type: 2}
   maxUpgrades: []
   attackType: 0
-  tags: 0000000003000000
+  tags: 030000000600000007000000

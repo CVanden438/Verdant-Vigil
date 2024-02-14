@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TowerController : MonoBehaviour
@@ -8,6 +9,11 @@ public class TowerController : MonoBehaviour
     private TowerSO data;
     private List<GameObject> enemiesInRange = new List<GameObject>();
     private float lastAttackTime;
+
+    public TowerSO GetData()
+    {
+        return data;
+    }
 
     void Start()
     {
@@ -140,6 +146,16 @@ public class TowerController : MonoBehaviour
                 CollisionBehaviour(enemy.GetComponent<Collider2D>());
             }
             lastAttackTime = Time.time;
+        }
+    }
+
+    void OnMouseDown()
+    {
+        if (!BuildingManager.instance.isBuilding)
+        {
+            Debug.Log(data.attackCooldown);
+            BuildingManager.instance.highlightedBuilding = gameObject;
+            UIManager.instance.buildingName.text = data.buildingName;
         }
     }
 }

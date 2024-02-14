@@ -6,7 +6,10 @@ public enum TowerTags
 {
     bullet,
     laser,
-    slow,
+    chill,
+    cannon,
+    sniper,
+    coil,
     projectile,
     aoe
 }
@@ -27,6 +30,7 @@ public class TowerSO : BuildingSO
     public int projCount = 1;
     public int maxPierce = 0;
     public int maxChain = 0;
+    public int aoe = 0;
     public DebuffSO debuff;
     public int debuffDuration;
     public DebuffSO DOT;

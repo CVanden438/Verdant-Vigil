@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -2917733015035010407}
   - component: {fileID: 5373630447381983665}
   m_Layer: 7
-  m_Name: BulletTower1
+  m_Name: LaserTower1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

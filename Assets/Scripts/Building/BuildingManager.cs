@@ -5,26 +5,29 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BuildingController : MonoBehaviour
+public class BuildingManager : MonoBehaviour
 {
+    public static BuildingManager instance;
+
     [SerializeField]
     private TowerSO[] towers;
-    private TowerSO chosenTower;
 
     [SerializeField]
     private WallSO[] walls;
-    private WallSO chosenWall;
     private BuildingSO selectedBuilding;
+    public GameObject highlightedBuilding;
 
     [SerializeField]
     private ResourceManager rm;
 
     [SerializeField]
     private GameObject highlight;
-    private bool isBuilding = false;
+    public bool isBuilding = false;
 
-    [SerializeField]
-    // private AstarPath astarPath;
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Update()
     {
@@ -37,7 +40,7 @@ public class BuildingController : MonoBehaviour
                     return;
                 }
                 Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                PlaceStructure(point);
+                PlaceStructure(point, selectedBuilding);
                 return;
             }
             Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -53,28 +56,32 @@ public class BuildingController : MonoBehaviour
                 highlight.GetComponent<SpriteRenderer>().color = Color.green;
             }
         }
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+        }
     }
 
-    private void PlaceStructure(Vector3 point)
+    private void PlaceStructure(Vector3 point, BuildingSO building)
     {
         GameObject obj = null;
         GetXY(point, out float x, out float y);
-        if (CheckCollision(x, y, selectedBuilding.width, selectedBuilding.height))
+        if (CheckCollision(x, y, building.width, building.height))
         {
             return;
         }
-        if (selectedBuilding != null)
-        {
-            // TowerController buildingController = chosenTower.GetComponent<TowerController>();
-            // if (rm.crystals >= buildingController.data.crystalCost)
-            // {
-            obj = Instantiate(selectedBuilding.prefab, new Vector3(x, y), Quaternion.identity);
-            // rm.RemoveCrystals(buildingController.data.crystalCost);
-            // }
-            selectedBuilding = null;
-            isBuilding = false;
-            highlight.SetActive(false);
-        }
+        // TowerController buildingController = chosenTower.GetComponent<TowerController>();
+        // if (rm.crystals >= buildingController.data.crystalCost)
+        // {
+        obj = Instantiate(building.prefab, new Vector3(x, y), Quaternion.identity);
+        // rm.RemoveCrystals(buildingController.data.crystalCost);
+        // }
+        selectedBuilding = null;
+        isBuilding = false;
+        highlight.SetActive(false);
         if (obj != null)
         {
             //rescan AStar graph
@@ -121,7 +128,6 @@ public class BuildingController : MonoBehaviour
     {
         // chosenWall = walls[index];
         selectedBuilding = walls[index];
-        chosenTower = null;
         isBuilding = true;
         highlight.SetActive(true);
         highlight.GetComponent<SpriteRenderer>().sprite = walls[index].sprite;
@@ -131,9 +137,18 @@ public class BuildingController : MonoBehaviour
     {
         // chosenTower = towers[index];
         selectedBuilding = towers[index];
-        chosenWall = null;
         isBuilding = true;
         highlight.SetActive(true);
         highlight.GetComponent<SpriteRenderer>().sprite = towers[index].sprite;
+    }
+
+    public void UpgradeBuilding()
+    {
+        TowerSO upgrade = highlightedBuilding.GetComponent<TowerController>().GetData().upgrade;
+        Vector3 pos = highlightedBuilding.transform.position;
+        Destroy(highlightedBuilding);
+        Debug.Log("PLacing here");
+        PlaceStructure(pos, upgrade);
+        UIManager.instance.buildingName.text = upgrade.buildingName;
     }
 }

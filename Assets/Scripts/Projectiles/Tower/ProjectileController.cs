@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,9 +37,16 @@ public class ProjectileController : MonoBehaviour
     {
         if (collision.GetComponent<EnemyMovement>())
         {
-            var healthController = collision.gameObject.GetComponent<HealthController>();
-            healthController.TakeDamage(data.damage);
-            OnCollision?.Invoke(collision);
+            if (data.aoe == 0)
+            {
+                var healthController = collision.gameObject.GetComponent<HealthController>();
+                healthController.TakeDamage(data.damage);
+                OnCollision?.Invoke(collision);
+            }
+            else
+            {
+                AOEDamage();
+            }
             pierceCount += 1;
             if (pierceCount >= data.maxPierce)
             {
@@ -84,7 +92,6 @@ public class ProjectileController : MonoBehaviour
 
     void ChainAttack()
     {
-        Debug.Log(enemiesInRange.Count);
         if (enemiesInRange.Count > 0)
         {
             GameObject closestEnemy = null;
@@ -111,6 +118,24 @@ public class ProjectileController : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    void AOEDamage()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
+            transform.position,
+            data.aoe
+        // attackableLayer
+        );
+        foreach (var enemy in hitEnemies)
+        {
+            if (enemy.GetComponent<EnemyMovement>())
+            {
+                var healthController = enemy.gameObject.GetComponent<HealthController>();
+                healthController.TakeDamage(data.damage);
+                OnCollision?.Invoke(enemy);
+            }
         }
     }
 }
