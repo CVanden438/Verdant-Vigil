@@ -65,13 +65,13 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    private void PlaceStructure(Vector3 point, BuildingSO building)
+    private GameObject PlaceStructure(Vector3 point, BuildingSO building)
     {
         GameObject obj = null;
         GetXY(point, out float x, out float y);
         if (CheckCollision(x, y, building.width, building.height))
         {
-            return;
+            return null;
         }
         // TowerController buildingController = chosenTower.GetComponent<TowerController>();
         // if (rm.crystals >= buildingController.data.crystalCost)
@@ -90,6 +90,7 @@ public class BuildingManager : MonoBehaviour
             guo.updatePhysics = true;
             AstarPath.active.UpdateGraphs(guo);
         }
+        return obj;
     }
 
     private void GetXY(Vector3 worldPosition, out float x, out float y)
@@ -133,13 +134,13 @@ public class BuildingManager : MonoBehaviour
         highlight.GetComponent<SpriteRenderer>().sprite = walls[index].sprite;
     }
 
-    public void SelectTower(int index)
+    public void SelectTower(TowerSO tower)
     {
         // chosenTower = towers[index];
-        selectedBuilding = towers[index];
+        selectedBuilding = tower;
         isBuilding = true;
         highlight.SetActive(true);
-        highlight.GetComponent<SpriteRenderer>().sprite = towers[index].sprite;
+        highlight.GetComponent<SpriteRenderer>().sprite = tower.sprite;
     }
 
     public void UpgradeBuilding()
@@ -147,8 +148,27 @@ public class BuildingManager : MonoBehaviour
         TowerSO upgrade = highlightedBuilding.GetComponent<TowerController>().GetData().upgrade;
         Vector3 pos = highlightedBuilding.transform.position;
         Destroy(highlightedBuilding);
-        Debug.Log("PLacing here");
-        PlaceStructure(pos, upgrade);
+        var newBuilding = PlaceStructure(pos, upgrade);
         UIManager.instance.buildingName.text = upgrade.buildingName;
+        if (upgrade.tier == 3)
+        {
+            UIManager.instance.upgradeButton.SetActive(false);
+            UIManager.instance.maxUpgradeButtons.SetActive(true);
+        }
+        highlightedBuilding = newBuilding;
+        // highlightedBuilding = null;
+    }
+
+    public void MaxUpgrade(int index)
+    {
+        TowerSO upgrade = highlightedBuilding.GetComponent<TowerController>().GetData().maxUpgrades[
+            index
+        ];
+        Vector3 pos = highlightedBuilding.transform.position;
+        Destroy(highlightedBuilding);
+        var newBuilding = PlaceStructure(pos, upgrade);
+        UIManager.instance.buildingName.text = upgrade.buildingName;
+        UIManager.instance.maxUpgradeButtons.SetActive(false);
+        highlightedBuilding = newBuilding;
     }
 }

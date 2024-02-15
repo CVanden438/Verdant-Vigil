@@ -31,6 +31,7 @@ public class TowerSO : BuildingSO
     public int maxPierce = 0;
     public int maxChain = 0;
     public int aoe = 0;
+    public int tier = 1;
     public DebuffSO debuff;
     public int debuffDuration;
     public DebuffSO DOT;

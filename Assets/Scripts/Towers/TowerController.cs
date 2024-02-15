@@ -153,9 +153,24 @@ public class TowerController : MonoBehaviour
     {
         if (!BuildingManager.instance.isBuilding)
         {
-            Debug.Log(data.attackCooldown);
             BuildingManager.instance.highlightedBuilding = gameObject;
+            UIManager.instance.ShowInfo();
             UIManager.instance.buildingName.text = data.buildingName;
+            if (data.tier < 3)
+            {
+                UIManager.instance.maxUpgradeButtons.SetActive(false);
+                UIManager.instance.upgradeButton.SetActive(true);
+            }
+            else if (data.tier == 3)
+            {
+                UIManager.instance.maxUpgradeButtons.SetActive(true);
+                UIManager.instance.upgradeButton.SetActive(false);
+            }
+            else if (data.tier == 4)
+            {
+                UIManager.instance.maxUpgradeButtons.SetActive(false);
+                UIManager.instance.upgradeButton.SetActive(false);
+            }
         }
     }
 }

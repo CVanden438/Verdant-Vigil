@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f26905aecba7e341beb2d11045e2f13, type: 3}
   m_Name: CannonTower3
   m_EditorClassIdentifier: 
-  buildingName: 
-  description: 
-  height: 0
-  width: 0
+  buildingName: Cannon Tower (Tier 3)
+  description: Fires cannonballs which deal AOE damage
+  height: 1
+  width: 1
   sprite: {fileID: 21300000, guid: 29d0878e7a94a26449097071ad4631ee, type: 3}
   cost: []
-  prefab: {fileID: 0}
+  prefab: {fileID: 8837853200118097585, guid: ae5c6ad76b18f8e4a88e3df082f2575c, type: 3}
   damage: 0
   attackRange: 0
   attackCooldown: 0
@@ -26,6 +26,7 @@ MonoBehaviour:
   maxPierce: 0
   maxChain: 0
   aoe: 0
+  tier: 3
   debuff: {fileID: 0}
   debuffDuration: 0
   DOT: {fileID: 0}
@@ -33,6 +34,8 @@ MonoBehaviour:
   DOTDamage: 0
   projectilePrefab: {fileID: 0}
   upgrade: {fileID: 0}
-  maxUpgrades: []
+  maxUpgrades:
+  - {fileID: 11400000, guid: 4810bd55445a28448b0a0ff0d17e385f, type: 2}
+  - {fileID: 11400000, guid: ed0d4334e29eb0d4389f96204082b0da, type: 2}
   attackType: 0
   tags: 030000000600000007000000

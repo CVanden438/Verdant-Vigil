@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -2917733015035010407}
   - component: {fileID: 5373630447381983665}
   m_Layer: 7
-  m_Name: BulletTower3 3
+  m_Name: ChillTowerMax1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -4862277
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e3f25e962a276e346b1c96e6199f37d3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b66b0aed6a8d0d428aa8b0eaf344a25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -143,4 +143,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f298c041060703340a234e02eab3f9be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 5f50c501523dba44fbf6cd575cde699c, type: 2}
+  data: {fileID: 11400000, guid: d00afb1712aeb124ea83ab23dca57424, type: 2}
