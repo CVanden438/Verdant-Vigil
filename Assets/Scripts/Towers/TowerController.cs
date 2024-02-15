@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public interface ITowerEffect
+{
+    public void CollisionEffect(Vector3 position);
+}
+
 public class TowerController : MonoBehaviour
 {
     [SerializeField]
     private TowerSO data;
     private List<GameObject> enemiesInRange = new List<GameObject>();
     private float lastAttackTime;
+    private ITowerEffect towerEffect;
 
     public TowerSO GetData()
     {
@@ -18,7 +24,10 @@ public class TowerController : MonoBehaviour
     void Start()
     {
         lastAttackTime = Time.time;
-        // InvokeRepeating("UpdateEnemiesInRange", 0f, 1f);
+        if (GetComponent<ITowerEffect>() != null)
+        {
+            towerEffect = GetComponent<ITowerEffect>();
+        }
     }
 
     void Update()
@@ -28,6 +37,7 @@ public class TowerController : MonoBehaviour
 
     void UpdateEnemiesInRange()
     {
+        //potentially use a circlecast instead
         enemiesInRange.Clear();
 
         GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -68,6 +78,7 @@ public class TowerController : MonoBehaviour
                 .GetComponent<BuffDebuffController>()
                 .ApplyDOT(data.DOT, data.DOTDuration, data.DOTDamage);
         }
+        towerEffect.CollisionEffect(collision.transform.position);
     }
 
     void AttackClosestEnemy()
