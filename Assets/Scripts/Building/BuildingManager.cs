@@ -134,13 +134,13 @@ public class BuildingManager : MonoBehaviour
         highlight.GetComponent<SpriteRenderer>().sprite = walls[index].sprite;
     }
 
-    public void SelectTower(TowerSO tower)
+    public void SelectBuilding(BuildingSO building)
     {
         // chosenTower = towers[index];
-        selectedBuilding = tower;
+        selectedBuilding = building;
         isBuilding = true;
         highlight.SetActive(true);
-        highlight.GetComponent<SpriteRenderer>().sprite = tower.sprite;
+        highlight.GetComponent<SpriteRenderer>().sprite = building.sprite;
     }
 
     public void UpgradeBuilding()

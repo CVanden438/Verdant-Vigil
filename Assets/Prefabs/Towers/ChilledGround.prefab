@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3681559373179551665}
   - component: {fileID: 5316668890042972758}
-  - component: {fileID: 8333093218860841493}
+  - component: {fileID: -4552739756794210550}
   m_Layer: 0
-  m_Name: CannonBurningGround
+  m_Name: ChilledGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 0.4847231, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.8328996, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8333093218860841493
+--- !u!114 &-4552739756794210550
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,12 +94,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2706009952625973834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ff887b0b911af541916d15e678cba08, type: 3}
+  m_Script: {fileID: 11500000, guid: 75bded30d049e9d48a746cb8e1a8d679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  cd: 1
+  cd: 0.2
   attackableLayer:
     serializedVersion: 2
     m_Bits: 512
+  chill: {fileID: 11400000, guid: 43172f3332bc19f499c596ac25cb8768, type: 2}
+  chillDuration: 2
   duration: 3

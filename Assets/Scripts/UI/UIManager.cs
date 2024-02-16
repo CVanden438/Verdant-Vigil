@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     public GameObject buildingInfo;
     public GameObject upgradeButton;
     public GameObject maxUpgradeButtons;
+    public Image expBar;
+    public TextMeshProUGUI level;
 
     void Awake()
     {
@@ -19,6 +21,17 @@ public class UIManager : MonoBehaviour
     public void UpdateCrystalText(int value)
     {
         crystalText.text = value.ToString();
+    }
+
+    public void UpdateExpBar(float value)
+    {
+        Debug.Log("VALUEL" + value);
+        expBar.fillAmount = value;
+    }
+
+    public void UpdateLevel(int value)
+    {
+        level.text = value.ToString();
     }
 
     public void ShowInfo()

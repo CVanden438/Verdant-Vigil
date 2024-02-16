@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BurningGround : MonoBehaviour
+public class ChilledGround : MonoBehaviour
 {
-    public int damage;
     public float cd = 1.0f;
     private float lastAttackTime = 0;
     private float startTime;
 
     [SerializeField]
     private LayerMask attackableLayer;
+
+    [SerializeField]
+    private DebuffSO chill;
+
+    [SerializeField]
+    private float chillDuration;
 
     [SerializeField]
     private float duration;
@@ -24,7 +29,7 @@ public class BurningGround : MonoBehaviour
     {
         if (Time.time - lastAttackTime >= cd)
         {
-            DoDamage();
+            ApplyChill();
             lastAttackTime = Time.time;
         }
         if (Time.time - startTime >= duration)
@@ -33,7 +38,7 @@ public class BurningGround : MonoBehaviour
         }
     }
 
-    void DoDamage()
+    void ApplyChill()
     {
         Debug.Log("here");
         Collider2D[] enemies = Physics2D.OverlapCircleAll(
@@ -43,9 +48,9 @@ public class BurningGround : MonoBehaviour
         );
         foreach (var enemy in enemies)
         {
-            if (enemy.TryGetComponent<HealthController>(out var health))
+            if (enemy.TryGetComponent<BuffDebuffController>(out var debuffs))
             {
-                health.TakeDamage(damage);
+                debuffs.ApplyDebuff(chill, chillDuration);
             }
         }
     }

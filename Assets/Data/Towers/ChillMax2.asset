@@ -32,7 +32,7 @@ MonoBehaviour:
   DOT: {fileID: 0}
   DOTDuration: 0
   DOTDamage: 0
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 4715277230290731440, guid: 798c4633261afd04cb04a343e5b34f4f, type: 3}
   upgrade: {fileID: 0}
   maxUpgrades: []
   attackType: 0

@@ -26,3 +26,4 @@ MonoBehaviour:
   projectileSpeed: 0
   projectilePrefab: {fileID: 0}
   prefab: {fileID: 5915703355039230924, guid: a0d73345abc9e93478c7dc1c6f93005b, type: 3}
+  exp: 6

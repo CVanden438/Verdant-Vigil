@@ -78,7 +78,7 @@ public class TowerController : MonoBehaviour
                 .GetComponent<BuffDebuffController>()
                 .ApplyDOT(data.DOT, data.DOTDuration, data.DOTDamage);
         }
-        towerEffect.CollisionEffect(collision.transform.position);
+        towerEffect?.CollisionEffect(collision.transform.position);
     }
 
     void AttackClosestEnemy()
@@ -107,8 +107,7 @@ public class TowerController : MonoBehaviour
                     transform.position,
                     Quaternion.identity
                 );
-                projectile.GetComponent<ProjectileController>().SetTarget(closestEnemy.transform);
-                projectile.GetComponent<ProjectileController>().OnCollision += CollisionBehaviour;
+                SetupProjectile(projectile, closestEnemy);
                 lastAttackTime = Time.time;
             }
         }
@@ -139,8 +138,7 @@ public class TowerController : MonoBehaviour
                     transform.position,
                     Quaternion.identity
                 );
-                projectile.GetComponent<ProjectileController>().SetTarget(highestHPEnemy.transform);
-                projectile.GetComponent<ProjectileController>().OnCollision += CollisionBehaviour;
+                SetupProjectile(projectile, highestHPEnemy);
                 lastAttackTime = Time.time;
             }
         }
@@ -183,5 +181,13 @@ public class TowerController : MonoBehaviour
                 UIManager.instance.upgradeButton.SetActive(false);
             }
         }
+    }
+
+    void SetupProjectile(GameObject proj, GameObject enemy)
+    {
+        var controller = proj.GetComponent<ProjectileController>();
+        controller.SetTarget(enemy.transform);
+        controller.OnCollision += CollisionBehaviour;
+        controller.data = data;
     }
 }

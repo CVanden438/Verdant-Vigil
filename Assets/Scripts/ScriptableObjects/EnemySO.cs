@@ -26,4 +26,5 @@ public class EnemySO : ScriptableObject
     public float projectileSpeed;
     public GameObject projectilePrefab;
     public GameObject prefab;
+    public int exp;
 }

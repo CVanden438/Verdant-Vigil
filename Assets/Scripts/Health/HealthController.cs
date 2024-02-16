@@ -110,6 +110,9 @@ public class HealthController : MonoBehaviour
             OnDied.Invoke();
             if (GetComponent<EnemyController>())
             {
+                var exp = GetComponent<EnemyController>().data.exp;
+                var player = GameObject.FindGameObjectWithTag("Player");
+                player.GetComponent<Experience>().GainExp(exp);
                 EnemyManager.instance.enemies.Remove(gameObject);
                 Destroy(gameObject);
             }

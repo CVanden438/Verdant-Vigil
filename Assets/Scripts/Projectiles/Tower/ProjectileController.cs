@@ -10,9 +10,7 @@ public class ProjectileController : MonoBehaviour
     private Rigidbody2D rb;
     private float force = 5;
     private List<GameObject> enemiesInRange = new List<GameObject>();
-
-    [SerializeField]
-    private TowerSO data;
+    public TowerSO data;
     private int pierceCount = 0;
     private int chainCount = 0;
 
