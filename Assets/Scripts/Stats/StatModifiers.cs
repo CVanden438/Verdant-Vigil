@@ -22,6 +22,15 @@ public class StatModifiers : MonoBehaviour
     [HideInInspector]
     public float HealthRegen { get; set; } = 0;
 
+    [HideInInspector]
+    public float CritChangeAddition { get; set; } = 0;
+
+    [HideInInspector]
+    public float CritMultiAddition { get; set; } = 0;
+
+    [HideInInspector]
+    public float DamageModifier { get; set; } = 1;
+
     private void Start()
     {
         //enemy armour comes from base stats

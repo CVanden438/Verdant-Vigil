@@ -51,6 +51,7 @@ public class ProjectileController : MonoBehaviour
             {
                 AOEDamage();
             }
+            //pierces and then chains
             pierceCount += 1;
             if (pierceCount >= data.maxPierce)
             {

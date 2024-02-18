@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: -5643397981473501188}
   - component: {fileID: -3316634090664971221}
   - component: {fileID: -6256239809918700355}
+  - component: {fileID: -6026829988304077136}
   m_Layer: 9
   m_Name: sandgolem
   m_TagString: Enemy
@@ -349,6 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 25ece849543498348b8089efbccecd95, type: 2}
   player: {fileID: 0}
+  buff: {fileID: 11400000, guid: 1e6ca26433649dc408adaf4af1ca02f3, type: 2}
 --- !u!114 &3392436098437066650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,6 +448,49 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
+--- !u!114 &-6026829988304077136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986626378532185577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13668f6717f345c4da0f4253cb38fa5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffs: []
+  OnBuffAdd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2579024665035300137}
+        m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
+        m_MethodName: AddBuff
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnBuffRemove:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2579024665035300137}
+        m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
+        m_MethodName: RemoveBuff
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1125272334352184205
 GameObject:
   m_ObjectHideFlags: 0

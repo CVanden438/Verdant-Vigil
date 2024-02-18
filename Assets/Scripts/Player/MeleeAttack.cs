@@ -87,13 +87,13 @@ public class MeleeAttack : MonoBehaviour
             if (weaponData.meleeDebuff)
             {
                 enemy
-                    .GetComponent<BuffDebuffController>()
+                    .GetComponent<DebuffController>()
                     .ApplyDebuff(weaponData.meleeDebuff, weaponData.meleeDebuffDuration);
             }
             if (weaponData.meleeDOT)
             {
                 enemy
-                    .GetComponent<BuffDebuffController>()
+                    .GetComponent<DebuffController>()
                     .ApplyDOT(
                         weaponData.meleeDebuff,
                         weaponData.meleeDebuffDuration,
@@ -121,13 +121,13 @@ public class MeleeAttack : MonoBehaviour
             if (weaponData.meleeDebuff)
             {
                 enemy.transform
-                    .GetComponent<BuffDebuffController>()
+                    .GetComponent<DebuffController>()
                     .ApplyDebuff(weaponData.meleeDebuff, weaponData.meleeDebuffDuration);
             }
             if (weaponData.meleeDebuff)
             {
                 enemy.transform
-                    .GetComponent<BuffDebuffController>()
+                    .GetComponent<DebuffController>()
                     .ApplyDOT(
                         weaponData.meleeDebuff,
                         weaponData.meleeDebuffDuration,

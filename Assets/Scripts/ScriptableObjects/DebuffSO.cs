@@ -13,7 +13,7 @@ public enum Debuffs
     stun
 }
 
-[CreateAssetMenu(fileName = "Debuff", menuName = "BuffDebuff/Debuff")]
+[CreateAssetMenu(fileName = "Debuff", menuName = "Debuff/Debuff")]
 public class DebuffSO : ScriptableObject
 {
     public Debuffs debuffName;

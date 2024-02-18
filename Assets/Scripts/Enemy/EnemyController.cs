@@ -12,7 +12,6 @@ public class EnemyController : MonoBehaviour
     private GameObject player;
     private float lastAttackTime;
 
-    //ll
     void Start()
     {
         // player = GameObject.FindWithTag("Player");
@@ -51,13 +50,13 @@ public class EnemyController : MonoBehaviour
         if (data.debuff)
         {
             collision
-                .GetComponent<BuffDebuffController>()
+                .GetComponent<DebuffController>()
                 .ApplyDebuff(data.debuff, data.debuffDuration);
         }
         if (data.DOT)
         {
             collision
-                .GetComponent<BuffDebuffController>()
+                .GetComponent<DebuffController>()
                 .ApplyDOT(data.DOT, data.DOTDuration, data.DOTDamage);
         }
     }
@@ -76,13 +75,13 @@ public class EnemyController : MonoBehaviour
     //         if (weaponData.meleeDebuff)
     //         {
     //             enemy
-    //                 .GetComponent<BuffDebuffController>()
+    //                 .GetComponent<DebuffController>()
     //                 .ApplyDebuff(weaponData.meleeDebuff, weaponData.meleeDebuffDuration);
     //         }
     //         if (weaponData.meleeDOT)
     //         {
     //             enemy
-    //                 .GetComponent<BuffDebuffController>()
+    //                 .GetComponent<DebuffController>()
     //                 .ApplyDOT(
     //                     weaponData.meleeDebuff,
     //                     weaponData.meleeDebuffDuration,

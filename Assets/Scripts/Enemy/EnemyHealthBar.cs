@@ -6,15 +6,15 @@ using UnityEngine.WSA;
 
 public class EnemyHealthBar : MonoBehaviour
 {
-    // public Image healthBarBackground;
     public Image healthBarFill;
-    public Transform parentTransform;
 
-    // [SerializeField]
-    // private GameObject[] debuffPrefabs;
     [SerializeField]
     private GameObject[] debuffBoxes;
     private List<DebuffSO> debuffs = new List<DebuffSO>();
+
+    [SerializeField]
+    private GameObject[] buffBoxes;
+    private List<BuffSO> buffs = new List<BuffSO>();
 
     public void UpdateHealth()
     {
@@ -34,6 +34,18 @@ public class EnemyHealthBar : MonoBehaviour
         RefreshDebuffs();
     }
 
+    public void AddBuff(BuffSO b)
+    {
+        buffs.Add(b);
+        RefreshBuffs();
+    }
+
+    public void RemoveBuff(BuffSO b)
+    {
+        buffs.Remove(b);
+        RefreshBuffs();
+    }
+
     private void RefreshDebuffs()
     {
         foreach (var box in debuffBoxes)
@@ -44,6 +56,19 @@ public class EnemyHealthBar : MonoBehaviour
         {
             debuffBoxes[i].SetActive(true);
             debuffBoxes[i].GetComponent<Image>().sprite = debuffs.ElementAt(i).icon;
+        }
+    }
+
+    private void RefreshBuffs()
+    {
+        foreach (var box in buffBoxes)
+        {
+            box.SetActive(false);
+        }
+        for (int i = 0; i < buffs.Count; i++)
+        {
+            buffBoxes[i].SetActive(true);
+            buffBoxes[i].GetComponent<Image>().sprite = buffs.ElementAt(i).icon;
         }
     }
 }

@@ -104,13 +104,13 @@ public class ShootingController : MonoBehaviour
         if (weaponData.rangeDebuff)
         {
             collision
-                .GetComponent<BuffDebuffController>()
+                .GetComponent<DebuffController>()
                 .ApplyDebuff(weaponData.rangeDebuff, weaponData.rangeDebuffDuration);
         }
         if (weaponData.rangeDOT)
         {
             collision
-                .GetComponent<BuffDebuffController>()
+                .GetComponent<DebuffController>()
                 .ApplyDOT(
                     weaponData.rangeDOT,
                     weaponData.rangeDOTDuration,

@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 2292790911146090829}
   - component: {fileID: 3396609098016778293}
   - component: {fileID: 7976112798434935568}
+  - component: {fileID: -8435356500893071733}
   m_Layer: 9
   m_Name: icegolem
   m_TagString: Enemy
@@ -109,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 1bf4f60da6691fb4d8e691ea7c2f1b9d, type: 2}
   player: {fileID: 0}
+  buff: {fileID: 11400000, guid: 1e6ca26433649dc408adaf4af1ca02f3, type: 2}
 --- !u!114 &6769924221390102403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +384,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+--- !u!114 &-8435356500893071733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983473275500713386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13668f6717f345c4da0f4253cb38fa5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffs: []
+  OnBuffAdd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1546153363551596734}
+        m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
+        m_MethodName: AddBuff
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnBuffRemove:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1546153363551596734}
+        m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
+        m_MethodName: RemoveBuff
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &7909042096504394868
 PrefabInstance:
   m_ObjectHideFlags: 0

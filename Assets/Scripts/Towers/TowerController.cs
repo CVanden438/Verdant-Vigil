@@ -75,13 +75,13 @@ public class TowerController : MonoBehaviour
         if (data.debuff)
         {
             collision
-                .GetComponent<BuffDebuffController>()
+                .GetComponent<DebuffController>()
                 .ApplyDebuff(data.debuff, data.debuffDuration);
         }
         if (data.DOT)
         {
             collision
-                .GetComponent<BuffDebuffController>()
+                .GetComponent<DebuffController>()
                 .ApplyDOT(data.DOT, data.DOTDuration, data.DOTDamage);
         }
         towerEffect?.CollisionEffect(collision.transform.position);
@@ -201,12 +201,14 @@ public class TowerController : MonoBehaviour
     void SetupProjectile(Transform target)
     {
         Vector2 baseDirection = (target.position - transform.position).normalized;
+        int angleOffset = 0;
         for (int i = 0; i < data.projCount; i++)
         {
-            int angleOffset = i * angleBetweenProj;
-            if (i % 2 == 0)
+            angleOffset *= -1;
+            // int angleOffset = i * angleBetweenProj;
+            if ((i + 1) % 2 == 0 && i != 0)
             {
-                angleOffset *= -1;
+                angleOffset += angleBetweenProj;
             }
             Quaternion rotation = Quaternion.Euler(0f, 0f, angleOffset);
             Vector2 rotatedDirection = rotation * baseDirection;

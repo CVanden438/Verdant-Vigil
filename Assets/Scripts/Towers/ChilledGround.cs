@@ -48,7 +48,7 @@ public class ChilledGround : MonoBehaviour
         );
         foreach (var enemy in enemies)
         {
-            if (enemy.TryGetComponent<BuffDebuffController>(out var debuffs))
+            if (enemy.TryGetComponent<DebuffController>(out var debuffs))
             {
                 debuffs.ApplyDebuff(chill, chillDuration);
             }

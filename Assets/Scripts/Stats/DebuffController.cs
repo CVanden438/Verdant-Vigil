@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BuffDebuffController : MonoBehaviour
+public class DebuffController : MonoBehaviour
 {
     public List<DebuffSO> debuffs = new List<DebuffSO>();
 
@@ -20,38 +20,26 @@ public class BuffDebuffController : MonoBehaviour
         {
             return;
         }
+        if (debuffs.Contains(debuff))
+        {
+            return;
+        }
         switch (debuff.debuffName)
         {
             case Debuffs.shock:
-                //dont apply if already applied
-                if (!debuffs.Contains(debuff))
-                {
-                    StartCoroutine(ApplyShock(duration, debuff));
-                }
+                StartCoroutine(ApplyShock(duration, debuff));
                 break;
             case Debuffs.chill:
-                if (!debuffs.Contains(debuff))
-                {
-                    StartCoroutine(ApplyChill(duration, debuff));
-                }
+                StartCoroutine(ApplyChill(duration, debuff));
                 break;
             case Debuffs.freeze:
-                if (!debuffs.Contains(debuff))
-                {
-                    StartCoroutine(ApplyFreeze(duration, debuff));
-                }
+                StartCoroutine(ApplyFreeze(duration, debuff));
                 break;
             case Debuffs.stun:
-                if (!debuffs.Contains(debuff))
-                {
-                    StartCoroutine(ApplyStun(duration, debuff));
-                }
+                StartCoroutine(ApplyStun(duration, debuff));
                 break;
             case Debuffs.electrocute:
-                if (!debuffs.Contains(debuff))
-                {
-                    StartCoroutine(ApplyElectrocute(duration, debuff));
-                }
+                StartCoroutine(ApplyElectrocute(duration, debuff));
                 break;
         }
     }
@@ -62,19 +50,17 @@ public class BuffDebuffController : MonoBehaviour
         {
             return;
         }
+        if (debuffs.Contains(debuff))
+        {
+            return;
+        }
         switch (debuff.debuffName)
         {
             case Debuffs.bleed:
-                if (!debuffs.Contains(debuff))
-                {
-                    StartCoroutine(ApplyBleed(duration, debuff, amount));
-                }
+                StartCoroutine(ApplyBleed(duration, debuff, amount));
                 break;
             case Debuffs.burn:
-                if (!debuffs.Contains(debuff))
-                {
-                    StartCoroutine(ApplyBurn(duration, debuff, amount));
-                }
+                StartCoroutine(ApplyBurn(duration, debuff, amount));
                 break;
         }
     }
