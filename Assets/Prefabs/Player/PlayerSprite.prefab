@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 9177877603333918849}
   - component: {fileID: 5160293618765938400}
   - component: {fileID: 6957598993659670694}
+  - component: {fileID: 5139861600201959442}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Player
@@ -706,6 +707,21 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   immuneDebuffs: []
+--- !u!114 &5139861600201959442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2669069441518878252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 246a7034d359a9040a5303c9f8885613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exp: 0
+  level: 1
+  requiredExp: 10
 --- !u!1 &2731988526839911598
 GameObject:
   m_ObjectHideFlags: 0

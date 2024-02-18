@@ -18,7 +18,8 @@ public enum TowerAttackType
 {
     closest,
     highestHP,
-    AOE
+    AOE,
+    random
 }
 
 [CreateAssetMenu(fileName = "New Tower", menuName = "Buildings/Tower")]

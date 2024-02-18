@@ -7,6 +7,7 @@ public class ProjectileController : MonoBehaviour
     public delegate void CollisionAction(Collider2D collision);
     public event CollisionAction OnCollision;
     private Transform target;
+    private Vector2 direction;
     private Rigidbody2D rb;
     private float force = 5;
     private List<GameObject> enemiesInRange = new List<GameObject>();
@@ -19,6 +20,11 @@ public class ProjectileController : MonoBehaviour
         target = _target;
     }
 
+    public void SetDirection(Vector2 dir)
+    {
+        direction = dir;
+    }
+
     void Start()
     {
         Move();
@@ -27,8 +33,8 @@ public class ProjectileController : MonoBehaviour
     private void Move()
     {
         rb = GetComponent<Rigidbody2D>();
-        Vector3 dir = target.position - transform.position;
-        rb.velocity = new Vector2(dir.x, dir.y).normalized * force;
+        // Vector3 dir = target.position - transform.position;
+        rb.velocity = new Vector2(direction.x, direction.y) * force;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

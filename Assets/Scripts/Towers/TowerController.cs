@@ -16,6 +16,9 @@ public class TowerController : MonoBehaviour
     private float lastAttackTime;
     private ITowerEffect towerEffect;
 
+    [SerializeField]
+    private int angleBetweenProj = 10;
+
     public TowerSO GetData()
     {
         return data;
@@ -61,6 +64,9 @@ public class TowerController : MonoBehaviour
             case TowerAttackType.AOE:
                 AttackAllEnemies();
                 break;
+            case TowerAttackType.random:
+                AttackRandomEnemy();
+                break;
         }
     }
 
@@ -100,14 +106,11 @@ public class TowerController : MonoBehaviour
 
             if (closestEnemy != null)
             {
-                // animator.SetBool("isAttacking", true);
-                // Instantiate a projectile and make it attack the enemy
-                GameObject projectile = Instantiate(
-                    data.projectilePrefab,
-                    transform.position,
-                    Quaternion.identity
-                );
-                SetupProjectile(projectile, closestEnemy);
+                if (data.projCount == 0)
+                {
+                    DirectDamage(closestEnemy);
+                }
+                SetupProjectile(closestEnemy.transform);
                 lastAttackTime = Time.time;
             }
         }
@@ -133,14 +136,28 @@ public class TowerController : MonoBehaviour
 
             if (highestHPEnemy != null)
             {
-                GameObject projectile = Instantiate(
-                    data.projectilePrefab,
-                    transform.position,
-                    Quaternion.identity
-                );
-                SetupProjectile(projectile, highestHPEnemy);
+                if (data.projCount == 0)
+                {
+                    DirectDamage(highestHPEnemy);
+                }
+                SetupProjectile(highestHPEnemy.transform);
                 lastAttackTime = Time.time;
             }
+        }
+    }
+
+    void AttackRandomEnemy()
+    {
+        if (enemiesInRange.Count > 0 && Time.time - lastAttackTime >= data.attackCooldown)
+        {
+            var randomNum = Random.Range(0, enemiesInRange.Count);
+            var randomEnemy = enemiesInRange[randomNum];
+            if (data.projCount == 0)
+            {
+                DirectDamage(randomEnemy);
+            }
+            SetupProjectile(randomEnemy.transform);
+            lastAttackTime = Time.time;
         }
     }
 
@@ -150,9 +167,7 @@ public class TowerController : MonoBehaviour
         {
             foreach (GameObject enemy in enemiesInRange)
             {
-                var healthController = enemy.GetComponent<HealthController>();
-                healthController.TakeDamage(data.damage);
-                CollisionBehaviour(enemy.GetComponent<Collider2D>());
+                DirectDamage(enemy);
             }
             lastAttackTime = Time.time;
         }
@@ -183,11 +198,34 @@ public class TowerController : MonoBehaviour
         }
     }
 
-    void SetupProjectile(GameObject proj, GameObject enemy)
+    void SetupProjectile(Transform target)
     {
-        var controller = proj.GetComponent<ProjectileController>();
-        controller.SetTarget(enemy.transform);
-        controller.OnCollision += CollisionBehaviour;
-        controller.data = data;
+        Vector2 baseDirection = (target.position - transform.position).normalized;
+        for (int i = 0; i < data.projCount; i++)
+        {
+            int angleOffset = i * angleBetweenProj;
+            if (i % 2 == 0)
+            {
+                angleOffset *= -1;
+            }
+            Quaternion rotation = Quaternion.Euler(0f, 0f, angleOffset);
+            Vector2 rotatedDirection = rotation * baseDirection;
+            GameObject projectile = Instantiate(
+                data.projectilePrefab,
+                transform.position,
+                Quaternion.identity
+            );
+            var controller = projectile.GetComponent<ProjectileController>();
+            controller.SetDirection(rotatedDirection);
+            controller.OnCollision += CollisionBehaviour;
+            controller.data = data;
+        }
+    }
+
+    void DirectDamage(GameObject enemy)
+    {
+        var healthController = enemy.GetComponent<HealthController>();
+        healthController.TakeDamage(data.damage);
+        CollisionBehaviour(enemy.GetComponent<Collider2D>());
     }
 }
