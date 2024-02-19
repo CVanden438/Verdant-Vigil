@@ -27,4 +27,5 @@ public class EnemySO : ScriptableObject
     public GameObject projectilePrefab;
     public GameObject prefab;
     public int exp;
+    public int difficulty = 0;
 }

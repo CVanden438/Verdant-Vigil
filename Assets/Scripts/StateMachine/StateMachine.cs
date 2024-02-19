@@ -37,6 +37,16 @@ public abstract class StateMachine<EState> : MonoBehaviour
         CurrentState.OnCollisionEnter2D(other);
     }
 
+    void OnCollisionExit2D(Collision2D other)
+    {
+        CurrentState.OnCollisionExit2D(other);
+    }
+
+    void OnCollisionStay2D(Collision2D other)
+    {
+        CurrentState.OnCollisionStay2D(other);
+    }
+
     void OnTriggerStay2D(Collider2D other)
     {
         CurrentState.OnTriggerStay2D(other);

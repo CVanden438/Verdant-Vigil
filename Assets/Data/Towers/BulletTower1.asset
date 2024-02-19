@@ -19,10 +19,11 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: e3f25e962a276e346b1c96e6199f37d3, type: 3}
   cost: []
   prefab: {fileID: 8837853200118097585, guid: 73a6cb0a4d897434193332ce647f9031, type: 3}
-  damage: 20
-  attackRange: 9
+  maxHealth: 100
+  damage: 10
+  attackRange: 3
   attackCooldown: 1
-  projCount: 3
+  projCount: 1
   maxPierce: 0
   maxChain: 0
   aoe: 0

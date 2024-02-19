@@ -19,9 +19,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   cost: []
   prefab: {fileID: 8837853200118097585, guid: 26bca37fc81a0284292da599c2ecfad5, type: 3}
-  damage: 0
-  attackRange: 0
-  attackCooldown: 0
+  maxHealth: 100
+  damage: 20
+  attackRange: 3
+  attackCooldown: 1
   projCount: 1
   maxPierce: 0
   maxChain: 0

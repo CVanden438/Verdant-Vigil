@@ -110,7 +110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 92c5cf46f949311479adcb0017b9545a, type: 2}
   player: {fileID: 0}
-  buff: {fileID: 11400000, guid: 1e6ca26433649dc408adaf4af1ca02f3, type: 2}
 --- !u!50 &8874234035045616572
 Rigidbody2D:
   serializedVersion: 4

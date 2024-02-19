@@ -350,7 +350,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 25ece849543498348b8089efbccecd95, type: 2}
   player: {fileID: 0}
-  buff: {fileID: 11400000, guid: 1e6ca26433649dc408adaf4af1ca02f3, type: 2}
 --- !u!114 &3392436098437066650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +363,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 5324262834107433892}
+  movement: {fileID: -6256239809918700355}
+  target: {fileID: -5643397981473501188}
 --- !u!114 &-5643397981473501188
 MonoBehaviour:
   m_ObjectHideFlags: 0

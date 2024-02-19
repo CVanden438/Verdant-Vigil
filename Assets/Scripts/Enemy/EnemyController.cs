@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -16,14 +17,19 @@ public class EnemyController : MonoBehaviour
     {
         // player = GameObject.FindWithTag("Player");
         lastAttackTime = Time.time;
+        if (TryGetComponent<HealthController>(out var health))
+        {
+            health._currentHealth = data.maxHealth;
+            health._maximumHealth = data.maxHealth;
+        }
     }
 
     // Update is called once per frame
-    public void AttackUpdate()
+    public void AttackUpdate(Transform target)
     {
         if (data.enemyType == EnemyType.range)
         {
-            RangeAttack();
+            RangeAttack(target);
         }
     }
 
@@ -32,13 +38,13 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void RangeAttack()
+    private void RangeAttack(Transform target)
     {
         var cdMulti = GetComponent<StatModifiers>().AttackSpeedModifier;
         if (Time.time - lastAttackTime >= data.attackCd * cdMulti)
         {
             var proj = Instantiate(data.projectilePrefab, transform.position, quaternion.identity);
-            proj.GetComponent<EnemyProjectile>().target = player;
+            proj.GetComponent<EnemyProjectile>().target = target.gameObject;
             proj.GetComponent<EnemyProjectile>().OnCollision += CollisionBehaviour;
             proj.GetComponent<EnemyProjectile>().data = data;
             lastAttackTime = Time.time;
@@ -90,7 +96,7 @@ public class EnemyController : MonoBehaviour
     //         }
     //     }
     // }
-    public void CollisionAttack(Collision2D collision)
+    public void CollisionAttack(Collider2D collision)
     {
         if (data.enemyType == EnemyType.contact)
         {
@@ -105,7 +111,7 @@ public class EnemyController : MonoBehaviour
                             collision.gameObject.GetComponent<HealthController>();
 
                         healthController.TakeDamage(data.damage);
-                        CollisionBehaviour(collision.collider);
+                        CollisionBehaviour(collision);
                         lastAttackTime = Time.time;
                     }
                 }

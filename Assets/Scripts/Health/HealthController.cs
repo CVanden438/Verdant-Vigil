@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class HealthController : MonoBehaviour
 {
     [SerializeField]
-    private float _currentHealth;
+    public float _currentHealth;
 
     [SerializeField]
-    private float _maximumHealth;
+    public float _maximumHealth;
     public float RemainingHealthPercentage
     {
         get { return _currentHealth / _maximumHealth; }
@@ -19,7 +20,12 @@ public class HealthController : MonoBehaviour
     public UnityEvent<float> OnDamaged;
     public UnityEvent OnHealthChanged;
     private int interval = 1;
-    private float nextTime = 0;
+    private float nextTime;
+
+    void Start()
+    {
+        nextTime = Time.time;
+    }
 
     private void Update()
     {
@@ -37,50 +43,56 @@ public class HealthController : MonoBehaviour
         {
             return;
         }
-        var regen = GetComponent<StatModifiers>().HealthRegen;
-        _currentHealth += regen;
-        OnHealthChanged.Invoke();
-        if (_currentHealth > _maximumHealth)
+        if (TryGetComponent<StatModifiers>(out var stats))
         {
-            _currentHealth = _maximumHealth;
+            var regen = stats.HealthRegen;
+            _currentHealth += regen;
+            OnHealthChanged.Invoke();
+            if (_currentHealth > _maximumHealth)
+            {
+                _currentHealth = _maximumHealth;
+            }
         }
     }
 
     private void ApplyDOT()
     {
-        var DOT = GetComponent<StatModifiers>().DamageOverTime;
-        if (_currentHealth == 0)
+        if (TryGetComponent<StatModifiers>(out var stats))
         {
-            return;
-        }
-
-        if (IsInvincible)
-        {
-            return;
-        }
-        _currentHealth -= DOT;
-        OnHealthChanged.Invoke();
-        if (_currentHealth < 0)
-        {
-            _currentHealth = 0;
-        }
-
-        if (_currentHealth == 0)
-        {
-            OnDied.Invoke();
-            if (GetComponent<EnemyController>())
+            var DOT = stats.DamageOverTime;
+            if (_currentHealth == 0)
             {
-                var exp = GetComponent<EnemyController>().data.exp;
-                var player = GameObject.FindGameObjectWithTag("Player");
-                player.GetComponent<Experience>().GainExp(exp);
-                EnemyManager.instance.enemies.Remove(gameObject);
+                return;
+            }
+
+            if (IsInvincible)
+            {
+                return;
+            }
+            _currentHealth -= DOT;
+            OnHealthChanged.Invoke();
+            if (_currentHealth < 0)
+            {
+                _currentHealth = 0;
+            }
+
+            if (_currentHealth == 0)
+            {
+                OnDied.Invoke();
+                if (GetComponent<EnemyController>())
+                {
+                    var exp = GetComponent<EnemyController>().data.exp;
+                    var player = GameObject.FindGameObjectWithTag("Player");
+                    player.GetComponent<Experience>().GainExp(exp);
+                    EnemyManager.instance.RemoveEnemy(gameObject);
+                    // Destroy(gameObject);
+                }
                 Destroy(gameObject);
             }
-            // Destroy(gameObject);
-        }
-        else
-        {
-            OnDamaged.Invoke(DOT);
+            else
+            {
+                OnDamaged.Invoke(DOT);
+            }
         }
     }
 
@@ -114,10 +126,11 @@ public class HealthController : MonoBehaviour
             OnDied.Invoke();
             if (GetComponent<EnemyController>())
             {
+                //can put in OnDestroy in enemy
                 var exp = GetComponent<EnemyController>().data.exp;
                 var player = GameObject.FindGameObjectWithTag("Player");
                 player.GetComponent<Experience>().GainExp(exp);
-                EnemyManager.instance.enemies.Remove(gameObject);
+                EnemyManager.instance.RemoveEnemy(gameObject);
                 Destroy(gameObject);
             }
         }

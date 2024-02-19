@@ -31,6 +31,11 @@ public class TowerController : MonoBehaviour
         {
             towerEffect = GetComponent<ITowerEffect>();
         }
+        if (TryGetComponent<HealthController>(out var health))
+        {
+            health._currentHealth = data.maxHealth;
+            health._maximumHealth = data.maxHealth;
+        }
     }
 
     void Update()

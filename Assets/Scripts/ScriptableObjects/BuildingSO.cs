@@ -19,6 +19,7 @@ public class BuildingSO : ScriptableObject
     public Sprite sprite;
     public List<ResourceCost> cost;
     public GameObject prefab;
+    public int maxHealth;
     // public int damage;
     // public float attackRange;
     // public float attackCooldown;

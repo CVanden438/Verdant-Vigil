@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 
 public class EnemyIdleState : EnemyState
 {
-    public EnemyIdleState(StateMachine<EEnemyState> stateMachine, EnemyController e)
-        : base(stateMachine, e) { }
+    public EnemyIdleState(
+        StateMachine<EEnemyState> stateMachine,
+        EnemyController e,
+        AIPath move,
+        AIDestinationSetter t
+    )
+        : base(stateMachine, e, move, t) { }
 
     public override void EnterState() { }
 
@@ -15,7 +21,6 @@ public class EnemyIdleState : EnemyState
     {
         if (other.GetComponent<PlayerController>())
         {
-            Debug.Log("Go to move");
             sm.ChangeState(EEnemyState.Move);
         }
     }
@@ -34,4 +39,8 @@ public class EnemyIdleState : EnemyState
     public override void OnTriggerStay2D(Collider2D other) { }
 
     public override void UpdateState() { }
+
+    public override void OnCollisionExit2D(Collision2D other) { }
+
+    public override void OnCollisionStay2D(Collision2D other) { }
 }

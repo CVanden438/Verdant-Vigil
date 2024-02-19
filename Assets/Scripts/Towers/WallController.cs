@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class WallController : MonoBehaviour
 {
-    public int crystalCost = 2;
+    public WallSO data;
 
     // Start is called before the first frame update
-    void Start() { }
+    void Start()
+    {
+        if (TryGetComponent<HealthController>(out var health))
+        {
+            health._currentHealth = data.maxHealth;
+            health._maximumHealth = data.maxHealth;
+        }
+    }
 
     // Update is called once per frame
     void Update() { }

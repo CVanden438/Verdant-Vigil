@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2542333364116137807}
   - component: {fileID: -2917733015035010407}
   - component: {fileID: 5373630447381983665}
+  - component: {fileID: 1805088692582323090}
   m_Layer: 7
   m_Name: BulletTowerMax1
   m_TagString: Untagged
@@ -144,3 +145,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 0919ff98164eabe48b87f334fcbef778, type: 2}
+  angleBetweenProj: 10
+--- !u!114 &1805088692582323090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8837853200118097585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16f0bd4d7e585e44a115ccd4240ce5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHealth: 0
+  _maximumHealth: 0
+  OnDied:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []

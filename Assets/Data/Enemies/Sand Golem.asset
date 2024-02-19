@@ -17,7 +17,7 @@ MonoBehaviour:
   attackCd: 2
   moveSpeed: 1
   armour: 0
-  enemyType: 1
+  enemyType: 2
   debuff: {fileID: 0}
   debuffDuration: 3
   DOT: {fileID: 0}
@@ -27,3 +27,4 @@ MonoBehaviour:
   projectilePrefab: {fileID: 616000650014016717, guid: b9a1638a39c56164197327e9f77aac23, type: 3}
   prefab: {fileID: 986626378532185577, guid: 0f26e743f2e8dbe4baa9a58be318e277, type: 3}
   exp: 6
+  difficulty: 1

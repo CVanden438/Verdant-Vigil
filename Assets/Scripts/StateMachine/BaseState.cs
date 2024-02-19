@@ -23,6 +23,8 @@ public abstract class BaseState<EState>
     public abstract void UpdateState();
 
     public abstract void OnCollisionEnter2D(Collision2D other);
+    public abstract void OnCollisionExit2D(Collision2D other);
+    public abstract void OnCollisionStay2D(Collision2D other);
     public abstract void OnTriggerEnter2D(Collider2D other);
     public abstract void OnTriggerStay2D(Collider2D other);
     public abstract void OnTriggerExit2D(Collider2D other);
