@@ -15,9 +15,9 @@ MonoBehaviour:
   maxHealth: 100
   damage: 10
   attackCd: 2
-  moveSpeed: 1
+  moveSpeed: 3
   armour: 0
-  enemyType: 2
+  enemyType: 1
   debuff: {fileID: 0}
   debuffDuration: 3
   DOT: {fileID: 0}

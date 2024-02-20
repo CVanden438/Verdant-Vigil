@@ -24,13 +24,15 @@ public class EnemyAttackState : EnemyState
     public override void ExitState()
     {
         movement.enabled = true;
+        var player = GameObject.FindGameObjectWithTag("Player");
+        target.target = player.transform;
     }
 
     public override void UpdateState()
     {
         if (enemy.data.enemyType == EnemyType.range)
         {
-            enemy.AttackUpdate(target.target);
+            // enemy.AttackUpdate(target.target);
         }
     }
 
@@ -40,7 +42,11 @@ public class EnemyAttackState : EnemyState
 
     public override void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerController>())
+        if (
+            other.GetComponent<PlayerController>()
+            || other.GetComponent<TowerController>()
+            || other.GetComponent<WallController>()
+        )
         {
             Debug.Log("go to move");
             sm.ChangeState(EEnemyState.Move);
@@ -56,6 +62,6 @@ public class EnemyAttackState : EnemyState
 
     public override void OnCollisionStay2D(Collision2D other)
     {
-        enemy.CollisionAttack(other.collider);
+        // enemy.CollisionAttack(other.collider);
     }
 }

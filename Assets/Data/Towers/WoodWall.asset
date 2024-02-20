@@ -19,6 +19,6 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: ec0c006fe17728a448c40b8f7e258a35, type: 3}
   cost: []
   prefab: {fileID: 7627865960319330711, guid: 9f5bead85c402f8409e1cff9230b78c8, type: 3}
-  maxHealth: 100
+  maxHealth: 20
   defence: 0
   upgrade: {fileID: 0}

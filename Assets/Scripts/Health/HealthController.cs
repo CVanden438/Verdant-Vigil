@@ -131,8 +131,8 @@ public class HealthController : MonoBehaviour
                 var player = GameObject.FindGameObjectWithTag("Player");
                 player.GetComponent<Experience>().GainExp(exp);
                 EnemyManager.instance.RemoveEnemy(gameObject);
-                Destroy(gameObject);
             }
+            Destroy(gameObject);
         }
         else
         {

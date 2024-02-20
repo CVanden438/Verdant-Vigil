@@ -17,7 +17,7 @@ public class EnemyProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player"); // Assuming the player has the tag "Player"
+        // target = GameObject.FindGameObjectWithTag("Player"); // Assuming the player has the tag "Player"
         Direction = target.transform.position - transform.position;
         Direction = Direction.normalized;
     }
@@ -35,7 +35,11 @@ public class EnemyProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlayerController>())
+        if (
+            collision.GetComponent<PlayerController>()
+            || collision.GetComponent<TowerController>()
+            || collision.GetComponent<WallController>()
+        )
         {
             var health = collision.gameObject.GetComponent<HealthController>();
             health.TakeDamage(data.damage);

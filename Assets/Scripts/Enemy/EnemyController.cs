@@ -10,12 +10,19 @@ public class EnemyController : MonoBehaviour
     public EnemySO data;
 
     [SerializeField]
+    private GameObject target;
     private GameObject player;
     private float lastAttackTime;
+    private AIPath path;
+    private AIDestinationSetter targetSetter;
+    bool isAttacking = false;
 
     void Start()
     {
-        // player = GameObject.FindWithTag("Player");
+        path = GetComponent<AIPath>();
+        targetSetter = GetComponent<AIDestinationSetter>();
+        player = GameObject.FindWithTag("Player");
+        target = player;
         lastAttackTime = Time.time;
         if (TryGetComponent<HealthController>(out var health))
         {
@@ -25,11 +32,21 @@ public class EnemyController : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void AttackUpdate(Transform target)
+    public void Update()
     {
-        if (data.enemyType == EnemyType.range)
+        if (data.enemyType == EnemyType.range && isAttacking)
         {
-            RangeAttack(target);
+            RangeAttack();
+        }
+        //target has died - careful unity does special stuff with reference to destroyed gameobjects
+        if (target == null)
+        {
+            // var newTarget = Physics2D.OverlapCircle(transform.position, 2);
+            // if(newTarget.GetComponent<EnemyController>()){return;}
+            isAttacking = false;
+            path.enabled = true;
+            target = player;
+            targetSetter.target = player.transform;
         }
     }
 
@@ -38,13 +55,14 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void RangeAttack(Transform target)
+    private void RangeAttack()
     {
         var cdMulti = GetComponent<StatModifiers>().AttackSpeedModifier;
         if (Time.time - lastAttackTime >= data.attackCd * cdMulti)
         {
             var proj = Instantiate(data.projectilePrefab, transform.position, quaternion.identity);
-            proj.GetComponent<EnemyProjectile>().target = target.gameObject;
+            Debug.Log("Target:" + target);
+            proj.GetComponent<EnemyProjectile>().target = target;
             proj.GetComponent<EnemyProjectile>().OnCollision += CollisionBehaviour;
             proj.GetComponent<EnemyProjectile>().data = data;
             lastAttackTime = Time.time;
@@ -67,55 +85,126 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // private void MeleeAttack()
-    // {
-    //     Collider2D[] hits = Physics2D.OverlapCircleAll(
-    //         weaponTransform.position,
-    //         weaponData.meleeRange,
-    //         attackableLayer
-    //     );
-    //     foreach (Collider2D enemy in hitEnemies)
-    //     {
-    //         var healthController = enemy.gameObject.GetComponent<HealthController>();
-    //         healthController.TakeDamage(weaponData.meleeDamage);
-    //         if (weaponData.meleeDebuff)
-    //         {
-    //             enemy
-    //                 .GetComponent<DebuffController>()
-    //                 .ApplyDebuff(weaponData.meleeDebuff, weaponData.meleeDebuffDuration);
-    //         }
-    //         if (weaponData.meleeDOT)
-    //         {
-    //             enemy
-    //                 .GetComponent<DebuffController>()
-    //                 .ApplyDOT(
-    //                     weaponData.meleeDebuff,
-    //                     weaponData.meleeDebuffDuration,
-    //                     weaponData.meleeDOTDuration
-    //                 );
-    //         }
-    //     }
-    // }
-    public void CollisionAttack(Collider2D collision)
+    public void OnCollisionStay2D(Collision2D collision)
     {
-        if (data.enemyType == EnemyType.contact)
+        if (collision.transform.GetComponent<EnemyController>())
+        {
+            return;
+        }
+        if (data.enemyType == EnemyType.contact && isAttacking)
         {
             var cdMulti = GetComponent<StatModifiers>().AttackSpeedModifier;
-            if (collision.gameObject.CompareTag("Player"))
+            if (collision.gameObject.TryGetComponent<HealthController>(out var health))
             {
                 if (Time.time - lastAttackTime >= data.attackCd * cdMulti)
                 {
-                    if (collision.gameObject.GetComponent<HealthController>())
-                    {
-                        var healthController =
-                            collision.gameObject.GetComponent<HealthController>();
-
-                        healthController.TakeDamage(data.damage);
-                        CollisionBehaviour(collision);
-                        lastAttackTime = Time.time;
-                    }
+                    health.TakeDamage(data.damage);
+                    CollisionBehaviour(collision.collider);
+                    lastAttackTime = Time.time;
                 }
             }
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.GetComponent<EnemyController>())
+        {
+            return;
+        }
+        if (isAttacking)
+        {
+            return;
+        }
+        if (other.GetComponent<HealthController>())
+        {
+            Debug.Log(other.transform);
+            target = other.gameObject;
+            targetSetter.target = other.transform;
+            isAttacking = true;
+            if (data.enemyType == EnemyType.range)
+            {
+                path.enabled = false;
+            }
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject != target)
+        {
+            return;
+        }
+        isAttacking = false;
+        path.enabled = true;
+    }
 }
+
+// private void MeleeAttack()
+// {
+//     Collider2D[] hits = Physics2D.OverlapCircleAll(
+//         weaponTransform.position,
+//         weaponData.meleeRange,
+//         attackableLayer
+//     );
+//     foreach (Collider2D enemy in hitEnemies)
+//     {
+//         var healthController = enemy.gameObject.GetComponent<HealthController>();
+//         healthController.TakeDamage(weaponData.meleeDamage);
+//         if (weaponData.meleeDebuff)
+//         {
+//             enemy
+//                 .GetComponent<DebuffController>()
+//                 .ApplyDebuff(weaponData.meleeDebuff, weaponData.meleeDebuffDuration);
+//         }
+//         if (weaponData.meleeDOT)
+//         {
+//             enemy
+//                 .GetComponent<DebuffController>()
+//                 .ApplyDOT(
+//                     weaponData.meleeDebuff,
+//                     weaponData.meleeDebuffDuration,
+//                     weaponData.meleeDOTDuration
+//                 );
+//         }
+//     }
+// }
+
+
+
+
+//Example check if target desttoyed with event/delegate
+// public class Target : MonoBehaviour
+// {
+//     public delegate void OnDestroyedHandler();
+//     public event OnDestroyedHandler OnDestroyed;
+
+//     void OnDestroy()
+//     {
+//         if (OnDestroyed != null)
+//             OnDestroyed();
+//     }
+// }
+
+// public class Observer : MonoBehaviour
+// {
+//     public Target target;
+
+//     void OnEnable()
+//     {
+//         if (target != null)
+//             target.OnDestroyed += TargetDestroyed;
+//     }
+
+//     void OnDisable()
+//     {
+//         if (target != null)
+//             target.OnDestroyed -= TargetDestroyed;
+//     }
+
+//     private void TargetDestroyed()
+//     {
+//         // Target is about to be destroyed
+//         Debug.Log("Target is about to be destroyed.");
+//     }
+// }
