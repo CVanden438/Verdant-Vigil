@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Deals continuous damage
   height: 1
   width: 1
-  sprite: {fileID: 21300000, guid: 5a03e5b866ff5f2449c5bc9c6008da19, type: 3}
+  sprite: {fileID: 21300000, guid: 97771a4976efa7a47a4a10c3044364c4, type: 3}
   cost: []
   prefab: {fileID: 8837853200118097585, guid: 726ebfcdfdec43c458694bb5a5bee286, type: 3}
   maxHealth: 100

@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Fires bullets
   height: 1
   width: 1
-  sprite: {fileID: 21300000, guid: e3f25e962a276e346b1c96e6199f37d3, type: 3}
+  sprite: {fileID: 21300000, guid: 8bed1dde56aa6c844b5adfc6a8562781, type: 3}
   cost: []
   prefab: {fileID: 8837853200118097585, guid: 73a6cb0a4d897434193332ce647f9031, type: 3}
   maxHealth: 100

@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Slows enemies hit
   height: 1
   width: 1
-  sprite: {fileID: 21300000, guid: 2b66b0aed6a8d0d428aa8b0eaf344a25, type: 3}
+  sprite: {fileID: 21300000, guid: 6eed0c0d6f367c94e9edc866cac56dff, type: 3}
   cost: []
   prefab: {fileID: 8837853200118097585, guid: 9c6382a3a801e6345bcbaeb75c5d3d43, type: 3}
   maxHealth: 100

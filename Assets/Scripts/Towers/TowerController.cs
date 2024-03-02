@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public interface ITowerEffect
 {
@@ -201,6 +202,17 @@ public class TowerController : MonoBehaviour
                 UIManager.instance.upgradeButton.SetActive(false);
             }
         }
+    }
+
+    public void OnMouseEnter()
+    {
+        TooltipManager.instance.ShowTooltip(data.name, Input.mousePosition);
+    }
+
+    public void OnMouseExit()
+    {
+        Debug.Log("Exit");
+        TooltipManager.instance.HideTooltip();
     }
 
     void SetupProjectile(Transform target)

@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Fires high powered bullets which apply bleed
   height: 1
   width: 1
-  sprite: {fileID: 21300000, guid: e793fe55394ff5a4aa1acf201d7dbd56, type: 3}
+  sprite: {fileID: 21300000, guid: 0ae80dd8b91ca8c4fb9d6f1b54b1a631, type: 3}
   cost: []
   prefab: {fileID: 8837853200118097585, guid: 9d8d825dfc602c9428979b85a8aca80e, type: 3}
   maxHealth: 100

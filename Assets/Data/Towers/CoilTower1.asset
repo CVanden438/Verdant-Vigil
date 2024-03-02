@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Deals AOE damage around tower and applies shock
   height: 1
   width: 1
-  sprite: {fileID: 21300000, guid: 1a1006da54f321c42bed2227a1b76b01, type: 3}
+  sprite: {fileID: 21300000, guid: f463f7979b70b4e49a132b2fb6a8dafb, type: 3}
   cost: []
   prefab: {fileID: 8837853200118097585, guid: f7757dccdd790d745846f48268a767b6, type: 3}
   maxHealth: 100
