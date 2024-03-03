@@ -204,17 +204,6 @@ public class TowerController : MonoBehaviour
         }
     }
 
-    public void OnMouseEnter()
-    {
-        TooltipManager.instance.ShowTooltip(data.name, Input.mousePosition);
-    }
-
-    public void OnMouseExit()
-    {
-        Debug.Log("Exit");
-        TooltipManager.instance.HideTooltip();
-    }
-
     void SetupProjectile(Transform target)
     {
         Vector2 baseDirection = (target.position - transform.position).normalized;
