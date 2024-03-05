@@ -11,9 +11,7 @@ GameObject:
   - component: {fileID: 1580367203350636224}
   - component: {fileID: 7601612364483677585}
   - component: {fileID: 5198153899257803055}
-  - component: {fileID: 2436489192733277123}
   - component: {fileID: 7458157818431023725}
-  - component: {fileID: 2041885470616673637}
   - component: {fileID: 5905974075281729116}
   - component: {fileID: -3031166503344925550}
   - component: {fileID: 398094292079891509}
@@ -21,6 +19,7 @@ GameObject:
   - component: {fileID: 6396564042437862039}
   - component: {fileID: 6646388961834472914}
   - component: {fileID: -5454461081569867875}
+  - component: {fileID: 8094228383165036156}
   m_Layer: 9
   m_Name: firegolem
   m_TagString: Enemy
@@ -41,7 +40,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7557772425042742255}
+  - {fileID: 5345801471636443438}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7601612364483677585
@@ -110,20 +109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 447ca21ea4cb5f3459840632b45af97e, type: 2}
   target: {fileID: 0}
---- !u!114 &2436489192733277123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4152134994270158973}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b37d2e1bc68e54d986367ac28dbcb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 447ca21ea4cb5f3459840632b45af97e, type: 2}
-  target: {fileID: 0}
 --- !u!50 &7458157818431023725
 Rigidbody2D:
   serializedVersion: 4
@@ -140,7 +125,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 050c998179af2b24194f0faffc75a441, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -151,51 +136,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &2041885470616673637
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4152134994270158973}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 050c998179af2b24194f0faffc75a441, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.024856567, y: 0.0061836243}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1.28, y: 1.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.68904114, y: 0.2947464}
-  m_EdgeRadius: 0
 --- !u!114 &5905974075281729116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,8 +171,8 @@ MonoBehaviour:
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2033279907170822987}
-        m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
+      - m_Target: {fileID: 6697148875737001413}
+        m_TargetAssemblyTypeName: HealthBarUI, Assembly-CSharp
         m_MethodName: UpdateHealth
         m_Mode: 1
         m_Arguments:
@@ -259,7 +199,7 @@ MonoBehaviour:
   OnDebuffAdd:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2033279907170822987}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
         m_MethodName: AddDebuff
         m_Mode: 0
@@ -274,7 +214,7 @@ MonoBehaviour:
   OnDebuffRemove:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2033279907170822987}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
         m_MethodName: RemoveDebuff
         m_Mode: 0
@@ -370,7 +310,7 @@ MonoBehaviour:
   autoRepath:
     mode: 2
     interval: 0.5
-    sensitivity: 10
+    sensitivity: 1
     maximumInterval: 2
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
@@ -399,7 +339,7 @@ MonoBehaviour:
   OnBuffAdd:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2033279907170822987}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
         m_MethodName: AddBuff
         m_Mode: 0
@@ -414,7 +354,7 @@ MonoBehaviour:
   OnBuffRemove:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2033279907170822987}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
         m_MethodName: RemoveBuff
         m_Mode: 0
@@ -426,7 +366,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1001 &7241837564261224321
+--- !u!58 &8094228383165036156
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152134994270158973}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!1001 &5067304955506988352
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -437,14 +412,6 @@ PrefabInstance:
     - target: {fileID: 224931577834462831, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_Name
       value: HealthBarUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 224931577834462831, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 535361204234965273, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_Pivot.x
@@ -512,7 +479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.3
+      value: 0.4000244
       objectReference: {fileID: 0}
     - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -526,47 +493,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3923066618762397350, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4536361531909295481, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 5849003943791226653, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5908779302027923427, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6465142084932185123, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8125293008884336469, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8388552530650911861, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 9032754599729190549, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
---- !u!114 &2033279907170822987 stripped
+--- !u!224 &5345801471636443438 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+  m_PrefabInstance: {fileID: 5067304955506988352}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6697148875737001413 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8698568165397226698, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
-  m_PrefabInstance: {fileID: 7241837564261224321}
+  m_CorrespondingSourceObject: {fileID: 1919556438106568837, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+  m_PrefabInstance: {fileID: 5067304955506988352}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -574,8 +518,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32287bdae173014384767cd573318ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &7557772425042742255 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
-  m_PrefabInstance: {fileID: 7241837564261224321}
-  m_PrefabAsset: {fileID: 0}

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4234359254034408165}
   - component: {fileID: 5849003943791226653}
   - component: {fileID: 771011130896755018}
-  - component: {fileID: 8698568165397226698}
-  m_Layer: 5
+  - component: {fileID: 1919556438106568837}
+  m_Layer: 9
   m_Name: HealthBarUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &771011130896755018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8698568165397226698
+--- !u!114 &1919556438106568837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 2871300127228034473}
   - component: {fileID: 6202005130728180364}
   - component: {fileID: 7552089224087329063}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Debuff5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 5035507379316333770}
   - component: {fileID: 8794341945779277110}
   - component: {fileID: 8641974916089565213}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Debuff4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   - component: {fileID: 3709583584931443836}
   - component: {fileID: 6429700361068098738}
   - component: {fileID: 8794993392832957005}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Debuff2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 7910413614870986317}
   - component: {fileID: 6270143589496191563}
   - component: {fileID: 7527511252628546255}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Debuff3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,7 +739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5122608280004711567}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Healbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -843,7 +843,7 @@ GameObject:
   - component: {fileID: 7307155340438359486}
   - component: {fileID: 801008583585825075}
   - component: {fileID: 7988155834981798154}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -983,7 +983,7 @@ GameObject:
   - component: {fileID: 6832723123791505303}
   - component: {fileID: 3142666328455500448}
   - component: {fileID: 2052074584473906763}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Foreground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1133,7 +1133,7 @@ GameObject:
   - component: {fileID: 7775165814686534575}
   - component: {fileID: 3609311871647347353}
   - component: {fileID: 8631745801391942756}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Debuff1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

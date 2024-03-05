@@ -2,11 +2,18 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// public enum Resources
+// {
+//     coins,
+//     ingots,
+//     gems
+// }
+
 [Serializable]
 public class ResourceCost
 {
-    public ResourceSO resource;
-    public int amount;
+    public ResourceSO resourceName;
+    public int resourceAmount;
 }
 
 // [CreateAssetMenu(fileName = "Building", menuName = "Buildings/building")]

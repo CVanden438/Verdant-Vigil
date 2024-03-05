@@ -13,19 +13,20 @@ public enum EnemyType
 public class EnemySO : ScriptableObject
 {
     public int maxHealth;
-    public int damage;
-    public int attackCd;
-    public int moveSpeed;
+    public float damage;
+    public float attackCd;
+    public float moveSpeed;
     public int armour = 0;
     public EnemyType enemyType;
     public DebuffSO debuff;
-    public int debuffDuration;
+    public float debuffDuration;
     public DebuffSO DOT;
-    public int DOTDuration;
-    public int DOTDamage;
+    public float DOTDuration;
+    public float DOTDamage;
     public float projectileSpeed;
     public GameObject projectilePrefab;
     public GameObject prefab;
     public int exp;
     public int difficulty = 0;
+    public int coins = 0;
 }

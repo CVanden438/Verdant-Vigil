@@ -25,19 +25,19 @@ public enum TowerAttackType
 [CreateAssetMenu(fileName = "New Tower", menuName = "Buildings/Tower")]
 public class TowerSO : BuildingSO
 {
-    public int damage;
-    public int attackRange;
+    public float damage;
+    public float attackRange;
     public float attackCooldown;
     public int projCount = 1;
     public int maxPierce = 0;
     public int maxChain = 0;
-    public int aoe = 0;
+    public float aoe = 0;
     public int tier = 1;
     public DebuffSO debuff;
-    public int debuffDuration;
+    public float debuffDuration;
     public DebuffSO DOT;
-    public int DOTDuration;
-    public int DOTDamage;
+    public float DOTDuration;
+    public float DOTDamage;
     public GameObject projectilePrefab;
     public TowerSO upgrade;
     public List<TowerSO> maxUpgrades;

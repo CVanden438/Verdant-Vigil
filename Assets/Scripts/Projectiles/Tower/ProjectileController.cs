@@ -39,8 +39,9 @@ public class ProjectileController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<EnemyMovement>())
+        if (collision.GetComponent<EnemyController>())
         {
+            Debug.Log("HIT HERE " + data.damage);
             if (data.aoe == 0)
             {
                 var healthController = collision.gameObject.GetComponent<HealthController>();

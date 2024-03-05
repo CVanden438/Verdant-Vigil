@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.WSA;
 
-public class EnemyHealthBar : MonoBehaviour
+public class HealthBarUI : MonoBehaviour
 {
     public Image healthBarFill;
 
@@ -20,6 +20,7 @@ public class EnemyHealthBar : MonoBehaviour
     {
         healthBarFill.fillAmount =
             GetComponentInParent<HealthController>().RemainingHealthPercentage;
+        Debug.Log(healthBarFill.fillAmount);
     }
 
     public void AddDebuff(DebuffSO d)

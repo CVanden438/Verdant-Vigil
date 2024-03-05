@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Resource", menuName = "Items/Resource")]
-public class ResourceSO : ItemSO
+public class ResourceSO : ScriptableObject
 {
-    public bool placeable;
+    public string resourceName;
+    public Sprite icon;
 }
