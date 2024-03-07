@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 6646388961834472914}
   - component: {fileID: -5454461081569867875}
   - component: {fileID: 8094228383165036156}
+  - component: {fileID: -5156967052560412505}
   m_Layer: 9
   m_Name: firegolem
   m_TagString: Enemy
@@ -41,6 +42,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5345801471636443438}
+  - {fileID: 5965376500444686482}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7601612364483677585
@@ -125,7 +127,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a92a6dcaa00eb9b49acf6d21f3ce4c7f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -150,39 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentHealth: 100
   _maximumHealth: 100
-  OnDied:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5198153899257803055}
-        m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
-        m_MethodName: DestroyEnemy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHealthChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6697148875737001413}
-        m_TargetAssemblyTypeName: HealthBarUI, Assembly-CSharp
-        m_MethodName: UpdateHealth
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &-3031166503344925550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,36 +165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debuffs: []
-  OnDebuffAdd:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
-        m_MethodName: AddDebuff
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnDebuffRemove:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
-        m_MethodName: RemoveDebuff
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   immuneDebuffs: []
 --- !u!114 &398094292079891509
 MonoBehaviour:
@@ -314,6 +253,10 @@ MonoBehaviour:
     maximumInterval: 2
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
+  collisionRadius: 1
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.6
@@ -336,36 +279,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffs: []
-  OnBuffAdd:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
-        m_MethodName: AddBuff
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnBuffRemove:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EnemyHealthBar, Assembly-CSharp
-        m_MethodName: RemoveBuff
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!58 &8094228383165036156
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -375,7 +288,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 4152134994270158973}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a92a6dcaa00eb9b49acf6d21f3ce4c7f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -401,6 +314,86 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-5156967052560412505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152134994270158973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b455bf07f316f454f892860ab91075e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupObject: {fileID: 5104809553576073689, guid: ccd77f6de16fb5a42b36db3e74a49629, type: 3}
+--- !u!1 &8740465160876649753
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5965376500444686482}
+  - component: {fileID: 5683075593968314210}
+  m_Layer: 9
+  m_Name: AttackTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5965376500444686482
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8740465160876649753}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1580367203350636224}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &5683075593968314210
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8740465160876649753}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5
 --- !u!1001 &5067304955506988352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -412,6 +405,10 @@ PrefabInstance:
     - target: {fileID: 224931577834462831, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_Name
       value: HealthBarUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 630370164811662955, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_Pivot.x
@@ -493,9 +490,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1989539199883660125, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4972107497842731910, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5487932669533542588, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5849003943791226653, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7200433635320444048, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388436229230509774, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495929220512553042, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -507,14 +528,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
   m_PrefabInstance: {fileID: 5067304955506988352}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6697148875737001413 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1919556438106568837, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
-  m_PrefabInstance: {fileID: 5067304955506988352}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c32287bdae173014384767cd573318ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

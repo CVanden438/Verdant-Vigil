@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3737347412918984905}
   - component: {fileID: 2208410769186694485}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CannonTowerWep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3590305575748669043}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: -5495828451100909678}
   - component: {fileID: 1165142292433801815}
   - component: {fileID: 7856168711116112693}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: CannonTower1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 1
+  m_SpriteSortPoint: 0
 --- !u!61 &-2917733015035010407
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -206,10 +206,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 0.5}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -260,15 +260,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentHealth: 0
   _maximumHealth: 0
-  OnDied:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &7856168711116112693
 MonoBehaviour:
   m_ObjectHideFlags: 0

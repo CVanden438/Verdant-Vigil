@@ -16,9 +16,19 @@ public class HealthController : MonoBehaviour
         get { return _currentHealth / _maximumHealth; }
     }
     public bool IsInvincible { get; set; }
-    public UnityEvent OnDied;
-    public UnityEvent<float> OnDamaged;
-    public UnityEvent OnHealthChanged;
+    public delegate void HealthChangedAction();
+    public delegate void DiedAction();
+    public delegate void DamagedAction(float damage);
+    public delegate void DOTAction(float damage);
+    public event HealthChangedAction OnHealthChanged;
+    public event DiedAction OnDied;
+    public event DamagedAction OnDamaged;
+    public event DOTAction OnDOT;
+
+    // public UnityEvent OnDied;
+    // public UnityEvent<float> OnDamaged;
+
+    // public UnityEvent OnHealthChanged;
     private int interval = 1;
     private float nextTime;
 
@@ -47,7 +57,7 @@ public class HealthController : MonoBehaviour
         {
             var regen = stats.HealthRegen;
             _currentHealth += regen;
-            OnHealthChanged.Invoke();
+            OnHealthChanged?.Invoke();
             if (_currentHealth > _maximumHealth)
             {
                 _currentHealth = _maximumHealth;
@@ -69,8 +79,12 @@ public class HealthController : MonoBehaviour
             {
                 return;
             }
+            if (DOT == 0)
+            {
+                return;
+            }
             _currentHealth -= DOT;
-            OnHealthChanged.Invoke();
+            OnHealthChanged?.Invoke();
             if (_currentHealth < 0)
             {
                 _currentHealth = 0;
@@ -78,7 +92,7 @@ public class HealthController : MonoBehaviour
 
             if (_currentHealth == 0)
             {
-                OnDied.Invoke();
+                OnDied?.Invoke();
                 if (GetComponent<EnemyController>())
                 {
                     var exp = GetComponent<EnemyController>().data.exp;
@@ -91,7 +105,7 @@ public class HealthController : MonoBehaviour
             }
             else
             {
-                OnDamaged.Invoke(DOT);
+                OnDOT?.Invoke(DOT);
             }
         }
     }
@@ -114,7 +128,7 @@ public class HealthController : MonoBehaviour
             damageAmount = 1;
         }
         _currentHealth -= damageAmount;
-        OnHealthChanged.Invoke();
+        OnHealthChanged?.Invoke();
 
         if (_currentHealth < 0)
         {
@@ -123,7 +137,7 @@ public class HealthController : MonoBehaviour
 
         if (_currentHealth == 0)
         {
-            OnDied.Invoke();
+            OnDied?.Invoke();
             if (GetComponent<EnemyController>())
             {
                 //can put in OnDestroy in enemy
@@ -136,7 +150,7 @@ public class HealthController : MonoBehaviour
         }
         else
         {
-            OnDamaged.Invoke(damageAmount);
+            OnDamaged?.Invoke(damageAmount);
         }
     }
 
@@ -148,7 +162,7 @@ public class HealthController : MonoBehaviour
         }
 
         _currentHealth += amountToAdd;
-        OnHealthChanged.Invoke();
+        OnHealthChanged?.Invoke();
 
         if (_currentHealth > _maximumHealth)
         {

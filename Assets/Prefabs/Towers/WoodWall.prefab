@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -610888611855277725}
   - component: {fileID: 2643923427921122418}
   - component: {fileID: -3541146785274603290}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: WoodWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,8 @@ Transform:
   m_LocalPosition: {x: 20.629156, y: 6.119109, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8533128547278281594}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1807891979044950665
@@ -87,7 +88,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 1
+  m_SpriteSortPoint: 0
 --- !u!61 &6646662269465426286
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -120,10 +121,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 0.5}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1.25}
     adaptiveTilingThreshold: 0.5
@@ -147,15 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentHealth: 0
   _maximumHealth: 0
-  OnDied:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &2643923427921122418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,3 +173,109 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb531c7dd56c4943a7d07d5f819f553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &8793689674849771284
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8962299991645563111}
+    m_Modifications:
+    - target: {fileID: 224931577834462831, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Name
+      value: HealthBarUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.4000244
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5849003943791226653, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+--- !u!224 &8533128547278281594 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 892474821411374190, guid: 003cade46ac193f40bbe6621a3be9317, type: 3}
+  m_PrefabInstance: {fileID: 8793689674849771284}
+  m_PrefabAsset: {fileID: 0}

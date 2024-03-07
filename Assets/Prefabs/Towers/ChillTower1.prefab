@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7411155988126300905}
   - component: {fileID: 2613717597411436423}
   - component: {fileID: 3825935951652278299}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ChillTower1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 1
+  m_SpriteSortPoint: 0
 --- !u!61 &-2917733015035010407
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -122,10 +122,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 0.5}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
@@ -176,15 +176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentHealth: 0
   _maximumHealth: 0
-  OnDied:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3825935951652278299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8733376857796578201}
   - component: {fileID: 2804939454645622546}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IceTowerWep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +214,7 @@ Transform:
   m_GameObject: {fileID: 9045806105241564787}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.66, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

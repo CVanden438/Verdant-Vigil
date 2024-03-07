@@ -8,8 +8,13 @@ public class DebuffController : MonoBehaviour
     public List<DebuffSO> debuffs = new List<DebuffSO>();
 
     // private List<>
-    public UnityEvent<DebuffSO> OnDebuffAdd;
-    public UnityEvent<DebuffSO> OnDebuffRemove;
+    public delegate void DebuffAddAction(DebuffSO debuff);
+    public delegate void DebuffRemoveAction(DebuffSO debuff);
+    public event DebuffAddAction OnDebuffAdd;
+    public event DebuffRemoveAction OnDebuffRemove;
+
+    // public UnityEvent<DebuffSO> OnDebuffAdd;
+    // public UnityEvent<DebuffSO> OnDebuffRemove;
 
     [SerializeField]
     private List<DebuffSO> immuneDebuffs;

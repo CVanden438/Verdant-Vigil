@@ -8,8 +8,13 @@ public class BuffController : MonoBehaviour
     public List<BuffSO> buffs = new List<BuffSO>();
 
     // private List<>
-    public UnityEvent<BuffSO> OnBuffAdd;
-    public UnityEvent<BuffSO> OnBuffRemove;
+    public delegate void BuffAddAction(BuffSO buff);
+    public delegate void BuffRemoveAction(BuffSO buff);
+    public event BuffAddAction OnBuffAdd;
+    public event BuffRemoveAction OnBuffRemove;
+
+    // public UnityEvent<BuffSO> OnBuffAdd;
+    // public UnityEvent<BuffSO> OnBuffRemove;
 
     public void ApplyBuff(BuffSO buff, float duration)
     {

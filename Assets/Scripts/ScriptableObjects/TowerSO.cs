@@ -29,6 +29,7 @@ public class TowerSO : BuildingSO
     public float attackRange;
     public float attackCooldown;
     public int projCount = 1;
+    public int targetCount = 1;
     public int maxPierce = 0;
     public int maxChain = 0;
     public float aoe = 0;

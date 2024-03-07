@@ -16,11 +16,31 @@ public class HealthBarUI : MonoBehaviour
     private GameObject[] buffBoxes;
     private List<BuffSO> buffs = new List<BuffSO>();
 
+    void Start()
+    {
+        if (GetComponentInParent<HealthController>())
+        {
+            var health = GetComponentInParent<HealthController>();
+            health.OnHealthChanged += UpdateHealth;
+        }
+        if (GetComponentInParent<BuffController>())
+        {
+            var buff = GetComponentInParent<BuffController>();
+            buff.OnBuffAdd += AddBuff;
+            buff.OnBuffRemove += RemoveBuff;
+        }
+        if (GetComponentInParent<DebuffController>())
+        {
+            var debuff = GetComponentInParent<DebuffController>();
+            debuff.OnDebuffAdd += AddDebuff;
+            debuff.OnDebuffRemove += RemoveDebuff;
+        }
+    }
+
     public void UpdateHealth()
     {
         healthBarFill.fillAmount =
             GetComponentInParent<HealthController>().RemainingHealthPercentage;
-        Debug.Log(healthBarFill.fillAmount);
     }
 
     public void AddDebuff(DebuffSO d)

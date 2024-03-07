@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2625909714815591865}
   - component: {fileID: 253967570648117505}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IceTowerWep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 8348657520118571320}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.66, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 5373630447381983665}
   - component: {fileID: 1195245832648093730}
   - component: {fileID: 9220337137569445074}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ChillTowerMax1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 1
+  m_SpriteSortPoint: 0
 --- !u!61 &-2917733015035010407
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -205,10 +205,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 0.5}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
@@ -246,15 +246,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentHealth: 0
   _maximumHealth: 0
-  OnDied:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &9220337137569445074
 MonoBehaviour:
   m_ObjectHideFlags: 0

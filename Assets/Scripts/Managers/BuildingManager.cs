@@ -46,7 +46,12 @@ public class BuildingManager : MonoBehaviour
             Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             GetXY(mouse, out float x, out float y);
             highlight.transform.position = new Vector3(x, y);
-            var col = CheckCollision(x, y, selectedBuilding.width, selectedBuilding.height);
+            var col = CheckCollision(
+                x - 0.5f,
+                y - 0.5f,
+                selectedBuilding.width,
+                selectedBuilding.height
+            );
             if (col)
             {
                 highlight.GetComponent<SpriteRenderer>().color = Color.red;
@@ -69,7 +74,7 @@ public class BuildingManager : MonoBehaviour
     {
         GameObject obj = null;
         GetXY(point, out float x, out float y);
-        if (CheckCollision(x, y, building.width, building.height))
+        if (CheckCollision(x - 0.5f, y - 0.5f, building.width, building.height))
         {
             return null;
         }
@@ -85,18 +90,18 @@ public class BuildingManager : MonoBehaviour
         if (obj != null)
         {
             //rescan AStar graph
-            Bounds bounds = obj.GetComponent<BoxCollider2D>().bounds;
-            var guo = new GraphUpdateObject(bounds);
-            guo.updatePhysics = true;
-            AstarPath.active.UpdateGraphs(guo);
+            // Bounds bounds = obj.GetComponent<BoxCollider2D>().bounds;
+            // var guo = new GraphUpdateObject(bounds);
+            // guo.updatePhysics = true;
+            // AstarPath.active.UpdateGraphs(guo);
         }
         return obj;
     }
 
     private void GetXY(Vector3 worldPosition, out float x, out float y)
     {
-        x = Mathf.Floor(worldPosition.x);
-        y = Mathf.Floor(worldPosition.y);
+        x = Mathf.Floor(worldPosition.x) + 0.5f;
+        y = Mathf.Floor(worldPosition.y) + 0.5f;
     }
 
     private bool CheckCollision(float x, float y, float width, float height)

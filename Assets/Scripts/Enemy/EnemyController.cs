@@ -71,6 +71,10 @@ public class EnemyController : MonoBehaviour
 
     void CollisionBehaviour(Collider2D collision)
     {
+        if (!collision.transform.GetComponent<DebuffController>())
+        {
+            return;
+        }
         if (data.debuff)
         {
             collision

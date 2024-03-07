@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,6 +10,11 @@ public interface ITowerEffect
     public void CollisionEffect(Vector3 position);
 }
 
+public interface ITowerVisual
+{
+    public void VisualEffect(List<GameObject> targets);
+}
+
 public class TowerController : MonoBehaviour
 {
     [SerializeField]
@@ -16,6 +22,7 @@ public class TowerController : MonoBehaviour
     private List<GameObject> enemiesInRange = new List<GameObject>();
     private float lastAttackTime;
     private ITowerEffect towerEffect;
+    private ITowerVisual towerVisual;
 
     [SerializeField]
     private int angleBetweenProj = 10;
@@ -31,6 +38,10 @@ public class TowerController : MonoBehaviour
         if (GetComponent<ITowerEffect>() != null)
         {
             towerEffect = GetComponent<ITowerEffect>();
+        }
+        if (GetComponent<ITowerVisual>() != null)
+        {
+            towerVisual = GetComponent<ITowerVisual>();
         }
         if (TryGetComponent<HealthController>(out var health))
         {
@@ -58,6 +69,10 @@ public class TowerController : MonoBehaviour
             {
                 enemiesInRange.Add(enemy);
             }
+        }
+        if (enemiesInRange.Count == 0)
+        {
+            towerVisual.VisualEffect(null);
         }
         switch (data.attackType)
         {
@@ -97,28 +112,28 @@ public class TowerController : MonoBehaviour
     {
         if (enemiesInRange.Count > 0 && Time.time - lastAttackTime >= data.attackCooldown)
         {
-            GameObject closestEnemy = null;
-            float closestDistance = float.MaxValue;
+            // GameObject closestEnemy = null;
+            // float closestDistance = float.MaxValue;
 
-            foreach (GameObject enemy in enemiesInRange)
+            // foreach (GameObject enemy in enemiesInRange)
+            // {
+            //     float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            //     if (distance < closestDistance)
+            //     {
+            //         closestDistance = distance;
+            //         closestEnemy = enemy;
+            //     }
+            // }
+            SortEnemiesByDistance();
+            if (data.projCount == 0)
             {
-                float distance = Vector3.Distance(transform.position, enemy.transform.position);
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    closestEnemy = enemy;
-                }
+                DirectDamage();
             }
-
-            if (closestEnemy != null)
+            else
             {
-                if (data.projCount == 0)
-                {
-                    DirectDamage(closestEnemy);
-                }
-                SetupProjectile(closestEnemy.transform);
-                lastAttackTime = Time.time;
+                SetupProjectile(enemiesInRange[0].transform);
             }
+            lastAttackTime = Time.time;
         }
     }
 
@@ -126,29 +141,28 @@ public class TowerController : MonoBehaviour
     {
         if (enemiesInRange.Count > 0 && Time.time - lastAttackTime >= data.attackCooldown)
         {
-            GameObject highestHPEnemy = null;
-            float highestHP = 0;
+            // GameObject highestHPEnemy = null;
+            // float highestHP = 0;
 
-            foreach (GameObject enemy in enemiesInRange)
+            // foreach (GameObject enemy in enemiesInRange)
+            // {
+            //     float health = enemy.GetComponent<HealthController>().GetHealth();
+            //     if (health > highestHP)
+            //     {
+            //         highestHP = health;
+            //         highestHPEnemy = enemy;
+            //     }
+            // }
+            SortEnemiesByHealth();
+            if (data.projCount == 0)
             {
-                float health = enemy.GetComponent<HealthController>().GetHealth();
-                Debug.Log(health);
-                if (health > highestHP)
-                {
-                    highestHP = health;
-                    highestHPEnemy = enemy;
-                }
+                DirectDamage();
             }
-
-            if (highestHPEnemy != null)
+            else
             {
-                if (data.projCount == 0)
-                {
-                    DirectDamage(highestHPEnemy);
-                }
-                SetupProjectile(highestHPEnemy.transform);
-                lastAttackTime = Time.time;
+                SetupProjectile(enemiesInRange[0].transform);
             }
+            lastAttackTime = Time.time;
         }
     }
 
@@ -158,11 +172,15 @@ public class TowerController : MonoBehaviour
         {
             var randomNum = Random.Range(0, enemiesInRange.Count);
             var randomEnemy = enemiesInRange[randomNum];
+            GetRandomElements(enemiesInRange, data.targetCount);
             if (data.projCount == 0)
             {
-                DirectDamage(randomEnemy);
+                DirectDamage();
             }
-            SetupProjectile(randomEnemy.transform);
+            else
+            {
+                SetupProjectile(randomEnemy.transform);
+            }
             lastAttackTime = Time.time;
         }
     }
@@ -173,7 +191,9 @@ public class TowerController : MonoBehaviour
         {
             foreach (GameObject enemy in enemiesInRange)
             {
-                DirectDamage(enemy);
+                var healthController = enemy.GetComponent<HealthController>();
+                healthController.TakeDamage(data.damage);
+                CollisionBehaviour(enemy.GetComponent<Collider2D>());
             }
             lastAttackTime = Time.time;
         }
@@ -230,10 +250,64 @@ public class TowerController : MonoBehaviour
         }
     }
 
-    void DirectDamage(GameObject enemy)
+    void DirectDamage()
     {
-        var healthController = enemy.GetComponent<HealthController>();
-        healthController.TakeDamage(data.damage);
-        CollisionBehaviour(enemy.GetComponent<Collider2D>());
+        List<GameObject> enemiesToAttack = enemiesInRange.Take(data.targetCount).ToList();
+        towerVisual?.VisualEffect(enemiesToAttack);
+        foreach (var enemy in enemiesToAttack)
+        {
+            var healthController = enemy.GetComponent<HealthController>();
+            healthController.TakeDamage(data.damage);
+            CollisionBehaviour(enemy.GetComponent<Collider2D>());
+        }
+    }
+
+    private void SortEnemiesByDistance()
+    {
+        enemiesInRange.Sort(CompareEnemyDistance);
+    }
+
+    private int CompareEnemyDistance(GameObject a, GameObject b)
+    {
+        //sorts closest to farthest
+        float distanceA = Vector3.Distance(transform.position, a.transform.position);
+        float distanceB = Vector3.Distance(transform.position, b.transform.position);
+
+        return distanceA.CompareTo(distanceB);
+    }
+
+    private void SortEnemiesByHealth()
+    {
+        enemiesInRange.Sort(CompareEnemyHealth);
+    }
+
+    private int CompareEnemyHealth(GameObject a, GameObject b)
+    {
+        //sorts highest to lowest
+        float healthA = a.GetComponent<HealthController>().GetHealth();
+        float healthB = b.GetComponent<HealthController>().GetHealth();
+        return healthB.CompareTo(healthA);
+    }
+
+    private void GetRandomElements(List<GameObject> originalList, int n)
+    {
+        List<GameObject> randomElements = new();
+
+        // If n is greater than the list size, return the entire list
+        if (n >= originalList.Count)
+        {
+            enemiesInRange = originalList;
+        }
+
+        // Generate n random indices and add corresponding elements to the result list
+        for (int i = 0; i < n; i++)
+        {
+            int randomIndex = Random.Range(0, originalList.Count);
+            randomElements.Add(originalList[randomIndex]);
+            // Remove the selected element to prevent duplicate selection
+            originalList.RemoveAt(randomIndex);
+        }
+
+        enemiesInRange = randomElements;
     }
 }
