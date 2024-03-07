@@ -133,6 +133,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    //
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject != target)
