@@ -204,7 +204,7 @@ public class TowerController : MonoBehaviour
         if (!BuildingManager.instance.isBuilding)
         {
             BuildingManager.instance.highlightedBuilding = gameObject;
-            UIManager.instance.ShowInfo();
+            UIManager.instance.ShowTowerPanel();
             UIManager.instance.buildingName.text = data.buildingName;
             if (data.tier < 3)
             {

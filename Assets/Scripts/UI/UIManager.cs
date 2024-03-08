@@ -34,12 +34,12 @@ public class UIManager : MonoBehaviour
         level.text = value.ToString();
     }
 
-    public void ShowInfo()
+    public void ShowTowerPanel()
     {
         buildingInfo.SetActive(true);
     }
 
-    public void HideInfo()
+    public void HideTowerPanel()
     {
         buildingInfo.SetActive(false);
     }
