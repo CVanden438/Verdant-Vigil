@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 7411155988126300905}
   - component: {fileID: 2613717597411436423}
   - component: {fileID: 3825935951652278299}
+  - component: {fileID: 8609382352143696304}
+  - component: {fileID: -8828547320238138593}
   m_Layer: 8
   m_Name: ChillTower1
   m_TagString: Untagged
@@ -188,6 +190,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb531c7dd56c4943a7d07d5f819f553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8609382352143696304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8837853200118097585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebbb3b6323c76f743933c76fa3a1c448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
+--- !u!114 &-8828547320238138593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8837853200118097585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebbb3b6323c76f743933c76fa3a1c448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
 --- !u!1 &9045806105241564787
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,6 +23,7 @@ public class BuildingManager : MonoBehaviour
     [SerializeField]
     private GameObject highlight;
     public bool isBuilding = false;
+    private bool isUpgrading = false;
 
     private void Awake()
     {
@@ -72,21 +73,20 @@ public class BuildingManager : MonoBehaviour
 
     private GameObject PlaceStructure(Vector3 point, BuildingSO building)
     {
-        GameObject obj = null;
         GetXY(point, out float x, out float y);
-        if (CheckCollision(x - 0.5f, y - 0.5f, building.width, building.height))
+        if (!isUpgrading)
         {
-            return null;
+            if (CheckCollision(x - 0.5f, y - 0.5f, building.width, building.height))
+            {
+                return null;
+            }
         }
-        // TowerController buildingController = chosenTower.GetComponent<TowerController>();
-        // if (rm.crystals >= buildingController.data.crystalCost)
-        // {
-        obj = Instantiate(building.prefab, new Vector3(x, y), Quaternion.identity);
-        // rm.RemoveCrystals(buildingController.data.crystalCost);
-        // }
+        GameObject obj = Instantiate(building.prefab, new Vector3(x, y), Quaternion.identity);
         selectedBuilding = null;
         isBuilding = false;
         highlight.SetActive(false);
+
+        //for adding building to obstacles
         if (obj != null)
         {
             //rescan AStar graph
@@ -153,14 +153,17 @@ public class BuildingManager : MonoBehaviour
         TowerSO upgrade = highlightedBuilding.GetComponent<TowerController>().GetData().upgrade;
         Vector3 pos = highlightedBuilding.transform.position;
         Destroy(highlightedBuilding);
+        isUpgrading = true;
         var newBuilding = PlaceStructure(pos, upgrade);
-        UIManager.instance.buildingName.text = upgrade.buildingName;
-        if (upgrade.tier == 3)
-        {
-            UIManager.instance.upgradeButton.SetActive(false);
-            UIManager.instance.maxUpgradeButtons.SetActive(true);
-        }
+        isUpgrading = false;
+        // UIManager.instance.buildingName.text = upgrade.buildingName;
+        // if (upgrade.tier == 3)
+        // {
+        //     UIManager.instance.upgradeButton.SetActive(false);
+        //     UIManager.instance.maxUpgradeButtons.SetActive(true);
+        // }
         highlightedBuilding = newBuilding;
+        UIManager.instance.ShowTowerPanel(upgrade);
         // highlightedBuilding = null;
     }
 
@@ -171,9 +174,10 @@ public class BuildingManager : MonoBehaviour
         ];
         Vector3 pos = highlightedBuilding.transform.position;
         Destroy(highlightedBuilding);
+        isUpgrading = true;
         var newBuilding = PlaceStructure(pos, upgrade);
-        UIManager.instance.buildingName.text = upgrade.buildingName;
-        UIManager.instance.maxUpgradeButtons.SetActive(false);
+        isUpgrading = false;
         highlightedBuilding = newBuilding;
+        UIManager.instance.ShowTowerPanel(upgrade);
     }
 }

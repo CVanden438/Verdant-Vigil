@@ -72,7 +72,7 @@ public class TowerController : MonoBehaviour
         }
         if (enemiesInRange.Count == 0)
         {
-            towerVisual.VisualEffect(null);
+            towerVisual?.VisualEffect(null);
         }
         switch (data.attackType)
         {
@@ -199,30 +199,30 @@ public class TowerController : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
-    {
-        if (!BuildingManager.instance.isBuilding)
-        {
-            BuildingManager.instance.highlightedBuilding = gameObject;
-            UIManager.instance.ShowTowerPanel();
-            UIManager.instance.buildingName.text = data.buildingName;
-            if (data.tier < 3)
-            {
-                UIManager.instance.maxUpgradeButtons.SetActive(false);
-                UIManager.instance.upgradeButton.SetActive(true);
-            }
-            else if (data.tier == 3)
-            {
-                UIManager.instance.maxUpgradeButtons.SetActive(true);
-                UIManager.instance.upgradeButton.SetActive(false);
-            }
-            else if (data.tier == 4)
-            {
-                UIManager.instance.maxUpgradeButtons.SetActive(false);
-                UIManager.instance.upgradeButton.SetActive(false);
-            }
-        }
-    }
+    // void OnMouseDown()
+    // {
+    //     if (!BuildingManager.instance.isBuilding)
+    //     {
+    //         BuildingManager.instance.highlightedBuilding = gameObject;
+    //         UIManager.instance.ShowTowerPanel();
+    //         UIManager.instance.buildingName.text = data.buildingName;
+    //         if (data.tier < 3)
+    //         {
+    //             UIManager.instance.maxUpgradeButtons.SetActive(false);
+    //             UIManager.instance.upgradeButton.SetActive(true);
+    //         }
+    //         else if (data.tier == 3)
+    //         {
+    //             UIManager.instance.maxUpgradeButtons.SetActive(true);
+    //             UIManager.instance.upgradeButton.SetActive(false);
+    //         }
+    //         else if (data.tier == 4)
+    //         {
+    //             UIManager.instance.maxUpgradeButtons.SetActive(false);
+    //             UIManager.instance.upgradeButton.SetActive(false);
+    //         }
+    //     }
+    // }
 
     void SetupProjectile(Transform target)
     {

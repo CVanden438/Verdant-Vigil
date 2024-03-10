@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5373630447381983665}
   - component: {fileID: 2619866121094935016}
   - component: {fileID: -6452677375406623342}
+  - component: {fileID: -8094781723032382991}
+  - component: {fileID: 2135982401344114882}
   m_Layer: 8
   m_Name: CoilTower3
   m_TagString: Untagged
@@ -174,6 +176,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb531c7dd56c4943a7d07d5f819f553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8094781723032382991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8837853200118097585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebbb3b6323c76f743933c76fa3a1c448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
+--- !u!114 &2135982401344114882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8837853200118097585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebbb3b6323c76f743933c76fa3a1c448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 0}
 --- !u!1 &8959995278314335915
 GameObject:
   m_ObjectHideFlags: 0
