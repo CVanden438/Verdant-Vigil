@@ -26,7 +26,7 @@ MonoBehaviour:
   attackRange: 3
   attackCooldown: 0.2
   projCount: 0
-  targetCount: 2
+  targetCount: 1
   maxPierce: 0
   maxChain: 0
   aoe: 0

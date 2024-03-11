@@ -179,5 +179,7 @@ public class BuildingManager : MonoBehaviour
         isUpgrading = false;
         highlightedBuilding = newBuilding;
         UIManager.instance.ShowTowerPanel(upgrade);
+        //need this to hide max upgrade tooltip as onmouseleave cant be called
+        TooltipManager.instance.HideTowerTooltip();
     }
 }

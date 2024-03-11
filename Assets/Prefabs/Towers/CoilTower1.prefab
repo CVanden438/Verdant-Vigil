@@ -99,7 +99,6 @@ GameObject:
   - component: {fileID: -7746754757151066815}
   - component: {fileID: -4230586486928965369}
   - component: {fileID: 8856720982202535111}
-  - component: {fileID: -5345314681932680825}
   m_Layer: 8
   m_Name: CoilTower1
   m_TagString: Untagged
@@ -261,19 +260,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8856720982202535111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8837853200118097585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbb3b6323c76f743933c76fa3a1c448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: {fileID: 0}
---- !u!114 &-5345314681932680825
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

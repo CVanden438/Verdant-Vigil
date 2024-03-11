@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 10106893189835181}
   - component: {fileID: 6610310232858673488}
   - component: {fileID: -3019211355105446556}
+  - component: {fileID: 2759808063715364075}
   m_Layer: 8
   m_Name: CannonTowerMax2
   m_TagString: Untagged
@@ -272,3 +273,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
+--- !u!114 &2759808063715364075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8837853200118097585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9258ef985d6a64ebd4e68b4530e13e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burningGround: {fileID: 2706009952625973834, guid: 3b903806142d34b47a889a1898992475, type: 3}

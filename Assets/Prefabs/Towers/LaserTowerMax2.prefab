@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: -4769490702025823549}
   - component: {fileID: -4619468798185745948}
   - component: {fileID: 6147779930947936657}
-  - component: {fileID: -2152742385972484240}
+  - component: {fileID: 7373768819685214123}
   m_Layer: 8
   m_Name: LaserTowerMax2
   m_TagString: Untagged
@@ -121,6 +121,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8232076218947371796}
+  - {fileID: 517466701722811343}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2542333364116137807
@@ -273,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
---- !u!114 &-2152742385972484240
+--- !u!114 &7373768819685214123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,7 +283,70 @@ MonoBehaviour:
   m_GameObject: {fileID: 8837853200118097585}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebbb3b6323c76f743933c76fa3a1c448, type: 3}
+  m_Script: {fileID: 11500000, guid: 67f458f24200db3478aa410e09215ad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
+  enemyTransforms: []
+  laserWidth: 0.1
+--- !u!1001 &1148354917473505457
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3655894078463374444}
+    m_Modifications:
+    - target: {fileID: 630978454465227646, guid: 6a0cc919d932893428b3cdea5673dbcf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 630978454465227646, guid: 6a0cc919d932893428b3cdea5673dbcf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 630978454465227646, guid: 6a0cc919d932893428b3cdea5673dbcf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 630978454465227646, guid: 6a0cc919d932893428b3cdea5673dbcf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 630978454465227646, guid: 6a0cc919d932893428b3cdea5673dbcf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 630978454465227646, guid: 6a0cc919d932893428b3cdea5673dbcf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 630978454465227646, guid: 6a0cc919d932893428b3cdea5673dbcf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 630978454465227646, guid: 6a0cc919d932893428b3cdea5673dbcf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 630978454465227646, guid: 6a0cc919d932893428b3cdea5673dbcf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 630978454465227646, guid: 6a0cc919d932893428b3cdea5673dbcf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862697935655997996, guid: 6a0cc919d932893428b3cdea5673dbcf, type: 3}
+      propertyPath: m_Name
+      value: Lasers
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a0cc919d932893428b3cdea5673dbcf, type: 3}
+--- !u!4 &517466701722811343 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 630978454465227646, guid: 6a0cc919d932893428b3cdea5673dbcf, type: 3}
+  m_PrefabInstance: {fileID: 1148354917473505457}
+  m_PrefabAsset: {fileID: 0}

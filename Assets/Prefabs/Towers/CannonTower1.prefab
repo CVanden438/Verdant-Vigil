@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 2542333364116137807}
   - component: {fileID: -2917733015035010407}
   - component: {fileID: 5373630447381983665}
-  - component: {fileID: -5495828451100909678}
   - component: {fileID: 1165142292433801815}
   - component: {fileID: 7856168711116112693}
   - component: {fileID: 4299194672038974151}
@@ -234,19 +233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 9a884ff9f2f9a914e91b776c60d9be2b, type: 2}
   angleBetweenProj: 10
---- !u!114 &-5495828451100909678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8837853200118097585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb9258ef985d6a64ebd4e68b4530e13e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  burningGround: {fileID: 2706009952625973834, guid: 3b903806142d34b47a889a1898992475, type: 3}
 --- !u!114 &1165142292433801815
 MonoBehaviour:
   m_ObjectHideFlags: 0

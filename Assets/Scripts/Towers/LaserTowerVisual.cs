@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LaserTowerVisual : MonoBehaviour, ITowerVisual
 {
-    public LineRenderer[] lineRenderers;
+    private LineRenderer[] lineRenderers;
     public List<GameObject> enemyTransforms;
     public float laserWidth = 0.1f;
 
