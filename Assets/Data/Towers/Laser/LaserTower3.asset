@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f26905aecba7e341beb2d11045e2f13, type: 3}
+  m_Name: LaserTower3
+  m_EditorClassIdentifier: 
+  buildingName: Laser Tower (Tier 3)
+  description: Deals continuous damage
+  height: 1
+  width: 1
+  sprite: {fileID: 21300000, guid: 5a03e5b866ff5f2449c5bc9c6008da19, type: 3}
+  cost:
+  - resourceName: {fileID: 11400000, guid: 9976669d58fdc4f499559c7b05ead627, type: 2}
+    resourceAmount: 100
+  prefab: {fileID: 8837853200118097585, guid: b3b39c848532be444ab0d65c9b0ac4bb, type: 3}
+  maxHealth: 100
+  damage: 8
+  attackRange: 4
+  attackCooldown: 0.2
+  projCount: 0
+  targetCount: 1
+  maxPierce: 0
+  maxChain: 0
+  aoe: 0
+  tier: 3
+  debuff: {fileID: 0}
+  debuffDuration: 0
+  DOT: {fileID: 0}
+  DOTDuration: 0
+  DOTDamage: 0
+  projectilePrefab: {fileID: 0}
+  upgrade: {fileID: 0}
+  maxUpgrades:
+  - {fileID: 11400000, guid: 433e92ea2366925419619d1f4f190ce3, type: 2}
+  - {fileID: 11400000, guid: 51a0532ad9399174282de75a32433f20, type: 2}
+  attackType: 0
+  tags: 01000000

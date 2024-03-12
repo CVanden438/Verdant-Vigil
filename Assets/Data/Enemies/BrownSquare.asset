@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 972916af81208cc47a77b54eb9d58a04, type: 3}
+  m_Name: BrownSquare
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  damage: 10
+  attackCd: 1
+  moveSpeed: 1
+  armour: 0
+  enemyType: 2
+  debuff: {fileID: 0}
+  debuffDuration: 0
+  DOT: {fileID: 0}
+  DOTDuration: 0
+  DOTDamage: 0
+  projectileSpeed: 0
+  projectilePrefab: {fileID: 0}
+  prefab: {fileID: 5915703355039230924, guid: 5860434a45d38994ebf8e06d7994ed18, type: 3}
+  exp: 5
+  difficulty: 1
+  coins: 0

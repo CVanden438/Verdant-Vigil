@@ -33,6 +33,10 @@ public class UIManager : MonoBehaviour
     public Image expBar;
     public TextMeshProUGUI level;
 
+    public TextMeshProUGUI coinsValue;
+    public TextMeshProUGUI woodValue;
+    public TextMeshProUGUI ingotsValue;
+
     void Awake()
     {
         instance = this;
@@ -93,5 +97,12 @@ public class UIManager : MonoBehaviour
     {
         // buildingInfo.SetActive(false);
         towerPanel.SetActive(false);
+    }
+
+    public void UpdateResources(int coins, int wood, int ingots)
+    {
+        coinsValue.text = coins.ToString();
+        woodValue.text = wood.ToString();
+        ingotsValue.text = ingots.ToString();
     }
 }

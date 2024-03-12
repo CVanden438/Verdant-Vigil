@@ -7,6 +7,7 @@ using UnityEngine.WSA;
 public class HealthBarUI : MonoBehaviour
 {
     public Image healthBarFill;
+    public GameObject container;
 
     [SerializeField]
     private GameObject[] debuffBoxes;
@@ -22,6 +23,7 @@ public class HealthBarUI : MonoBehaviour
         {
             var health = GetComponentInParent<HealthController>();
             health.OnHealthChanged += UpdateHealth;
+            UpdateHealth();
         }
         if (GetComponentInParent<BuffController>())
         {
@@ -39,8 +41,16 @@ public class HealthBarUI : MonoBehaviour
 
     public void UpdateHealth()
     {
-        healthBarFill.fillAmount =
-            GetComponentInParent<HealthController>().RemainingHealthPercentage;
+        var health = GetComponentInParent<HealthController>().RemainingHealthPercentage;
+        healthBarFill.fillAmount = health;
+        if (health == 1)
+        {
+            container.SetActive(false);
+        }
+        else
+        {
+            container.SetActive(true);
+        }
     }
 
     public void AddDebuff(DebuffSO d)

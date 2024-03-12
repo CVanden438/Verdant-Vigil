@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f26905aecba7e341beb2d11045e2f13, type: 3}
+  m_Name: SniperTower3
+  m_EditorClassIdentifier: 
+  buildingName: Sniper Tower (Tier 3)
+  description: Fires high powered bullets which apply bleed
+  height: 1
+  width: 1
+  sprite: {fileID: 21300000, guid: e793fe55394ff5a4aa1acf201d7dbd56, type: 3}
+  cost:
+  - resourceName: {fileID: 11400000, guid: 9976669d58fdc4f499559c7b05ead627, type: 2}
+    resourceAmount: 100
+  prefab: {fileID: 8837853200118097585, guid: 4c2511f3f7e9a1a4b9d93eaa384bf6db, type: 3}
+  maxHealth: 100
+  damage: 50
+  attackRange: 7
+  attackCooldown: 2
+  projCount: 1
+  targetCount: 1
+  maxPierce: 0
+  maxChain: 0
+  aoe: 0
+  tier: 3
+  debuff: {fileID: 0}
+  debuffDuration: 0
+  DOT: {fileID: 11400000, guid: 4677914fece25af4285fdd2e33a1e906, type: 2}
+  DOTDuration: 0
+  DOTDamage: 0
+  projectilePrefab: {fileID: 4715277230290731440, guid: 7552c8ac270991749b87e616b7d76ba3, type: 3}
+  upgrade: {fileID: 0}
+  maxUpgrades:
+  - {fileID: 11400000, guid: 50a561167362c3b4dba478d3a391ca6c, type: 2}
+  - {fileID: 11400000, guid: 61d2e924b62ae7c4387f0643899beacc, type: 2}
+  attackType: 1
+  tags: 0400000006000000

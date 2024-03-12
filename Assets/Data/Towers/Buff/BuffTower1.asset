@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8091799c15f9244ab397d526f4decbd, type: 3}
+  m_Name: BuffTower1
+  m_EditorClassIdentifier: 
+  buildingName: Buff Tower (Tier 1)
+  description: 
+  height: 1
+  width: 1
+  sprite: {fileID: 21300000, guid: d9ab1d95347b6c447ac13d48fafea31d, type: 3}
+  cost: []
+  prefab: {fileID: 8837853200118097585, guid: 7692b9951beed084aaef5c2db25f1e1a, type: 3}
+  maxHealth: 100
+  aoe: 2
+  cooldown: 3
+  tier: 1
