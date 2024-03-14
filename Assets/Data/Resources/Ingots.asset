@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb84446a59a66f948a4b22371bbf551f, type: 3}
   m_Name: Ingots
   m_EditorClassIdentifier: 
-  resourceName: Ingots
+  resourceName: 2
   icon: {fileID: 21300000, guid: 445c8a021d4c16d44badea8418e923c9, type: 3}

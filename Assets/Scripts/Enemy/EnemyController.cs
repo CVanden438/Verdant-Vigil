@@ -143,6 +143,11 @@ public class EnemyController : MonoBehaviour
         isAttacking = false;
         path.enabled = true;
     }
+
+    void OnDestroy()
+    {
+        ResourceManager.instance.AddCoins(10);
+    }
 }
 
 // private void MeleeAttack()

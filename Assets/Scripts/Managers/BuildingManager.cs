@@ -44,6 +44,13 @@ public class BuildingManager : MonoBehaviour
                 PlaceStructure(point, selectedBuilding);
                 return;
             }
+            if (Input.GetMouseButtonDown(1))
+            {
+                selectedBuilding = null;
+                isBuilding = false;
+                highlight.SetActive(false);
+                return;
+            }
             Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             GetXY(mouse, out float x, out float y);
             highlight.transform.position = new Vector3(x, y);
@@ -73,18 +80,25 @@ public class BuildingManager : MonoBehaviour
 
     private GameObject PlaceStructure(Vector3 point, BuildingSO building)
     {
+        //clamping X and Y
         GetXY(point, out float x, out float y);
         if (!isUpgrading)
         {
+            //0.5f to convert from centre to bottom left
             if (CheckCollision(x - 0.5f, y - 0.5f, building.width, building.height))
             {
                 return null;
             }
         }
+        if (CheckResources())
+        {
+            return null;
+        }
+        RemoveResources();
         GameObject obj = Instantiate(building.prefab, new Vector3(x, y), Quaternion.identity);
-        selectedBuilding = null;
-        isBuilding = false;
-        highlight.SetActive(false);
+        // selectedBuilding = null;
+        // isBuilding = false;
+        // highlight.SetActive(false);
 
         //for adding building to obstacles
         if (obj != null)
@@ -127,12 +141,61 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    // private Collider2D GetCollider(GameObject obj){
-    //     return obj.GetComponent<Collider2D>();
-    // }
+    bool CheckResources()
+    {
+        var cost = selectedBuilding.cost;
+        var coins = ResourceManager.instance.coins;
+        var wood = ResourceManager.instance.wood;
+        var ingots = ResourceManager.instance.ingots;
+        foreach (var c in cost)
+        {
+            if (c.resourceName.resourceName == Resources.gold)
+            {
+                if (c.resourceAmount <= coins)
+                {
+                    return false;
+                }
+            }
+            if (c.resourceName.resourceName == Resources.wood)
+            {
+                if (c.resourceAmount <= wood)
+                {
+                    return false;
+                }
+            }
+            if (c.resourceName.resourceName == Resources.ingots)
+            {
+                if (c.resourceAmount <= ingots)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    void RemoveResources()
+    {
+        var cost = selectedBuilding.cost;
+        foreach (var c in cost)
+        {
+            if (c.resourceName.resourceName == Resources.gold)
+            {
+                ResourceManager.instance.RemoveCoins(c.resourceAmount);
+            }
+            if (c.resourceName.resourceName == Resources.wood)
+            {
+                ResourceManager.instance.RemoveWood(c.resourceAmount);
+            }
+            if (c.resourceName.resourceName == Resources.ingots)
+            {
+                ResourceManager.instance.RemoveIngots(c.resourceAmount);
+            }
+        }
+    }
+
     public void SelectWall(int index)
     {
-        // chosenWall = walls[index];
         selectedBuilding = walls[index];
         isBuilding = true;
         highlight.SetActive(true);
@@ -141,7 +204,6 @@ public class BuildingManager : MonoBehaviour
 
     public void SelectBuilding(BuildingSO building)
     {
-        // chosenTower = towers[index];
         selectedBuilding = building;
         isBuilding = true;
         highlight.SetActive(true);
@@ -153,18 +215,12 @@ public class BuildingManager : MonoBehaviour
         TowerSO upgrade = highlightedBuilding.GetComponent<TowerController>().GetData().upgrade;
         Vector3 pos = highlightedBuilding.transform.position;
         Destroy(highlightedBuilding);
+        //to stop collision check
         isUpgrading = true;
         var newBuilding = PlaceStructure(pos, upgrade);
         isUpgrading = false;
-        // UIManager.instance.buildingName.text = upgrade.buildingName;
-        // if (upgrade.tier == 3)
-        // {
-        //     UIManager.instance.upgradeButton.SetActive(false);
-        //     UIManager.instance.maxUpgradeButtons.SetActive(true);
-        // }
         highlightedBuilding = newBuilding;
         UIManager.instance.ShowTowerPanel(upgrade);
-        // highlightedBuilding = null;
     }
 
     public void MaxUpgrade(int index)
@@ -174,6 +230,7 @@ public class BuildingManager : MonoBehaviour
         ];
         Vector3 pos = highlightedBuilding.transform.position;
         Destroy(highlightedBuilding);
+        //to stop collision check
         isUpgrading = true;
         var newBuilding = PlaceStructure(pos, upgrade);
         isUpgrading = false;

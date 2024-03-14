@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb84446a59a66f948a4b22371bbf551f, type: 3}
   m_Name: Gems
   m_EditorClassIdentifier: 
-  resourceName: Gems
+  resourceName: 1
   icon: {fileID: 21300000, guid: 86a69bde5fc5b1445a34054f56a19a25, type: 3}

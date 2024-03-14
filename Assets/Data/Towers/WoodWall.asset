@@ -16,7 +16,7 @@ MonoBehaviour:
   description: A wall made of wood
   height: 1
   width: 1
-  sprite: {fileID: 21300000, guid: 9acf0488f8239c249b546d78745a3b79, type: 3}
+  sprite: {fileID: -1556910155, guid: 73c0c5f620887c5488782f8924511379, type: 3}
   cost: []
   prefab: {fileID: 7627865960319330711, guid: 9f5bead85c402f8409e1cff9230b78c8, type: 3}
   maxHealth: 200

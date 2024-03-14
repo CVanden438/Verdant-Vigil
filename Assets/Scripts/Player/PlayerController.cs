@@ -24,6 +24,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private HealthController health;
 
+    void Start()
+    {
+        health.OnHealthChanged += UpdateHealth;
+    }
+
     void Update()
     {
         // if (!isSafe && !dayNightCycle.IsDay)
@@ -51,6 +56,7 @@ public class PlayerController : MonoBehaviour
     public void UpdateHealth()
     {
         healthBarFill.fillAmount = GetComponent<HealthController>().RemainingHealthPercentage;
+        Debug.Log("TAKE DAMAGE" + healthBarFill.fillAmount);
         text.SetText(health.GetHealth() + "/" + health.GetMaxHealth());
     }
 }

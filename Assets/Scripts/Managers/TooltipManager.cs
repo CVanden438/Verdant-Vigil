@@ -16,6 +16,9 @@ public class TooltipManager : MonoBehaviour
     public TextMeshProUGUI range;
     public TextMeshProUGUI health;
     public TextMeshProUGUI speed;
+    public TextMeshProUGUI coinCost;
+    public TextMeshProUGUI woodCost;
+    public TextMeshProUGUI ignotCost;
     public List<GameObject> tags;
 
     void Awake()
@@ -33,15 +36,31 @@ public class TooltipManager : MonoBehaviour
         // def.text = data.;
         speed.text = data.attackCooldown.ToString();
         health.text = data.maxHealth.ToString();
-        foreach (var tag in tags)
+        foreach (ResourceCost resourceCost in data.cost)
         {
-            tag.SetActive(false);
+            if (resourceCost.resourceName.resourceName == Resources.gold)
+            {
+                coinCost.text = resourceCost.resourceAmount.ToString();
+            }
+            if (resourceCost.resourceName.resourceName == Resources.wood)
+            {
+                woodCost.text = resourceCost.resourceAmount.ToString();
+            }
+            if (resourceCost.resourceName.resourceName == Resources.ingots)
+            {
+                ignotCost.text = resourceCost.resourceAmount.ToString();
+            }
         }
-        for (var i = 0; i < data.tags.Count; i++)
-        {
-            tags[i].GetComponentInChildren<TextMeshProUGUI>().text = data.tags[i].ToString();
-            tags[i].SetActive(true);
-        }
+        // coinCost.text = data.cost.
+        // foreach (var tag in tags)
+        // {
+        //     tag.SetActive(false);
+        // }
+        // for (var i = 0; i < data.tags.Count; i++)
+        // {
+        //     tags[i].GetComponentInChildren<TextMeshProUGUI>().text = data.tags[i].ToString();
+        //     tags[i].SetActive(true);
+        // }
         towerTooltipPrefab.SetActive(true);
         LockToScreen(towerTooltipPrefab);
     }

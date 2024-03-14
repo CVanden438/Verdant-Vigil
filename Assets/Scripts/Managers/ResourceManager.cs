@@ -9,7 +9,7 @@ public class ResourceManager : MonoBehaviour
     public static ResourceManager instance;
     public int ingots = 0;
     public int wood = 0;
-    public int coins = 0;
+    public int coins = 500;
 
     // public UIManager uiManager;
 
