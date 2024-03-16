@@ -18,6 +18,9 @@ namespace Pathfinding
     [RequireComponent(typeof(Seeker))]
     public abstract class AIBase : VersionedMonoBehaviour
     {
+        protected SpriteRenderer sr;
+        protected Animator animator;
+
         /// <summary>\copydoc Pathfinding::IAstarAI::radius</summary>
         public float radius = 0.5f;
 
@@ -429,6 +432,8 @@ namespace Pathfinding
         /// </summary>
         protected virtual void Start()
         {
+            sr = GetComponent<SpriteRenderer>();
+            animator = GetComponent<Animator>();
             startHasRun = true;
             Init();
         }

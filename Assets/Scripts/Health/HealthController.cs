@@ -98,10 +98,14 @@ public class HealthController : MonoBehaviour
                     var exp = GetComponent<EnemyController>().data.exp;
                     var player = GameObject.FindGameObjectWithTag("Player");
                     player.GetComponent<Experience>().GainExp(exp);
+                    GetComponent<EnemyController>().Die();
                     EnemyManager.instance.RemoveEnemy(gameObject);
                     // Destroy(gameObject);
                 }
-                Destroy(gameObject);
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
             else
             {
@@ -144,9 +148,13 @@ public class HealthController : MonoBehaviour
                 var exp = GetComponent<EnemyController>().data.exp;
                 var player = GameObject.FindGameObjectWithTag("Player");
                 player.GetComponent<Experience>().GainExp(exp);
+                GetComponent<EnemyController>().Die();
                 EnemyManager.instance.RemoveEnemy(gameObject);
             }
-            Destroy(gameObject);
+            else
+            {
+                Destroy(gameObject);
+            }
         }
         else
         {

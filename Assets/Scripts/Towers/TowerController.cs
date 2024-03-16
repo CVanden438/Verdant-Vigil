@@ -15,7 +15,12 @@ public interface ITowerVisual
     public void VisualEffect(List<GameObject> targets);
 }
 
-public class TowerController : MonoBehaviour
+public interface ITowerData
+{
+    public TowerSO GetData();
+}
+
+public class TowerController : MonoBehaviour, ITowerData
 {
     [SerializeField]
     private TowerSO data;

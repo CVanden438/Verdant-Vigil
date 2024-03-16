@@ -17,7 +17,9 @@ MonoBehaviour:
   height: 1
   width: 1
   sprite: {fileID: -1556910155, guid: 73c0c5f620887c5488782f8924511379, type: 3}
-  cost: []
+  cost:
+  - resourceName: {fileID: 11400000, guid: 9976669d58fdc4f499559c7b05ead627, type: 2}
+    resourceAmount: 2
   prefab: {fileID: 7627865960319330711, guid: 9f5bead85c402f8409e1cff9230b78c8, type: 3}
   maxHealth: 200
   defence: 4

@@ -502,7 +502,25 @@ namespace Pathfinding
                 slowWhenNotFacingTarget && enableRotation,
                 forwards
             );
-
+            if (velocity2D.x < 0)
+            {
+                sr.flipX = true;
+            }
+            else
+            {
+                sr.flipX = false;
+            }
+            if (animator)
+            {
+                if (velocity2D.magnitude > 0)
+                {
+                    animator.SetBool("isMoving", true);
+                }
+                else
+                {
+                    animator.SetBool("isMoving", false);
+                }
+            }
             ApplyGravity(deltaTime);
 
             // Set how much the agent wants to move during this frame

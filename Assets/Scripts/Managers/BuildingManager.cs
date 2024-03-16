@@ -89,12 +89,17 @@ public class BuildingManager : MonoBehaviour
             {
                 return null;
             }
+            if (CheckResources(selectedBuilding))
+            {
+                return null;
+            }
+            RemoveResources(selectedBuilding);
         }
-        if (CheckResources())
+        else
         {
-            return null;
+            CheckResources(highlightedBuilding.GetComponent<ITowerData>().GetData());
+            RemoveResources(highlightedBuilding.GetComponent<ITowerData>().GetData());
         }
-        RemoveResources();
         GameObject obj = Instantiate(building.prefab, new Vector3(x, y), Quaternion.identity);
         // selectedBuilding = null;
         // isBuilding = false;
@@ -141,9 +146,9 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    bool CheckResources()
+    bool CheckResources(BuildingSO building)
     {
-        var cost = selectedBuilding.cost;
+        var cost = building.cost;
         var coins = ResourceManager.instance.coins;
         var wood = ResourceManager.instance.wood;
         var ingots = ResourceManager.instance.ingots;
@@ -174,9 +179,9 @@ public class BuildingManager : MonoBehaviour
         return true;
     }
 
-    void RemoveResources()
+    void RemoveResources(BuildingSO building)
     {
-        var cost = selectedBuilding.cost;
+        var cost = building.cost;
         foreach (var c in cost)
         {
             if (c.resourceName.resourceName == Resources.gold)

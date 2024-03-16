@@ -16,9 +16,11 @@ public class EnemyController : MonoBehaviour
     private AIPath path;
     private AIDestinationSetter targetSetter;
     bool isAttacking = false;
+    private Animator animator;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         path = GetComponent<AIPath>();
         targetSetter = GetComponent<AIDestinationSetter>();
         player = GameObject.FindWithTag("Player");
@@ -43,6 +45,10 @@ public class EnemyController : MonoBehaviour
         {
             // var newTarget = Physics2D.OverlapCircle(transform.position, 2);
             // if(newTarget.GetComponent<EnemyController>()){return;}
+            if (animator)
+            {
+                animator.SetBool("isMoving", true);
+            }
             isAttacking = false;
             path.enabled = true;
             target = player;
@@ -97,6 +103,10 @@ public class EnemyController : MonoBehaviour
         }
         if (data.enemyType == EnemyType.contact && isAttacking)
         {
+            if (animator)
+            {
+                animator.SetBool("isMoving", false);
+            }
             var cdMulti = GetComponent<StatModifiers>().AttackSpeedModifier;
             if (collision.gameObject.TryGetComponent<HealthController>(out var health))
             {
@@ -128,6 +138,7 @@ public class EnemyController : MonoBehaviour
             isAttacking = true;
             if (data.enemyType == EnemyType.range)
             {
+                animator.SetBool("isMoving", false);
                 path.enabled = false;
             }
         }
@@ -147,6 +158,13 @@ public class EnemyController : MonoBehaviour
     void OnDestroy()
     {
         ResourceManager.instance.AddCoins(10);
+    }
+
+    public void Die()
+    {
+        animator.SetTrigger("isDead");
+        path.enabled = false;
+        Destroy(gameObject, 1f);
     }
 }
 
