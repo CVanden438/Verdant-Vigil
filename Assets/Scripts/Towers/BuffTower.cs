@@ -45,7 +45,7 @@ public class BuffTower : MonoBehaviour
             {
                 if (collider.TryGetComponent<StatModifiers>(out var stats))
                 {
-                    stats.DamageModifier = damageBuffAmount;
+                    stats.DamageModifier.MultiplyModifier(damageBuffAmount);
                 }
                 if (collider.TryGetComponent<SpriteRenderer>(out var sprite))
                 {

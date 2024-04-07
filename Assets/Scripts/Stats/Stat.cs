@@ -11,6 +11,7 @@ public class Stat
     public Stat(float baseValue)
     {
         this.baseValue = baseValue;
+        this.finalValue = baseValue;
     }
 
     public void AddModifier(float value)

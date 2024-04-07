@@ -27,7 +27,7 @@ public class EquipmentManager : MonoBehaviour
             {
                 InventoryItem itemInSlot = armourSlot.GetComponentInChildren<InventoryItem>();
                 var item = (ArmourSO)itemInSlot.itemData;
-                playerArmour += item.defence;
+                playerArmour.AddModifier(item.defence);
             }
         }
         armourDisplay.GetComponent<TextMeshProUGUI>().text = playerArmour.ToString();

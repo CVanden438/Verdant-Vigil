@@ -63,7 +63,7 @@ public class EnemyController : MonoBehaviour
 
     private void RangeAttack()
     {
-        var cdMulti = GetComponent<StatModifiers>().AttackSpeedModifier;
+        var cdMulti = GetComponent<StatModifiers>().AttackSpeedModifier.GetFinalValue();
         if (Time.time - lastAttackTime >= data.attackCd * cdMulti)
         {
             var proj = Instantiate(data.projectilePrefab, transform.position, quaternion.identity);
@@ -107,7 +107,7 @@ public class EnemyController : MonoBehaviour
             {
                 animator.SetBool("isMoving", false);
             }
-            var cdMulti = GetComponent<StatModifiers>().AttackSpeedModifier;
+            var cdMulti = GetComponent<StatModifiers>().AttackSpeedModifier.GetFinalValue();
             if (collision.gameObject.TryGetComponent<HealthController>(out var health))
             {
                 if (Time.time - lastAttackTime >= data.attackCd * cdMulti)

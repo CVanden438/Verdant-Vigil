@@ -138,7 +138,7 @@ namespace Cainos.PixelArtTopDown_Basic
             // {
             //     animator.CrossFade(idleDown, 0, 0);
             // } else if (dir.x)
-            var modifier = GetComponent<StatModifiers>().MoveSpeedMultiplier;
+            var modifier = GetComponent<StatModifiers>().MoveSpeedModifier.GetFinalValue();
             Vector3 movement = speed * modifier * dir;
             // rb.MovePosition(transform.position + movement);
             rb.velocity = movement;

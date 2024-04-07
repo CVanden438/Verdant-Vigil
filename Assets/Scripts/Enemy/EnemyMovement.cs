@@ -19,7 +19,7 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        var speedModifier = GetComponent<StatModifiers>().MoveSpeedMultiplier;
+        var speedModifier = GetComponent<StatModifiers>().MoveSpeedModifier.GetFinalValue();
         Vector3 direction = (
             target.position + new Vector3(0.5f, 0.5f) - transform.position
         ).normalized;

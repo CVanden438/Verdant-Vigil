@@ -55,7 +55,7 @@ public class HealthController : MonoBehaviour
         }
         if (TryGetComponent<StatModifiers>(out var stats))
         {
-            var regen = stats.HealthRegen;
+            var regen = stats.HealthRegen.GetFinalValue();
             _currentHealth += regen;
             OnHealthChanged?.Invoke();
             if (_currentHealth > _maximumHealth)
@@ -69,7 +69,7 @@ public class HealthController : MonoBehaviour
     {
         if (TryGetComponent<StatModifiers>(out var stats))
         {
-            var DOT = stats.DamageOverTime;
+            var DOT = stats.DamageOverTime.GetFinalValue();
             if (_currentHealth == 0)
             {
                 return;
@@ -125,8 +125,8 @@ public class HealthController : MonoBehaviour
         {
             return;
         }
-        damageAmount -= GetComponent<StatModifiers>().Armour;
-        damageAmount *= GetComponent<StatModifiers>().DamageTakenModifier;
+        damageAmount -= GetComponent<StatModifiers>().Armour.GetFinalValue();
+        damageAmount *= GetComponent<StatModifiers>().DamageTakenModifier.GetFinalValue();
         if (damageAmount < 1)
         {
             damageAmount = 1;
