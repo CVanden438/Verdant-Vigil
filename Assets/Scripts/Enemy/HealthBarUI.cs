@@ -43,6 +43,7 @@ public class HealthBarUI : MonoBehaviour
     {
         var health = GetComponentInParent<HealthController>().RemainingHealthPercentage;
         healthBarFill.fillAmount = health;
+        //Turn healthbar off if full health
         if (health == 1)
         {
             container.SetActive(false);

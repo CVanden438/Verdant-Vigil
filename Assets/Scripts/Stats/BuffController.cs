@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,15 +7,18 @@ using UnityEngine.Events;
 public class BuffController : MonoBehaviour
 {
     public List<BuffSO> buffs = new List<BuffSO>();
-
-    // private List<>
     public delegate void BuffAddAction(BuffSO buff);
     public delegate void BuffRemoveAction(BuffSO buff);
     public event BuffAddAction OnBuffAdd;
     public event BuffRemoveAction OnBuffRemove;
+    SpriteRenderer sr;
+    StatModifiers sm;
 
-    // public UnityEvent<BuffSO> OnBuffAdd;
-    // public UnityEvent<BuffSO> OnBuffRemove;
+    void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+        sm = GetComponent<StatModifiers>();
+    }
 
     public void ApplyBuff(BuffSO buff, float duration)
     {
@@ -30,21 +34,32 @@ public class BuffController : MonoBehaviour
             case Buffs.enraged:
                 StartCoroutine(ApplyEnraged(duration, buff));
                 break;
+            case Buffs.elite:
+                ApplyElite();
+                break;
         }
     }
 
-    public void ApplyRegen(BuffSO buff, float duration, float amount)
+    // public void ApplyRegen(BuffSO buff, float duration, float amount)
+    // {
+    //     switch (buff.buffName) { }
+    // }
+
+    public void ApplyElite()
     {
-        // switch (buff.buffName) { }
+        sr.color = Color.yellow;
+        sr.transform.localScale = transform.localScale * 1.5f;
+        sm.DamageModifier.MultiplyModifier(2);
+        sm.MaxHealthModifier.MultiplyModifier(2);
     }
 
     IEnumerator ApplySpeedy(float duration, BuffSO buff)
     {
         buffs.Add(buff);
         OnBuffAdd.Invoke(buff);
-        GetComponent<StatModifiers>().MoveSpeedMultiplier = 1.2f;
+        sm.MoveSpeedModifier.MultiplyModifier(1.2f);
         yield return new WaitForSeconds(duration);
-        GetComponent<StatModifiers>().MoveSpeedMultiplier = 1;
+        sm.MoveSpeedModifier.RemoveMultiplyModifier(1.2f);
         buffs.Remove(buff);
         OnBuffRemove.Invoke(buff);
     }
@@ -53,11 +68,11 @@ public class BuffController : MonoBehaviour
     {
         buffs.Add(buff);
         OnBuffAdd.Invoke(buff);
-        GetComponent<StatModifiers>().AttackSpeedModifier = 1.2f;
-        GetComponent<StatModifiers>().DamageModifier = 1.2f;
+        sm.AttackSpeedModifier.MultiplyModifier(1.2f);
+        sm.DamageModifier.MultiplyModifier(1.2f);
         yield return new WaitForSeconds(duration);
-        GetComponent<StatModifiers>().AttackSpeedModifier = 1f;
-        GetComponent<StatModifiers>().DamageModifier = 1f;
+        sm.AttackSpeedModifier.RemoveMultiplyModifier(1.2f);
+        sm.DamageModifier.RemoveMultiplyModifier(1.2f);
         buffs.Remove(buff);
         OnBuffRemove.Invoke(buff);
     }

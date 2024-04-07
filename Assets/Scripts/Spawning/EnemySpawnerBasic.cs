@@ -10,6 +10,7 @@ public class EnemySpawnerBasic : MonoBehaviour
     public List<EnemySO> enemies;
     private float spawnRate = 10;
     public Vector3 spawnPos;
+    public BuffSO buff;
 
     void Start()
     {
@@ -32,8 +33,14 @@ public class EnemySpawnerBasic : MonoBehaviour
 
     void SpawnEnemy()
     {
+        Debug.Log(buff);
         var num = UnityEngine.Random.Range(-5, 5);
         int rand = UnityEngine.Random.Range(0, enemies.Count);
-        Instantiate(enemies[rand].prefab, spawnPos + new Vector3(num, num), Quaternion.identity);
+        var enemy = Instantiate(
+            enemies[rand].prefab,
+            spawnPos + new Vector3(num, num),
+            Quaternion.identity
+        );
+        enemy.GetComponent<BuffController>().ApplyElite();
     }
 }

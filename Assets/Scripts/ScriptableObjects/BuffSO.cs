@@ -5,7 +5,8 @@ using UnityEngine;
 public enum Buffs
 {
     enraged,
-    speedy
+    speedy,
+    elite
 }
 
 [CreateAssetMenu(fileName = "Buff", menuName = "Debuff/Buff")]

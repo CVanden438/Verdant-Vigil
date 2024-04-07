@@ -4,39 +4,82 @@ using UnityEngine;
 
 public class StatModifiers : MonoBehaviour
 {
-    [HideInInspector]
-    public int Armour { get; set; } = 0;
+    public Stat MaxHealthModifier;
+    public Stat Armour;
+    public Stat MoveSpeedModifier;
+    public Stat DamageTakenModifier;
+    public Stat AttackSpeedModifier;
+    public Stat DamageOverTime;
+    public Stat HealthRegen;
+    public Stat CritChanceModifier;
+    public Stat CritMultiModifier;
+    public Stat DamageModifier;
 
-    [HideInInspector]
-    public float MoveSpeedMultiplier { get; set; } = 1;
+    void Awake()
+    {
+        MaxHealthModifier = new Stat(1);
+        Armour = new Stat(0);
+        MoveSpeedModifier = new Stat(1);
+        DamageTakenModifier = new Stat(1);
+        AttackSpeedModifier = new Stat(1);
+        DamageOverTime = new Stat(0);
+        HealthRegen = new Stat(0);
+        CritChanceModifier = new Stat(0);
+        CritMultiModifier = new Stat(0);
+        DamageModifier = new Stat(1);
+    }
 
-    [HideInInspector]
-    public float DamageTakenModifier { get; set; } = 1;
+    // public int MaxHealthModifier
+    // {
+    //     get { return Mathf.RoundToInt(MaxHealthModifierStat.GetFinalValue()); }
+    // }
+    // public int Armour
+    // {
+    //     get { return Mathf.RoundToInt(ArmourStat.GetFinalValue()); }
+    // }
 
-    [HideInInspector]
-    public float AttackSpeedModifier { get; set; } = 1;
+    // public float MoveSpeedModifier
+    // {
+    //     get { return MoveSpeedModifierStat.GetFinalValue(); }
+    // }
 
-    [HideInInspector]
-    public float DamageOverTime { get; set; } = 0;
+    // public float DamageTakenModifier
+    // {
+    //     get { return DamageTakenModifierStat.GetFinalValue(); }
+    // }
 
-    [HideInInspector]
-    public float HealthRegen { get; set; } = 0;
+    // public float AttackSpeedModifier
+    // {
+    //     get { return AttackSpeedModifierStat.GetFinalValue(); }
+    // }
 
-    [HideInInspector]
-    public float CritChangeAddition { get; set; } = 0;
-
-    [HideInInspector]
-    public float CritMultiAddition { get; set; } = 0;
-
-    [HideInInspector]
-    public float DamageModifier { get; set; } = 1;
+    // public float DamageOverTime
+    // {
+    //     get { return DamageOverTimeStat.GetFinalValue(); }
+    // }
+    // public float HealthRegen
+    // {
+    //     get { return HealthRegenStat.GetFinalValue(); }
+    // }
+    // public float CritChanceModifier
+    // {
+    //     get { return CritChanceModifierStat.GetFinalValue(); }
+    // }
+    // public float CritMultiModifier
+    // {
+    //     get { return CritChanceModifierStat.GetFinalValue(); }
+    // }
+    // public float DamageModifier
+    // {
+    //     get { return DamageModifierStat.GetFinalValue(); }
+    // }
 
     private void Start()
     {
         //enemy armour comes from base stats
         if (CompareTag("Enemy"))
         {
-            Armour = GetComponent<EnemyController>().data.armour;
+            Armour.baseValue = GetComponent<EnemyController>().data.armour;
         }
     }
 }

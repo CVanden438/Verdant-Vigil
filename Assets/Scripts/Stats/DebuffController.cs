@@ -12,12 +12,15 @@ public class DebuffController : MonoBehaviour
     public delegate void DebuffRemoveAction(DebuffSO debuff);
     public event DebuffAddAction OnDebuffAdd;
     public event DebuffRemoveAction OnDebuffRemove;
-
-    // public UnityEvent<DebuffSO> OnDebuffAdd;
-    // public UnityEvent<DebuffSO> OnDebuffRemove;
+    StatModifiers sm;
 
     [SerializeField]
     private List<DebuffSO> immuneDebuffs;
+
+    void Awake()
+    {
+        sm = GetComponent<StatModifiers>();
+    }
 
     public void ApplyDebuff(DebuffSO debuff, float duration)
     {
@@ -74,9 +77,9 @@ public class DebuffController : MonoBehaviour
     {
         debuffs.Add(debuff);
         OnDebuffAdd.Invoke(debuff);
-        GetComponent<StatModifiers>().DamageTakenModifier = 1.2f;
+        sm.DamageTakenModifier.MultiplyModifier(1.2f);
         yield return new WaitForSeconds(duration);
-        GetComponent<StatModifiers>().DamageTakenModifier = 1;
+        sm.DamageTakenModifier.RemoveMultiplyModifier(1.2f);
         debuffs.Remove(debuff);
         OnDebuffRemove.Invoke(debuff);
     }
@@ -85,9 +88,9 @@ public class DebuffController : MonoBehaviour
     {
         debuffs.Add(debuff);
         OnDebuffAdd.Invoke(debuff);
-        GetComponent<StatModifiers>().MoveSpeedMultiplier = 0.7f;
+        sm.MoveSpeedModifier.MultiplyModifier(0.7f);
         yield return new WaitForSeconds(duration);
-        GetComponent<StatModifiers>().MoveSpeedMultiplier = 1;
+        sm.MoveSpeedModifier.RemoveMultiplyModifier(0.7f);
         debuffs.Remove(debuff);
         OnDebuffRemove.Invoke(debuff);
     }
@@ -96,9 +99,9 @@ public class DebuffController : MonoBehaviour
     {
         debuffs.Add(debuff);
         OnDebuffAdd.Invoke(debuff);
-        GetComponent<StatModifiers>().MoveSpeedMultiplier = 0f;
+        sm.MoveSpeedModifier.MultiplyModifier(0);
         yield return new WaitForSeconds(duration);
-        GetComponent<StatModifiers>().MoveSpeedMultiplier = 1;
+        sm.MoveSpeedModifier.RemoveMultiplyModifier(0);
         debuffs.Remove(debuff);
         OnDebuffRemove.Invoke(debuff);
     }
@@ -107,31 +110,9 @@ public class DebuffController : MonoBehaviour
     {
         debuffs.Add(debuff);
         OnDebuffAdd.Invoke(debuff);
-        GetComponent<StatModifiers>().DamageTakenModifier = 1.4f;
+        sm.DamageTakenModifier.MultiplyModifier(1.4f);
         yield return new WaitForSeconds(duration);
-        GetComponent<StatModifiers>().MoveSpeedMultiplier = 1;
-        debuffs.Remove(debuff);
-        OnDebuffRemove.Invoke(debuff);
-    }
-
-    IEnumerator ApplyBleed(float duration, DebuffSO debuff, float amount)
-    {
-        debuffs.Add(debuff);
-        OnDebuffAdd.Invoke(debuff);
-        GetComponent<StatModifiers>().DamageOverTime += amount;
-        yield return new WaitForSeconds(duration);
-        GetComponent<StatModifiers>().DamageOverTime -= amount;
-        debuffs.Remove(debuff);
-        OnDebuffRemove.Invoke(debuff);
-    }
-
-    IEnumerator ApplyBurn(float duration, DebuffSO debuff, float amount)
-    {
-        debuffs.Add(debuff);
-        OnDebuffAdd.Invoke(debuff);
-        GetComponent<StatModifiers>().DamageOverTime += amount;
-        yield return new WaitForSeconds(duration);
-        GetComponent<StatModifiers>().DamageOverTime -= amount;
+        sm.DamageTakenModifier.RemoveMultiplyModifier(1.4f);
         debuffs.Remove(debuff);
         OnDebuffRemove.Invoke(debuff);
     }
@@ -140,11 +121,34 @@ public class DebuffController : MonoBehaviour
     {
         debuffs.Add(debuff);
         OnDebuffAdd.Invoke(debuff);
-        GetComponent<StatModifiers>().MoveSpeedMultiplier = 0f;
-        GetComponent<StatModifiers>().AttackSpeedModifier = 999f;
+        sm.MoveSpeedModifier.MultiplyModifier(0);
+        sm.AttackSpeedModifier.MultiplyModifier(999);
         yield return new WaitForSeconds(duration);
-        GetComponent<StatModifiers>().MoveSpeedMultiplier = 1;
-        GetComponent<StatModifiers>().AttackSpeedModifier = 1;
+        sm.MoveSpeedModifier.RemoveMultiplyModifier(0);
+        sm.AttackSpeedModifier.RemoveMultiplyModifier(999);
+        debuffs.Remove(debuff);
+        OnDebuffRemove.Invoke(debuff);
+    }
+
+    //-----------------DOT------------------
+    IEnumerator ApplyBleed(float duration, DebuffSO debuff, float amount)
+    {
+        debuffs.Add(debuff);
+        OnDebuffAdd.Invoke(debuff);
+        sm.DamageOverTime.AddModifier(amount);
+        yield return new WaitForSeconds(duration);
+        sm.DamageOverTime.RemoveAddModifier(amount);
+        debuffs.Remove(debuff);
+        OnDebuffRemove.Invoke(debuff);
+    }
+
+    IEnumerator ApplyBurn(float duration, DebuffSO debuff, float amount)
+    {
+        debuffs.Add(debuff);
+        OnDebuffAdd.Invoke(debuff);
+        sm.DamageOverTime.AddModifier(amount);
+        yield return new WaitForSeconds(duration);
+        sm.DamageOverTime.RemoveAddModifier(amount);
         debuffs.Remove(debuff);
         OnDebuffRemove.Invoke(debuff);
     }
